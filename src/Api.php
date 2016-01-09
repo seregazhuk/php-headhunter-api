@@ -3,10 +3,12 @@
 namespace seregazhuk\HeadHunterApi;
 
 use seregazhuk\HeadHunterApi\EndPoints\Artifacts;
+use seregazhuk\HeadHunterApi\EndPoints\Comments;
 use seregazhuk\HeadHunterApi\EndPoints\Me;
 use seregazhuk\HeadHunterApi\EndPoints\Negotiations;
 use seregazhuk\HeadHunterApi\EndPoints\Regions;
 use seregazhuk\HeadHunterApi\EndPoints\Resumes;
+use seregazhuk\HeadHunterApi\EndPoints\SavedSearches;
 use seregazhuk\HeadHunterApi\EndPoints\Vacancies;
 use seregazhuk\HeadHunterApi\EndPoints\Employers;
 use seregazhuk\HeadHunterApi\EndPoints\Industries;
@@ -25,6 +27,8 @@ use seregazhuk\HeadHunterApi\EndPoints\EndpointsContainer;
  * @property Resumes $resumes
  * @property Artifacts $artifacts
  * @property Negotiations $negotiations
+ * @property SavedSearches $saveSearches
+ * @property Comments $comments
  */
 class Api {
 
