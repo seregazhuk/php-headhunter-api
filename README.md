@@ -32,79 +32,119 @@ $userInfo = $api->me->info();
 
 ### Vacancies
 Get black listed vacancies:
-```php $api->vacancies->blacklisted(); ```
+```php 
+$api->vacancies->blacklisted(); 
+```
 
 View vacancy by id:
-```php $vacancy = $api->vacancies->view($id); ```
+```php 
+$vacancy = $api->vacancies->view($id); 
+```
 
 Search:
-```php $vacancies = $api->vacancies->search($params); ```
+```php 
+$vacancies = $api->vacancies->search($params); 
+```
 
 ### Employers
 
 View employee by id:
-```php $employee = $api->employers->view($id); ```
+```php 
+$employee = $api->employers->view($id); 
+```
 
 Search:
-```php $employers = $api->employers->search($params); ```
+```php 
+$employers = $api->employers->search($params); 
+```
 
 ### Artifacts:
 
 Photo:
-```php $photo = $api->artifacts->photo(); ```
+```php 
+$photo = $api->artifacts->photo(); 
+```
 
 Portfolio:
-```php $portfolio = $api->artifacts->portfolio(); ```
+```php 
+$portfolio = $api->artifacts->portfolio(); 
+```
 
 ### Applicant comments
 
 Get all comments about applicant:
-```php $comments = $api->comments->view($applicantId); ```
+```php 
+$comments = $api->comments->view($applicantId); 
+```
 
 ### Industries
 
 Get all industries:
-```php $industries = $api->industries->all(); ```
+```php 
+$industries = $api->industries->all(); 
+```
 
 ### Negotiations
 
 Get all negotiations:
-```php $negotiations = $api->negotiations->all(); ```
+```php 
+$negotiations = $api->negotiations->all(); 
+```
 
 Get only active negotiations:
-```php $negotiations = $api->negotiations->active(); ```
+```php 
+$negotiations = $api->negotiations->active(); 
+```
 
 Get messages of negotiation:
-```php $messages = $api->negotiations->messages($negotiationId); ```
+```php 
+$messages = $api->negotiations->messages($negotiationId); 
+```
 
 ### Regions
 
 Get all regions:
-```php $regions = $api->regions->all(); ```
+```php 
+$regions = $api->regions->all(); 
+```
 
 ### Resumes
 
 Get my resumes:
-```php $resumes = $api->resumes->mine(); ```
+```php 
+$resumes = $api->resumes->mine(); 
+```
 
 Search:
-```php $resumes = $api->resumes->search($params); ```
+```php 
+$resumes = $api->resumes->search($params); 
+```
 
 Resume views:
-```php $views = $api->resumes->view($resumeId); ```
+```php 
+$views = $api->resumes->view($resumeId); 
+```
 
 Views history:
-```php $history = $api->resumes->history($resumeId); ```
+```php 
+$history = $api->resumes->history($resumeId); 
+```
 
 ### Saved searches:
 
 List searches:
-```php $searches = $api->savedSearches->all(); ```
+```php 
+$searches = $api->savedSearches->all(); 
+```
 
 Get one search:
-```php $searches = $api->savedSearches->view($searchId); ```
+```php 
+$searches = $api->savedSearches->view($searchId); 
+```
 
 ### Specializations
 
 Get all specializations:
-```php $specializations = $api->specializations->all(); ```
+```php 
+$specializations = $api->specializations->all(); 
+```
