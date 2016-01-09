@@ -2,18 +2,14 @@
 
 namespace seregazhuk\HeadHunterApi\EndPoints;
 
+use seregazhuk\HeadHunterApi\Traits\HasAll;
 use seregazhuk\HeadHunterApi\Traits\HasView;
 
 class Negotiations extends Endpoint
 {
     const RESOURCE = 'negotiations';
 
-    use HasView;
-
-    public function all()
-    {
-        return $this->getResource();
-    }
+    use HasView, HasAll;
 
     public function active()
     {

@@ -6,7 +6,7 @@ class Me extends Endpoint
 {
     const RESOURCE = 'me';
 
-    public function show()
+    public function info()
     {
         return $this->request->get(self::RESOURCE);
     }

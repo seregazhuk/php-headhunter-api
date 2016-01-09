@@ -27,7 +27,7 @@ use seregazhuk\HeadHunterApi\EndPoints\EndpointsContainer;
  * @property Resumes $resumes
  * @property Artifacts $artifacts
  * @property Negotiations $negotiations
- * @property SavedSearches $saveSearches
+ * @property SavedSearches $savedSearches
  * @property Comments $comments
  */
 class Api {

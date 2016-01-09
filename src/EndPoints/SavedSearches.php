@@ -2,16 +2,12 @@
 
 namespace seregazhuk\HeadHunterApi\EndPoints;
 
+use seregazhuk\HeadHunterApi\Traits\HasAll;
+use seregazhuk\HeadHunterApi\Traits\HasView;
+
 class SavedSearches extends Endpoint
 {
-    const RESOURCE = 'saved_searches';
+    const RESOURCE = 'saved_searches/vacancies';
 
-    /**
-     * @param null|string $id
-     * @return array
-     */
-    public function vacancies($id = null)
-    {
-        return $this->getResource('vacancies/'.$id);
-    }
+    use HasAll, HasView;
 }
