@@ -32,7 +32,7 @@ abstract class Endpoint
      * @param string $verb
      * @return array
      */
-    protected function getResource($verb)
+    protected function getResource($verb = '')
     {
         return $this->request->get($this->getResourceUri($verb));
     }
