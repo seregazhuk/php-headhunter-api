@@ -17,6 +17,7 @@ use seregazhuk\HeadHunterApi\EndPoints\EndpointsContainer;
  * @property Regions $regions
  * @property Specializations $specializations
  * @property Industries $industries
+ * @property Me $me
  */
 class Api {
 
@@ -27,9 +28,9 @@ class Api {
      */
     private $request;
 
-    public function __construct()
+    public function __construct($token = null)
     {
-        $this->request = new Request(new GuzzleHttpAdater());
+        $this->request = new Request(new GuzzleHttpAdater(), $token);
         $this->endpointsContainer = new EndpointsContainer($this->request);
     }
 

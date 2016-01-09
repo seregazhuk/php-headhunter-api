@@ -20,14 +20,16 @@ class GuzzleHttpAdater implements HttpInterface
     /**
      * @param string $uri
      * @param array $params
+     * @param null $headers
      * @return array|null
      */
-    public function get($uri, $params = [])
+    public function get($uri, $params = [], $headers = null)
     {
         if(!empty($params)){
             $uri .= '?'. http_build_query($params);
         }
-        $request = $this->client->get($uri);
+
+        $request = $this->client->get($uri, $headers);
         $response = $request->send();
         return json_decode($response->getBody(), true);
     }

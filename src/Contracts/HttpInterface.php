@@ -7,9 +7,10 @@ interface HttpInterface
     /**
      * @param string $uri
      * @param array $params
+     * @param null $headers
      * @return array|null
      */
-    public function get($uri, $params = []);
+    public function get($uri, $params = [], $headers = null);
 
     /**
      * @param string $url
