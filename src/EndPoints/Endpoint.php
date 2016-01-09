@@ -29,11 +29,11 @@ abstract class Endpoint
     }
 
     /**
-     * @param array $queryParams
+     * @param string $verb
      * @return array
      */
-    public function search($queryParams = [])
+    protected function getResource($verb)
     {
-        return $this->request->get($this->getResourceUri(), $queryParams);
+        return $this->request->get($this->getResourceUri($verb));
     }
 }

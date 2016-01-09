@@ -2,11 +2,13 @@
 
 namespace seregazhuk\HeadHunterApi;
 
+use seregazhuk\HeadHunterApi\EndPoints\Me;
+use seregazhuk\HeadHunterApi\EndPoints\Regions;
+use seregazhuk\HeadHunterApi\EndPoints\Resumes;
+use seregazhuk\HeadHunterApi\EndPoints\Vacancies;
 use seregazhuk\HeadHunterApi\EndPoints\Employers;
 use seregazhuk\HeadHunterApi\EndPoints\Industries;
-use seregazhuk\HeadHunterApi\EndPoints\Regions;
 use seregazhuk\HeadHunterApi\EndPoints\Specializations;
-use seregazhuk\HeadHunterApi\EndPoints\Vacancies;
 use seregazhuk\HeadHunterApi\Adapters\GuzzleHttpAdater;
 use seregazhuk\HeadHunterApi\EndPoints\EndpointsContainer;
 
@@ -18,6 +20,7 @@ use seregazhuk\HeadHunterApi\EndPoints\EndpointsContainer;
  * @property Specializations $specializations
  * @property Industries $industries
  * @property Me $me
+ * @property Resumes $resumes
  */
 class Api {
 

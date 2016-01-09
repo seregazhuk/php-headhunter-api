@@ -2,16 +2,12 @@
 
 namespace seregazhuk\HeadHunterApi\EndPoints;
 
+use seregazhuk\HeadHunterApi\Traits\HasView;
+use seregazhuk\HeadHunterApi\Traits\Searchable;
+
 class Vacancies extends Endpoint
 {
     const RESOURCE = 'vacancies';
 
-    /**
-     * @param int $vacancyId
-     * @return array
-     */
-    public function view($vacancyId)
-    {
-        return $this->request->get(self::RESOURCE . $vacancyId);
-    }
+    use HasView, Searchable;
 }
