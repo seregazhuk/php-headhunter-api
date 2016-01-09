@@ -1,0 +1,35 @@
+{
+    "name": "seregazhuk/headhunter-api",
+    "description": "PHP library to interact with hh.ru API",
+    "keywords": [
+        "php",
+        "api",
+        "hh",
+        "headhunter"
+    ],
+    "type": "package",
+    "minimum-stability": "dev",
+    "license": "Mit",
+    "require": {
+        "php": ">=5.5.0",
+        "guzzlehttp/guzzle": "^6.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*",
+        "codeclimate/php-test-reporter": "dev-master",
+        "mockery/mockery": "^0.9.4"
+    },
+    "authors": [
+        {
+            "name": "Serega Zhuk",
+            "email": "seregazhuk88@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "seregazhuk\\HeadHunterApi\\": "src/",
+            "seregazhuk\\tests\\": "tests/"
+        }
+    }
+}
