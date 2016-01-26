@@ -2,6 +2,7 @@
 
 namespace seregazhuk\HeadHunterApi\EndPoints;
 
+use ReflectionClass;
 use seregazhuk\HeadHunterApi\Contracts\RequestInterface;
 use seregazhuk\HeadHunterApi\Exceptions\WrongEndPointException;
 
@@ -48,7 +49,21 @@ class EndpointsContainer
             throw new WrongEndPointException;
         }
 
-        $obj = new $class($this->request);
-        $this->endpoints[$endpoint] = $obj;
+        $this->endpoints[$endpoint] = $this->createEndpoint($class);
+    }
+
+    /**
+     * @param string $class
+     * @return Endpoint
+     * @throws WrongEndPointException
+     */
+    private function createEndpoint($class)
+    {
+        $reflector = new ReflectionClass($class);
+        if(!$reflector->isInstantiable()) {
+            throw new WrongEndPointException("Endpoint $class is not instantiable.");
+        }
+
+        return $reflector->newInstanceArgs([$this->request]);
     }
 }

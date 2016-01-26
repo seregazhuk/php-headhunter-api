@@ -24,7 +24,7 @@ use seregazhuk\HeadHunterApi\Api;
 * Token is optional . Your need token only 
 * for resources that require authentication
 */
-$api = new Api('YOUR_TOKEN');
+$api = new Api::create('YOUR_TOKEN');
 $userInfo = $api->me->info();
 ```
 
