@@ -1,5 +1,6 @@
 <?php
 
+use Mockery;
 use seregazhuk\HeadHunterApi\Contracts\RequestInterface;
 use seregazhuk\HeadHunterApi\EndPoints\EndpointsContainer;
 
@@ -14,6 +15,11 @@ class EndpointsContainerTest extends PHPUnit_Framework_TestCase
         $request = Mockery::mock(RequestInterface::class);
         $this->container = new EndpointsContainer($request);
     }
+
+    public function tearDown() {
+        Mockery::close();
+    }
+
     /** @test */
     public function getValidProvider()
     {
