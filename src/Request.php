@@ -19,6 +19,11 @@ class Request implements RequestInterface
         $this->token = $token;
     }
 
+    /**
+     * @param string $uri
+     * @param array $params
+     * @return array|null
+     */
     public function get($uri, $params = [])
     {
         $headers = $this->createHeaders();
@@ -34,5 +39,16 @@ class Request implements RequestInterface
         if(isset($this->token)) $headers['Authorization'] = 'Bearer ' . $this->token;
 
         return $headers;
+    }
+
+    /**
+     * @param string $uri
+     * @param array $params
+     * @return array
+     */
+    public function post($uri, $params = [])
+    {
+        $headers = $this->createHeaders();
+        return $this->client->post($uri, $params, $headers);
     }
 }
