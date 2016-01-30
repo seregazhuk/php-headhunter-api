@@ -130,6 +130,16 @@ Views history:
 $history = $api->resumes->history($resumeId); 
 ```
 
+Update resume publish date:
+```php 
+$api->resumes->publish($resumeId); 
+```
+
+Get resume conditions:
+```php 
+$conditions = $api->resumes->conditions($resumeId); 
+```
+
 ### Saved searches:
 
 List searches:

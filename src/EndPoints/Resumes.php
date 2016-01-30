@@ -24,4 +24,24 @@ class Resumes extends Endpoint
     {
         return $this->getResource($id . '/views');
     }
+
+    /**
+     * Updates resume publish date
+     *
+     * @param string $id
+     * @return array
+     */
+    public function publish($id)
+    {
+        return $this->postResource($id . '/publish');
+    }
+
+    /**
+     * @param string $id
+     * @return array
+     */
+    public function conditions($id)
+    {
+        return $this->getResource($id . '/conditions');
+    }
 }
