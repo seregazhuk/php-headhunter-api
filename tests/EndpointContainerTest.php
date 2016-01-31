@@ -1,6 +1,9 @@
 <?php
 
+namespace seregazhuk\tests;
+
 use Mockery;
+use PHPUnit_Framework_TestCase;
 use seregazhuk\HeadHunterApi\Contracts\RequestInterface;
 use seregazhuk\HeadHunterApi\EndPoints\EndpointsContainer;
 
