@@ -4,7 +4,7 @@ namespace seregazhuk\HeadHunterApi\Traits;
 
 trait HasView
 {
-    abstract function getResource();
+    abstract function getResource($verb = '');
     /**
      * @param string $id
      * @return array

@@ -1,6 +1,5 @@
 <?php
 
-use Mockery;
 use seregazhuk\HeadHunterApi\Contracts\RequestInterface;
 use seregazhuk\HeadHunterApi\EndPoints\EndpointsContainer;
 
