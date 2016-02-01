@@ -41,4 +41,9 @@ abstract class Endpoint
     {
         return $this->request->post($this->getResourceUri($verb));
     }
+
+    protected function getRequest()
+    {
+        return $this->request;
+    }
 }
