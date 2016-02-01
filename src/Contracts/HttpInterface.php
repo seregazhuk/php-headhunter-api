@@ -7,7 +7,7 @@ interface HttpInterface
     /**
      * @param string $uri
      * @param array $params
-     * @param null $headers
+     * @param array|null $headers
      * @return array|null
      */
     public function get($uri, $params = [], $headers = null);
@@ -16,7 +16,7 @@ interface HttpInterface
     /**
      * @param string $uri
      * @param array $params
-     * @param null $headers
+     * @param array|null $headers
      * @return array|null
      */
     public function post($uri, $params = [], $headers = null);

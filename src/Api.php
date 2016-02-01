@@ -7,6 +7,10 @@ use seregazhuk\HeadHunterApi\EndPoints\EndpointsContainer;
 
 class Api
 {
+    /**
+     * @param string|null $token
+     * @return Client
+     */
     public static function create($token = null)
     {
         $request = new Request(new GuzzleHttpAdater(), $token);
