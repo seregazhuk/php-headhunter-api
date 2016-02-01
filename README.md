@@ -10,6 +10,11 @@
 Provides query api interface for HeadHunter (hh.ru) service. 
 Additional api docs available [here] (https://github.com/hhru/api).
 
+## Dependencies
+
+Requires PHP 5.5 or above.
+
+
 ## Installation
 
 Via composer:
