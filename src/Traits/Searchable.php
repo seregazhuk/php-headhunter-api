@@ -7,6 +7,9 @@ use seregazhuk\HeadHunterApi\Contracts\RequestInterface;
 trait Searchable
 {
 
+    /**
+     * @return string
+     */
     abstract function getResourceUri($uri = '');
 
     /**
