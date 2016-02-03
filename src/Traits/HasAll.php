@@ -4,7 +4,7 @@ namespace seregazhuk\HeadHunterApi\Traits;
 
 trait HasAll
 {
-    abstract function getResource($verb = '');
+    abstract public function getResource($verb = '');
 
     public function all()
     {
