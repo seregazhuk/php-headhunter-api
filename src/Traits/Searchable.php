@@ -7,12 +7,12 @@ use seregazhuk\HeadHunterApi\Contracts\RequestInterface;
 trait Searchable
 {
 
-    abstract function getResourceUri($uri = '');
+    abstract public function getResourceUri($uri = '');
 
     /**
      * @return RequestInterface
      */
-    abstract function getRequest();
+    abstract public function getRequest();
 
     /**
      * @param array $queryParams
