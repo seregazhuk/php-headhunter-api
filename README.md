@@ -79,6 +79,19 @@ Portfolio:
 $portfolio = $api->artifacts->portfolio(); 
 ```
 
+### User:
+
+Get user info:
+```php
+$info = $api->me->info();
+```
+
+Update flag 'is_in_search':
+```php
+$isInSearch = TRUE; // or FALSE;
+$api->me->inSearch($isInSearch);
+```
+
 ### Applicant comments
 
 Get all comments about applicant:
