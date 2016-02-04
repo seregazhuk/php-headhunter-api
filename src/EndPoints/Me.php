@@ -10,4 +10,12 @@ class Me extends Endpoint
     {
         return $this->request->get(self::RESOURCE);
     }
+
+    /**
+     * @param bool $val
+     */
+    public function inSearch($val = true)
+    {
+        $this->request->post(self::RESOURCE, ['is_in_search'=>$val]);
+    }
 }
