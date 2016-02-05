@@ -18,4 +18,20 @@ class Me extends Endpoint
     {
         $this->request->post(self::RESOURCE, ['is_in_search'=>$val]);
     }
+
+    /**
+     * @param string $lastName
+     * @param string $firstName
+     * @param string $middleName
+     */ 
+    public function editName($lastName, $firstName, $middleName)
+    {
+        $data = [
+            'last_name'   => $lastName,
+            'first_name'  => $firstName,
+            'middle_name' => $middleName
+        ];
+        $this->request->post(self::RESOURCE, $data);
+    }
+
 }

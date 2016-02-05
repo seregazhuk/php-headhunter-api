@@ -92,6 +92,11 @@ $isInSearch = TRUE; // or FALSE;
 $api->me->inSearch($isInSearch);
 ```
 
+Update name(last, first, middle). All params are required:
+```php
+$api->me->editName($lastName, $firstName, $middleName);
+```
+
 ### Applicant comments
 
 Get all comments about applicant:
