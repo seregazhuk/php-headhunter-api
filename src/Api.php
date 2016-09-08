@@ -17,4 +17,18 @@ class Api
         $endpointsContainer = new EndpointsContainer($request);
         return new Client($endpointsContainer);
     }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    private function __clone()
+    {
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    private function __construct()
+    {
+    }
 }
