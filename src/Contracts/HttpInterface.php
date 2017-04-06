@@ -20,9 +20,4 @@ interface HttpInterface
      * @return array|null
      */
     public function post($uri, $params = [], $headers = null);
-
-    /**
-     * @param string $url
-     */
-    public function setBaseUrl($url);
 }

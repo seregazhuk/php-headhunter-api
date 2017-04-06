@@ -2,8 +2,9 @@
 
 namespace seregazhuk\HeadHunterApi\Adapters;
 
-use Guzzle\Http\Client;
-use Guzzle\Http\Message\Response;
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 use seregazhuk\HeadHunterApi\Contracts\HttpInterface;
 
 class GuzzleHttpAdater implements HttpInterface
@@ -11,19 +12,11 @@ class GuzzleHttpAdater implements HttpInterface
     /**
      * @var Client
      */
-    private $client;
+    protected $client;
 
-    public function __construct()
+    public function __construct($baseUrl)
     {
-        $this->client = new Client();
-    }
-
-    /**
-     * @param string $url
-     */
-    public function setBaseUrl($url)
-    {
-        $this->client->setBaseUrl($url);
+        $this->client = new Client(['base_uri' => $baseUrl]);
     }
 
     /**
@@ -38,8 +31,12 @@ class GuzzleHttpAdater implements HttpInterface
             $uri .= '?'. http_build_query($params);
         }
 
-        $response = $this->client->get($uri, $headers)
-            ->send();
+        $request = new Request('GET', $uri, $headers);
+
+        $response = $this
+            ->client
+            ->send($request);
+
         return $this->parseResponse($response);
     }
 
@@ -51,8 +48,12 @@ class GuzzleHttpAdater implements HttpInterface
      */
     public function post($uri, $params = [], $headers = null)
     {
-        $response = $this->client->post($uri, $headers, $params)
-            ->send();
+        $request = new Request('POST', $uri, $headers);
+
+        $response = $this
+            ->client
+            ->send($request, ['query' => $params]);
+
         return $this->parseResponse($response);
     }
 

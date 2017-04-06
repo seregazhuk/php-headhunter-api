@@ -31,6 +31,7 @@ class Me extends Endpoint
             'first_name'  => $firstName,
             'middle_name' => $middleName
         ];
+
         $this->request->post(self::RESOURCE, $data);
     }
 
