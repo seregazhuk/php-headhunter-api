@@ -8,13 +8,12 @@ use seregazhuk\HeadHunterApi\Contracts\RequestInterface;
 
 class Request implements RequestInterface
 {
-    const BASE_URL = 'https://api.hh.ru';
-    private $client;
-    private $token;
+
+    protected $client;
+    protected $token;
 
     public function __construct(HttpInterface $http, $token = null)
     {
-        $http->setBaseUrl(self::BASE_URL);
         $this->client = $http;
         $this->token = $token;
     }
@@ -27,6 +26,7 @@ class Request implements RequestInterface
     public function get($uri, $params = [])
     {
         $headers = $this->createHeaders();
+
         return $this->client->get($uri, $params, $headers);
     }
 
@@ -36,6 +36,7 @@ class Request implements RequestInterface
     protected function createHeaders()
     {
         $headers = null;
+
         if(isset($this->token)) $headers['Authorization'] = 'Bearer ' . $this->token;
 
         return $headers;
@@ -49,6 +50,7 @@ class Request implements RequestInterface
     public function post($uri, $params = [])
     {
         $headers = $this->createHeaders();
+
         return $this->client->post($uri, $params, $headers);
     }
 }
