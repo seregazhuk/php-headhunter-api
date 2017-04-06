@@ -5,7 +5,8 @@
 [![Build Status](https://travis-ci.org/seregazhuk/php-headhunter-api.svg)](https://travis-ci.org/seregazhuk/php-headhunter-api)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/seregazhuk/php-headhunter-api/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/seregazhuk/php-headhunter-api/?branch=master)
 [![Circle CI](https://circleci.com/gh/seregazhuk/php-headhunter-api.svg?style=shield)](https://circleci.com/gh/seregazhuk/php-headhunter-api)
-
+[![Latest Stable Version](https://poser.pugx.org/seregazhuk/headhunter-api/v/stable)](https://packagist.org/packages/seregazhuk/headhunter-api)
+[![Total Downloads](https://poser.pugx.org/seregazhuk/headhunter-api/downloads)](https://packagist.org/packages/seregazhuk/headhunter-api)
 
 Provides query api interface for HeadHunter (hh.ru) service. 
 Additional api docs available [here] (https://github.com/hhru/api).
