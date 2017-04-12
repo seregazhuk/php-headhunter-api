@@ -25,6 +25,7 @@ abstract class Endpoint
     protected function getResourceUri($uri = '')
     {
         $resource = static::RESOURCE;
+
         return empty($uri) ? $resource : $resource . sprintf('/%s', $uri);
     }
 

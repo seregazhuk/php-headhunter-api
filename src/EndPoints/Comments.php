@@ -6,7 +6,7 @@ use seregazhuk\HeadHunterApi\Traits\HasView;
 
 class Comments extends Endpoint
 {
-    const RESOURCE = 'applicant_comments';
-
     use HasView;
+
+    const RESOURCE = 'applicant_comments';
 }
