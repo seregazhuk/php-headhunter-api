@@ -8,8 +8,8 @@
 [![Latest Stable Version](https://poser.pugx.org/seregazhuk/headhunter-api/v/stable)](https://packagist.org/packages/seregazhuk/headhunter-api)
 [![Total Downloads](https://poser.pugx.org/seregazhuk/headhunter-api/downloads)](https://packagist.org/packages/seregazhuk/headhunter-api)
 
-Provides query api interface for HeadHunter (hh.ru) service. 
-Additional api docs available [here] (https://github.com/hhru/api).
+Provides friendly api interface for HeadHunter (hh.ru) service.
+Additional api docs available [here](https://github.com/hhru/api).
 
 ## Dependencies
 
