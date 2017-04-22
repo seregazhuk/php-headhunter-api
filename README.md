@@ -190,6 +190,11 @@ Get current status (if it is blocked or ready to publish):
 $status = $api->resumes->status($resumeId);
 ```
 
+Get jobs recommendations for resume:
+```php
+$jobs = $api->resumes->jobs($resumeId)
+```
+
 ### Saved searches:
 
 List searches:

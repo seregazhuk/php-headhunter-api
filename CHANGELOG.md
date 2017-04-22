@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
  - Manager preferences
  - Delete resume
  - Resume status
+ - Get jobs recommendations for resume
 
 ## v0.1.1 - 2017-04-07
 ### Fixed:

@@ -62,4 +62,9 @@ class Resumes extends Endpoint
     {
         return $this->getResource($id . '/status');
     }
+
+    public function jobs($id)
+    {
+        return $this->getResource($id . '/similar_vacancies');
+    }
 }
