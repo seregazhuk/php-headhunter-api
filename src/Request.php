@@ -68,12 +68,6 @@ class Request implements RequestInterface
         return $headers;
     }
 
-    public function delete($uri)
-    {
-        $headers = $this->createHeaders();
-
-        return $this->client->delete($uri, $headers);
-    }
 
     /**
      * @param string $method
@@ -88,18 +82,6 @@ class Request implements RequestInterface
         };
 
         return $this->makeRequestCall($matches[1], $params);
-    }
-
-    /**
-     * @return array|null
-     */
-    protected function createHeaders()
-    {
-        $headers = null;
-
-        if(isset($this->token)) $headers['Authorization'] = 'Bearer ' . $this->token;
-
-        return $headers;
     }
 
     /**
