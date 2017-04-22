@@ -180,6 +180,11 @@ Get resume conditions:
 $conditions = $api->resumes->conditions($resumeId); 
 ```
 
+Remove resume:
+```php
+$api->resumes->delete($resumeId);
+```
+
 ### Saved searches:
 
 List searches:

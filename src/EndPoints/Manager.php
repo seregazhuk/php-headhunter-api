@@ -7,7 +7,7 @@ use seregazhuk\HeadHunterApi\Exceptions\HeadHunterApiException;
 class Manager extends Endpoint
 {
 
-    const RESOURCE = '/employers/{employer_id}/managers/{manager_id}/settings';
+    const RESOURCE = '/employers';
 
     /**
      * @var array
@@ -24,13 +24,13 @@ class Manager extends Endpoint
         $employerId = $this->getCurrentEmployerId();
         $managerId = $managerId ? : $this->getCurrentManagerId();
 
-        $resource = str_replace(
+        $uri = str_replace(
             ['{employer_id}', '{manager_id}'],
             [$employerId, $managerId],
-            self::RESOURCE);
+            '{employer_id}/managers/{manager_id}/settings');
 
 
-        return $this->request->get($resource);
+        return $this->getResource($uri);
     }
 
     /**

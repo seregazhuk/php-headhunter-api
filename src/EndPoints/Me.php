@@ -8,7 +8,7 @@ class Me extends Endpoint
 
     public function info()
     {
-        return $this->request->get(self::RESOURCE);
+        return $this->getResource();
     }
 
     /**
@@ -16,7 +16,7 @@ class Me extends Endpoint
      */
     public function inSearch($val = true)
     {
-        $this->request->post(self::RESOURCE, ['is_in_search'=>$val]);
+        $this->request->post(self::RESOURCE, ['is_in_search' => $val]);
     }
 
     /**

@@ -43,6 +43,11 @@ abstract class Endpoint
         return $this->request->post($this->getResourceUri($verb));
     }
 
+    protected function deleteResource($verb = '')
+    {
+        $this->request->delete($this->getResourceUri($verb));
+    }
+
     protected function getRequest()
     {
         return $this->request;

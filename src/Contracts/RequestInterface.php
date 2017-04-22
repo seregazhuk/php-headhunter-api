@@ -17,4 +17,10 @@ interface RequestInterface
      * @return array
      */
     public function post($uri, $params = []);
+
+    /**
+     * @param string $uri
+     * @return array
+     */
+    public function delete($uri);
 }
