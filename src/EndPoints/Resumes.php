@@ -45,8 +45,21 @@ class Resumes extends Endpoint
         return $this->getResource($id . '/conditions');
     }
 
+    /**
+     * @param string $id
+     * @return array
+     */
     public function delete($id)
     {
         return $this->deleteResource($id);
+    }
+
+    /**
+     * @param string $id
+     * @return array
+     */
+    public function status($id)
+    {
+        return $this->getResource($id . '/status');
     }
 }

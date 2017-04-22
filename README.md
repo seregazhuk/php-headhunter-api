@@ -185,6 +185,11 @@ Remove resume:
 $api->resumes->delete($resumeId);
 ```
 
+Get current status (if it is blocked or ready to publish):
+```php
+$status = $api->resumes->status($resumeId);
+```
+
 ### Saved searches:
 
 List searches:

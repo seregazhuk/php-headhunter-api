@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Added:
  - Manager preferences
  - Delete resume
+ - Resume status
 
 ## v0.1.1 - 2017-04-07
 ### Fixed:
