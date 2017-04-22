@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v0.2.0 - ??
+## v0.2.0 - 2017-04-022
 ### Added:
  - Manager preferences
  - Delete resume
