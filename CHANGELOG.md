@@ -8,6 +8,9 @@ All notable changes to this project will be documented in this file.
  - Resume status
  - Get jobs recommendations for resume
 
+### Changed:
+ - PHP 5.6 is required
+
 ## v0.1.1 - 2017-04-07
 ### Fixed:
  - Guzzlehttp version update
