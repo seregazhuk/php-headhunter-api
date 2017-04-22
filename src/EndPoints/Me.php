@@ -34,5 +34,4 @@ class Me extends Endpoint
 
         $this->request->post(self::RESOURCE, $data);
     }
-
 }

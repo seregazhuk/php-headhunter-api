@@ -98,6 +98,18 @@ Update name(last, first, middle). All params are required:
 $api->me->editName($lastName, $firstName, $middleName);
 ```
 
+Manager preferences by managerId. You can get your manager id from user object, returned from `$api->me->info()`.
+When used without parameters your manager id will be automatically resolved from your profile.
+
+```php
+$me = $api->me->info();
+$managerId = $me['manager']['id'];
+$preferences = $api->manager->preferences($managerId);
+
+// automatically get manager id from your profile
+$preferences = $api->manager->preferences($managerId);
+```
+
 ### Applicant comments
 
 Get all comments about applicant:
