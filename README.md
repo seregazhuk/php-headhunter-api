@@ -13,7 +13,7 @@ Additional api docs available [here](https://github.com/hhru/api).
 
 ## Dependencies
 
-Requires PHP 5.5 or above.
+Requires PHP 5.6 or above.
 
 
 ## Installation
@@ -183,6 +183,16 @@ $conditions = $api->resumes->conditions($resumeId);
 Remove resume:
 ```php
 $api->resumes->delete($resumeId);
+```
+
+Get current status (if it is blocked or ready to publish):
+```php
+$status = $api->resumes->status($resumeId);
+```
+
+Get jobs recommendations for resume:
+```php
+$jobs = $api->resumes->jobs($resumeId)
 ```
 
 ### Saved searches:
