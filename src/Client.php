@@ -3,6 +3,7 @@
 namespace seregazhuk\HeadHunterApi;
 
 use seregazhuk\HeadHunterApi\EndPoints\Me;
+use seregazhuk\HeadHunterApi\EndPoints\Manager;
 use seregazhuk\HeadHunterApi\EndPoints\Regions;
 use seregazhuk\HeadHunterApi\EndPoints\Resumes;
 use seregazhuk\HeadHunterApi\EndPoints\Comments;
@@ -28,6 +29,7 @@ use seregazhuk\HeadHunterApi\EndPoints\EndpointsContainer;
  * @property Negotiations $negotiations
  * @property SavedSearches $savedSearches
  * @property Comments $comments
+ * @property Manager $manager
  */
 class Client {
 

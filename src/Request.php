@@ -9,8 +9,14 @@ use seregazhuk\HeadHunterApi\Exceptions\HeadHunterApiException;
 
 class Request implements RequestInterface
 {
-
+    /**
+     * @var HttpInterface
+     */
     protected $client;
+
+    /**
+     * @var null|string
+     */
     protected $token;
 
     public function __construct(HttpInterface $http, $token = null)
@@ -32,18 +38,6 @@ class Request implements RequestInterface
     }
 
     /**
-     * @return array|null
-     */
-    protected function createHeaders()
-    {
-        $headers = null;
-
-        if(isset($this->token)) $headers['Authorization'] = 'Bearer ' . $this->token;
-
-        return $headers;
-    }
-
-    /**
      * @param string $uri
      * @param array $params
      * @return array
@@ -53,6 +47,25 @@ class Request implements RequestInterface
         $headers = $this->createHeaders();
 
         return $this->client->post($uri, $params, $headers);
+    }
+
+    public function delete($uri)
+    {
+        $headers = $this->createHeaders();
+
+        return $this->client->delete($uri, $headers);
+    }
+
+    /**
+     * @return array|null
+     */
+    protected function createHeaders()
+    {
+        $headers = null;
+
+        if(isset($this->token)) $headers['Authorization'] = 'Bearer ' . $this->token;
+
+        return $headers;
     }
 
     public function delete($uri)

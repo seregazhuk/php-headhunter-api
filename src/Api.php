@@ -16,7 +16,9 @@ class Api
     public static function create($token = null)
     {
         $request = new Request(new GuzzleHttpAdater(self::BASE_URL), $token);
+
         $endpointsContainer = new EndpointsContainer($request);
+
         return new Client($endpointsContainer);
     }
 

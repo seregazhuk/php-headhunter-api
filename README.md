@@ -5,10 +5,11 @@
 [![Build Status](https://travis-ci.org/seregazhuk/php-headhunter-api.svg)](https://travis-ci.org/seregazhuk/php-headhunter-api)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/seregazhuk/php-headhunter-api/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/seregazhuk/php-headhunter-api/?branch=master)
 [![Circle CI](https://circleci.com/gh/seregazhuk/php-headhunter-api.svg?style=shield)](https://circleci.com/gh/seregazhuk/php-headhunter-api)
+[![Latest Stable Version](https://poser.pugx.org/seregazhuk/headhunter-api/v/stable)](https://packagist.org/packages/seregazhuk/headhunter-api)
+[![Total Downloads](https://poser.pugx.org/seregazhuk/headhunter-api/downloads)](https://packagist.org/packages/seregazhuk/headhunter-api)
 
-
-Provides query api interface for HeadHunter (hh.ru) service. 
-Additional api docs available [here] (https://github.com/hhru/api).
+Provides friendly api interface for HeadHunter (hh.ru) service.
+Additional api docs available [here](https://github.com/hhru/api).
 
 ## Dependencies
 
@@ -33,7 +34,7 @@ use seregazhuk\HeadHunterApi\Api;
 * Token is optional . Your need token only 
 * for resources that require authentication
 */
-$api = new Api::create('YOUR_TOKEN');
+$api = Api::create('YOUR_TOKEN');
 $userInfo = $api->me->info();
 ```
 
@@ -95,6 +96,18 @@ $api->me->inSearch($isInSearch);
 Update name(last, first, middle). All params are required:
 ```php
 $api->me->editName($lastName, $firstName, $middleName);
+```
+
+Manager preferences by managerId. You can get your manager id from user object, returned from `$api->me->info()`.
+When used without parameters your manager id will be automatically resolved from your profile.
+
+```php
+$me = $api->me->info();
+$managerId = $me['manager']['id'];
+$preferences = $api->manager->preferences($managerId);
+
+// automatically get manager id from your profile
+$preferences = $api->manager->preferences($managerId);
 ```
 
 ### Applicant comments
@@ -165,6 +178,11 @@ $api->resumes->publish($resumeId);
 Get resume conditions:
 ```php 
 $conditions = $api->resumes->conditions($resumeId); 
+```
+
+Remove resume:
+```php
+$api->resumes->delete($resumeId);
 ```
 
 ### Saved searches:

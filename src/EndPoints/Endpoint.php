@@ -25,6 +25,7 @@ abstract class Endpoint
     protected function getResourceUri($uri = '')
     {
         $resource = static::RESOURCE;
+
         return empty($uri) ? $resource : $resource . sprintf('/%s', $uri);
     }
 
@@ -40,6 +41,11 @@ abstract class Endpoint
     protected function postResource($verb = '')
     {
         return $this->request->post($this->getResourceUri($verb));
+    }
+
+    protected function deleteResource($verb = '')
+    {
+        $this->request->delete($this->getResourceUri($verb));
     }
 
     protected function getRequest()
