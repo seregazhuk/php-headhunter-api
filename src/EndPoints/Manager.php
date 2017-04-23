@@ -6,13 +6,7 @@ use seregazhuk\HeadHunterApi\Exceptions\HeadHunterApiException;
 
 class Manager extends Endpoint
 {
-
     const RESOURCE = '/employers';
-
-    /**
-     * @var array
-     */
-    protected $currentUser;
 
     /**
      * Get manager settings
@@ -40,7 +34,7 @@ class Manager extends Endpoint
      */
     protected function getCurrentEmployerId()
     {
-        $currentUser = $this->getCurrentUser();
+        $currentUser = $this->getCurrentUserInfo();
 
         if(!isset($currentUser['employer']['id'])) {
             throw new HeadHunterApiException('Cannot resolve employer id');
@@ -49,23 +43,22 @@ class Manager extends Endpoint
         return $currentUser['employer']['id'];
     }
 
-    protected function getCurrentUser()
-    {
-        if(!empty($this->currentUser)) return $this->currentUser;
-
-        $this->currentUser = $this->request->get(Me::RESOURCE);
-
-        return $this->currentUser;
-    }
-
     protected function getCurrentManagerId()
     {
-        $currentUser = $this->getCurrentUser();
+        $currentUser = $this->getCurrentUserInfo();
 
         if(!isset($currentUser['manager']['id'])) {
             throw new HeadHunterApiException('Cannot resolve manager id');
         }
 
         return $currentUser['manager']['id'];
+    }
+
+    /**
+     * @return array
+     */
+    protected function getCurrentUserInfo()
+    {
+        return $this->container->getEndpoint('me')->info();
     }
 }
