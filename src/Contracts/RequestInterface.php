@@ -2,6 +2,8 @@
 
 namespace seregazhuk\HeadHunterApi\Contracts;
 
+use seregazhuk\HeadHunterApi\Exceptions\HeadHunterApiException;
+
 interface RequestInterface
 {
     /**
@@ -23,4 +25,13 @@ interface RequestInterface
      * @return array
      */
     public function delete($uri);
+
+    /**
+     * @param string $requestMethod
+     * @param string $uri
+     * @param array $params
+     * @return mixed
+     * @throws HeadHunterApiException
+     */
+    public function makeRequestCall($requestMethod, $uri, $params = []);
 }

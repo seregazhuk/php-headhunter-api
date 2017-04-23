@@ -89,8 +89,8 @@ $info = $api->me->info();
 
 Update flag 'is_in_search':
 ```php
-$isInSearch = TRUE; // or FALSE;
-$api->me->inSearch($isInSearch);
+$isInSearch = true; // or false;
+$api->me->setIsInSearch($isInSearch);
 ```
 
 Update name(last, first, middle). All params are required:

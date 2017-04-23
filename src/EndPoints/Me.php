@@ -14,9 +14,9 @@ class Me extends Endpoint
     /**
      * @param bool $val
      */
-    public function inSearch($val = true)
+    public function setIsInSearch($val = true)
     {
-        $this->request->post(self::RESOURCE, ['is_in_search' => $val]);
+        $this->postResource('', ['is_in_search' => $val]);
     }
 
     /**
@@ -32,6 +32,6 @@ class Me extends Endpoint
             'middle_name' => $middleName
         ];
 
-        $this->request->post(self::RESOURCE, $data);
+        $this->postResource('', $data);
     }
 }

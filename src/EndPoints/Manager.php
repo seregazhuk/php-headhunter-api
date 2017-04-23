@@ -27,7 +27,8 @@ class Manager extends Endpoint
         $uri = str_replace(
             ['{employer_id}', '{manager_id}'],
             [$employerId, $managerId],
-            '{employer_id}/managers/{manager_id}/settings');
+            '{employer_id}/managers/{manager_id}/settings'
+        );
 
 
         return $this->getResource($uri);
