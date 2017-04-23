@@ -13,9 +13,18 @@ abstract class Endpoint
      */
     protected $request;
 
-    public function __construct(RequestInterface $request)
+    /**
+     * @var EndpointsContainer
+     */
+    protected $container;
+
+    /**
+     * @param EndpointsContainer $container
+     */
+    public function __construct(EndpointsContainer $container)
     {
-        $this->request = $request;
+        $this->container = $container;
+        $this->request = $container->getRequest();
     }
 
     /**

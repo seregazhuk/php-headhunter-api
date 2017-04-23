@@ -64,7 +64,7 @@ class EndpointsContainer
             throw new WrongEndPointException("Endpoint $class is not instantiable.");
         }
 
-        return $reflector->newInstanceArgs([$this->request]);
+        return $reflector->newInstanceArgs([$this]);
     }
 
     /**
