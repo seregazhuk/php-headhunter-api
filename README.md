@@ -186,46 +186,46 @@ Negotiations history ([official docs](https://github.com/hhru/api/blob/master/do
 $negotiations = $api->resumes->negotiations($resumeId);
 ```
 
-Update resume publish date:
+Update resume publish date ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#publish)):
 ```php 
 $api->resumes->publish($resumeId); 
 ```
 
-Get resume conditions:
+Get resume conditions ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#conditions)):
 ```php 
 $conditions = $api->resumes->conditions($resumeId); 
 ```
 
-Remove resume:
+Remove resume ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#delete)):
 ```php
 $api->resumes->delete($resumeId);
 ```
 
-Get current status (if it is blocked or ready to publish):
+Get current status (if it is blocked or ready to publish) ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#status-and-publication)):
 ```php
 $status = $api->resumes->status($resumeId);
 ```
 
-Get jobs recommendations for resume:
+Get jobs recommendations for resume ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#similar)):
 ```php
 $jobs = $api->resumes->jobs($resumeId)
 ```
 
 ### Saved searches:
 
-List searches:
+List searches ([official docs](https://github.com/hhru/api/blob/master/docs/saved_search.md#vacancies-saved-search-list)):
 ```php 
 $searches = $api->savedSearches->all(); 
 ```
 
-Get one search:
+Get one search ([official docs](https://github.com/hhru/api/blob/master/docs/saved_search.md#vacancies-saved-search-item)):
 ```php 
 $searches = $api->savedSearches->view($searchId); 
 ```
 
 ### Specializations
 
-Get all specializations:
+Get all specializations ([official docs](https://github.com/hhru/api/blob/master/docs/specializations.md)):
 ```php 
 $specializations = $api->specializations->all(); 
 ```
