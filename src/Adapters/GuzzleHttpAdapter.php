@@ -7,7 +7,7 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use seregazhuk\HeadHunterApi\Contracts\HttpInterface;
 
-class GuzzleHttpAdater implements HttpInterface
+class GuzzleHttpAdapter implements HttpInterface
 {
     /**
      * @var Client
@@ -31,13 +31,7 @@ class GuzzleHttpAdater implements HttpInterface
             $uri .= '?'. http_build_query($params);
         }
 
-        $request = new Request('GET', $uri, $headers);
-
-        $response = $this
-            ->client
-            ->send($request);
-
-        return $this->parseResponse($response);
+        return $this->executeRequest('GET', $uri, $headers);
     }
 
     /**
@@ -48,13 +42,7 @@ class GuzzleHttpAdater implements HttpInterface
      */
     public function post($uri, $params = [], $headers = null)
     {
-        $request = new Request('POST', $uri, $headers);
-
-        $response = $this
-            ->client
-            ->send($request, ['query' => $params]);
-
-        return $this->parseResponse($response);
+        return $this->executeRequest('POST', $uri, $headers, $params);
     }
 
     /**
@@ -64,13 +52,7 @@ class GuzzleHttpAdater implements HttpInterface
      */
     public function delete($uri, $headers = null)
     {
-        $request = new Request('DELETE', $uri, $headers);
-
-        $response = $this
-            ->client
-            ->send($request);
-
-        return $this->parseResponse($response);
+        return $this->executeRequest('DELETE', $uri, $headers);
     }
 
     /**
@@ -80,6 +62,22 @@ class GuzzleHttpAdater implements HttpInterface
     private function parseResponse(Response $response)
     {
         return json_decode($response->getBody(), true);
+    }
+
+    /**
+     * @param string $method
+     * @param string $uri
+     * @param array $headers
+     * @param array $params
+     * @return array|null
+     */
+    protected function executeRequest($method, $uri, array $headers, array $params = [])
+    {
+        $request = new Request($method, $uri, $headers);
+
+        $response = $this->client->send($request, ['query' => $params]);
+
+        return $this->parseResponse($response);
     }
 
 }

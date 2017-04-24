@@ -2,7 +2,7 @@
 
 namespace seregazhuk\HeadHunterApi;
 
-use seregazhuk\HeadHunterApi\Adapters\GuzzleHttpAdater;
+use seregazhuk\HeadHunterApi\Adapters\GuzzleHttpAdapter;
 use seregazhuk\HeadHunterApi\EndPoints\EndpointsContainer;
 
 class Api
@@ -15,7 +15,7 @@ class Api
      */
     public static function create($token = null)
     {
-        $request = new Request(new GuzzleHttpAdater(self::BASE_URL), $token);
+        $request = new Request(new GuzzleHttpAdapter(self::BASE_URL), $token);
 
         $endpointsContainer = new EndpointsContainer($request);
 

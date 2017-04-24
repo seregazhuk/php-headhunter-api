@@ -59,6 +59,9 @@ class Manager extends Endpoint
      */
     protected function getCurrentUserInfo()
     {
-        return $this->container->getEndpoint('me')->info();
+        /** @var Me $meEndpoint */
+        $meEndpoint = $this->container->getEndpoint('me');
+        
+        return $meEndpoint->info();
     }
 }
