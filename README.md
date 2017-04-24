@@ -166,12 +166,12 @@ Resume views:
 $views = $api->resumes->view($resumeId); 
 ```
 
-Views history:
+[Views history](https://github.com/hhru/api/blob/master/docs/resumes.md#views):
 ```php 
 $views = $api->resumes->views($resumeId);
 ```
 
-Negotiations history:
+[Negotiations history](https://github.com/hhru/api/blob/master/docs/resume_negotiations_history.md):
 ```php
 $negotiations = $api->resumes->negotiations($resumeId);
 ```
