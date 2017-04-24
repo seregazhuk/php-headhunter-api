@@ -12,6 +12,21 @@ Provides a friendly api interface for HeadHunter (hh.ru) service.
 
 Official api docs available [here](https://github.com/hhru/api).
 
+ - [Installation](#installation)
+ - [Quick Start](#quick-start)
+ - [Vacancies](#vacancies)
+ - [Employers](#employers)
+ - [Artifacts](#artifacts)
+ - [User](#user)
+ - [Comments](#comments)
+ - [Industries](#Industries)
+ - [Negotiations](#negotiations)
+ - [Regions](#regions)
+ - [Resumes](#resumes)
+ - [Saved searches](#saved-searches)
+ - [Specializations](#specializations)
+
+
 ## Dependencies
 
 Requires PHP 5.6 or above.
@@ -166,12 +181,12 @@ Resume views:
 $views = $api->resumes->view($resumeId); 
 ```
 
-[Views history](https://github.com/hhru/api/blob/master/docs/resumes.md#views):
+Views history ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#views)):
 ```php 
 $views = $api->resumes->views($resumeId);
 ```
 
-[Negotiations history](https://github.com/hhru/api/blob/master/docs/resume_negotiations_history.md):
+Negotiations history ([official docs](https://github.com/hhru/api/blob/master/docs/resume_negotiations_history.md)):
 ```php
 $negotiations = $api->resumes->negotiations($resumeId);
 ```
