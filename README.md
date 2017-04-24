@@ -57,65 +57,66 @@ $userInfo = $api->me->info();
 ## API Resources
 
 ### Vacancies
-Get black listed vacancies:
+Get black listed vacancies ([official](https://github.com/hhru/api/blob/master/docs/blacklisted.md)):
 ```php 
 $api->vacancies->blacklisted(); 
 ```
 
-View vacancy by id:
+View vacancy by id ([official docs](https://github.com/hhru/api/blob/master/docs/vacancies.md)):
 ```php 
 $vacancy = $api->vacancies->view($id); 
 ```
 
-Search:
+Search ([official docs](https://github.com/hhru/api/blob/master/docs/vacancies.md#search)):
 ```php 
 $vacancies = $api->vacancies->search($params); 
 ```
 
 ### Employers
 
-View employee by id:
+View employee by id ([official docs](https://github.com/hhru/api/blob/master/docs/employers.md#item)):
 ```php 
 $employee = $api->employers->view($id); 
 ```
 
-Search:
+Search ([official docs](https://github.com/hhru/api/blob/master/docs/employers.md#search)):
 ```php 
 $employers = $api->employers->search($params); 
 ```
 
 ### Artifacts:
 
-Photo:
+Photo ([official docs](https://github.com/hhru/api/blob/master/docs/artifacts.md)):
 ```php 
 $photo = $api->artifacts->photo(); 
 ```
 
-Portfolio:
+Portfolio ([official docs](https://github.com/hhru/api/blob/master/docs/artifacts.md)):
 ```php 
 $portfolio = $api->artifacts->portfolio(); 
 ```
 
 ### User:
 
-Get user info:
+Get current user info ([official docs](https://github.com/hhru/api/blob/master/docs/me.md)):
 ```php
 $info = $api->me->info();
 ```
 
-Update flag 'is_in_search':
+Update name(last, first, middle). All parameters are required ([official docs](https://github.com/hhru/api/blob/master/docs/me.md#edit)):
+```php
+$api->me->editName($lastName, $firstName, $middleName);
+```
+
+Update flag 'is_in_search' ([official docs](https://github.com/hhru/api/blob/master/docs/me.md#Флаг-ищу--не-ищу-работу)):
 ```php
 $isInSearch = true; // or false;
 $api->me->setIsInSearch($isInSearch);
 ```
 
-Update name(last, first, middle). All params are required:
-```php
-$api->me->editName($lastName, $firstName, $middleName);
-```
-
-Manager preferences by managerId. You can get your manager id from user object, returned from `$api->me->info()`.
-When used without parameters your manager id will be automatically resolved from your profile.
+Manager preferences by managerId. You can get your manager id from user object,
+returned from `$api->me->info()`. When used without parameters your manager id will be
+automatically resolved from your profile ([official docs](https://github.com/hhru/api/blob/master/docs/manager_settings.md)).
 
 ```php
 $me = $api->me->info();
@@ -128,55 +129,49 @@ $preferences = $api->manager->preferences($managerId);
 
 ### Applicant comments
 
-Get all comments about applicant:
+Get all comments about applicant ([official docs](https://github.com/hhru/api/blob/master/docs/applicant_comments.md#list)):
 ```php 
 $comments = $api->comments->view($applicantId); 
 ```
 
 ### Industries
-
-Get all industries:
+Get all industries ([official docs](https://github.com/hhru/api/blob/master/docs/industries.md)):
 ```php 
 $industries = $api->industries->all(); 
 ```
 
-### Negotiations
+### Employee Negotiations
 
-Get all negotiations:
+Get all negotiations ([official docs](https://github.com/hhru/api/blob/master/docs/negotiations.md#get_negotiations)):
 ```php 
 $negotiations = $api->negotiations->all(); 
 ```
 
-Get only active negotiations:
+Get only active negotiations ([official docs](https://github.com/hhru/api/blob/master/docs/negotiations.md#get_negotiations_active)):
 ```php 
 $negotiations = $api->negotiations->active(); 
 ```
 
-Get messages of negotiation:
+Get messages of negotiation ([official docs](https://github.com/hhru/api/blob/master/docs/negotiations.md#get_messages)):
 ```php 
 $messages = $api->negotiations->messages($negotiationId); 
 ```
 
 ### Regions
 
-Get all regions:
+Get all regions ([official docs](https://github.com/hhru/api/blob/master/docs/areas.md#areas)):
 ```php 
 $regions = $api->regions->all(); 
 ```
 
 ### Resumes
 
-Get my resumes:
+Get my resumes ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#mine)):
 ```php 
 $resumes = $api->resumes->mine(); 
 ```
 
-Search:
-```php 
-$resumes = $api->resumes->search($params); 
-```
-
-Resume views:
+View resume ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#item)):
 ```php 
 $views = $api->resumes->view($resumeId); 
 ```
