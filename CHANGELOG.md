@@ -4,8 +4,13 @@ All notable changes to this project will be documented in this file.
 ## v0.2.1 - ??
 ### Changed:
  - inSearch renamed to setIsInSearch
+ - Resumes history() method renamed to views()
+
 ### Fixed:
  - Removed search method from resumes
+
+### Added
+ - resume negotiations history
 
 ## v0.2.0 - 2017-04-022
 ### Added:

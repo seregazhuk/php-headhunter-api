@@ -20,7 +20,7 @@ class Resumes extends Endpoint
      * @param string $id
      * @return array
      */
-    public function history($id)
+    public function views($id)
     {
         return $this->getResource($id . '/views');
     }
@@ -65,5 +65,10 @@ class Resumes extends Endpoint
     public function jobs($id)
     {
         return $this->getResource($id . '/similar_vacancies');
+    }
+
+    public function negotiations($id)
+    {
+        return $this->getResource($id . '/negotiations_history');
     }
 }

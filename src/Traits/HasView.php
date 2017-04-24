@@ -10,6 +10,7 @@ trait HasView
      * @return mixed
      */
     abstract public function getResource($verb = '', array $params = []);
+
     /**
      * @param string $id
      * @return array

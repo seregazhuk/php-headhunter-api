@@ -168,7 +168,12 @@ $views = $api->resumes->view($resumeId);
 
 Views history:
 ```php 
-$history = $api->resumes->history($resumeId); 
+$views = $api->resumes->views($resumeId);
+```
+
+Negotiations history:
+```php
+$negotiations = $api->resumes->negotiations($resumeId);
 ```
 
 Update resume publish date:
