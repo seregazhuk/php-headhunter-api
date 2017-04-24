@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 ## v0.2.1 - ??
 ### Changed:
  - inSearch renamed to setIsInSearch
+### Fixed:
+ - Removed search method from resumes
 
 ## v0.2.0 - 2017-04-022
 ### Added:

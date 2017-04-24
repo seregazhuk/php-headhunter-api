@@ -42,16 +42,19 @@ abstract class Endpoint
     {
         $method = strtolower($method);
 
-        return $this->request->makeRequestCall($method, $this->getResourceUri($verb), $params);
+        return $this->request->makeRequestCall(
+            $method, $this->getResourceUri($verb), $params
+        );
     }
 
     /**
      * @param string $verb
+     * @param array $params
      * @return array
      */
-    protected function getResource($verb = '')
+    protected function getResource($verb = '', array $params = [])
     {
-        return $this->requestResource('get', $verb);
+        return $this->requestResource('get', $verb, $params);
     }
 
     /**

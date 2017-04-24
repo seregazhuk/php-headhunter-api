@@ -9,7 +9,7 @@ class Resumes extends Endpoint
 {
     const RESOURCE = 'resumes';
 
-    use HasView, Searchable;
+    use HasView;
 
     public function mine()
     {

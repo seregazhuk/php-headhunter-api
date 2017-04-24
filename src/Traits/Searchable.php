@@ -2,21 +2,14 @@
 
 namespace seregazhuk\HeadHunterApi\Traits;
 
-use seregazhuk\HeadHunterApi\Contracts\RequestInterface;
-
 trait Searchable
 {
-
     /**
-     * @param string $uri
-     * @return string
+     * @param string $verb
+     * @param array $params
+     * @return mixed
      */
-    public abstract function getResourceUri($uri = '');
-
-    /**
-     * @return RequestInterface
-     */
-    public abstract function getRequest();
+    abstract public function getResource($verb = '', array $params = []);
 
     /**
      * @param array $queryParams
@@ -24,6 +17,6 @@ trait Searchable
      */
     public function search($queryParams = [])
     {
-        return $this->getRequest()->get($this->getResourceUri(), $queryParams);
+        return $this->getResource('', $queryParams);
     }
 }
