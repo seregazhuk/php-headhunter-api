@@ -13,9 +13,18 @@ abstract class Endpoint
      */
     protected $request;
 
-    public function __construct(RequestInterface $request)
+    /**
+     * @var EndpointsContainer
+     */
+    protected $container;
+
+    /**
+     * @param EndpointsContainer $container
+     */
+    public function __construct(EndpointsContainer $container)
     {
-        $this->request = $request;
+        $this->container = $container;
+        $this->request = $container->getRequest();
     }
 
     /**
@@ -29,25 +38,46 @@ abstract class Endpoint
         return empty($uri) ? $resource : $resource . sprintf('/%s', $uri);
     }
 
+    protected function requestResource($method = 'get', $verb = '', $params = [])
+    {
+        $method = strtolower($method);
+
+        return $this->request->makeRequestCall(
+            $method, $this->getResourceUri($verb), $params
+        );
+    }
+
     /**
      * @param string $verb
+     * @param array $params
      * @return array
      */
-    protected function getResource($verb = '')
+    protected function getResource($verb = '', array $params = [])
     {
-        return $this->request->get($this->getResourceUri($verb));
+        return $this->requestResource('get', $verb, $params);
     }
 
-    protected function postResource($verb = '')
+    /**
+     * @param string $verb
+     * @param array $params
+     * @return mixed
+     */
+    protected function postResource($verb = '', array $params = [])
     {
-        return $this->request->post($this->getResourceUri($verb));
+        return $this->requestResource('post', $verb, $params);
     }
 
+    /**
+     * @param string $verb
+     */
     protected function deleteResource($verb = '')
     {
-        $this->request->delete($this->getResourceUri($verb));
+        $this->requestResource('delete', $verb);
     }
 
+    /**
+     * @return RequestInterface
+     */
     protected function getRequest()
     {
         return $this->request;

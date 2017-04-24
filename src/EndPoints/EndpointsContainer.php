@@ -11,13 +11,13 @@ class EndpointsContainer
     /**
      * @var RequestInterface
      */
-    private $request;
+    protected $request;
 
     /**
      * Array with the cached endpoints
      * @var Endpoint[]
      */
-    private $endpoints = [];
+    protected $endpoints = [];
 
     public function __construct(RequestInterface $request)
     {
@@ -42,7 +42,7 @@ class EndpointsContainer
      * @param string $endpoint
      * @throws WrongEndPointException
      */
-    private function addEndpoint($endpoint)
+    protected function addEndpoint($endpoint)
     {
         $class = __NAMESPACE__ . '\\' . ucfirst($endpoint);
         if (!class_exists($class)) {
@@ -54,16 +54,24 @@ class EndpointsContainer
 
     /**
      * @param string $class
-     * @return Endpoint
+     * @return Endpoint|object
      * @throws WrongEndPointException
      */
-    private function createEndpoint($class)
+    protected function createEndpoint($class)
     {
         $reflector = new ReflectionClass($class);
         if(!$reflector->isInstantiable()) {
             throw new WrongEndPointException("Endpoint $class is not instantiable.");
         }
 
-        return $reflector->newInstanceArgs([$this->request]);
+        return $reflector->newInstanceArgs([$this]);
+    }
+
+    /**
+     * @return RequestInterface
+     */
+    public function getRequest()
+    {
+        return $this->request;
     }
 }
