@@ -181,6 +181,12 @@ Edit resume ([official docs](https://github.com/hhru/api/blob/master/docs/resume
 $api->resumes->edit($resumeId, ['first_name' => 'New name']);
 ```
 
+Create a new resume ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#create_edit)):
+```php
+$attributes = ['first_name' => 'New name'];
+$result = $api->resumes->create($attributes);
+```
+
 Views history ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#views)):
 ```php 
 $views = $api->resumes->views($resumeId);
