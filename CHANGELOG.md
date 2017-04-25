@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.2.2 - ??
+### Added
+ - Resume edit
+
 ## v0.2.1 - 2017-04-24
 ### Changed:
  - inSearch renamed to setIsInSearch

@@ -57,7 +57,7 @@ $userInfo = $api->me->info();
 ## API Resources
 
 ### Vacancies
-Get black listed vacancies ([official](https://github.com/hhru/api/blob/master/docs/blacklisted.md)):
+Get black listed vacancies ([official docs](https://github.com/hhru/api/blob/master/docs/blacklisted.md)):
 ```php 
 $api->vacancies->blacklisted(); 
 ```
@@ -174,6 +174,11 @@ $resumes = $api->resumes->mine();
 View resume ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#item)):
 ```php 
 $views = $api->resumes->view($resumeId); 
+```
+
+Edit resume ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#create_edit)):
+```php
+$api->resumes->edit($resumeId, ['first_name' => 'New name']);
 ```
 
 Views history ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#views)):

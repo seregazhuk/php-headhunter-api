@@ -28,26 +28,6 @@ abstract class Endpoint
     }
 
     /**
-     * @param string $uri
-     * @return string
-     */
-    protected function getResourceUri($uri = '')
-    {
-        $resource = static::RESOURCE;
-
-        return empty($uri) ? $resource : $resource . sprintf('/%s', $uri);
-    }
-
-    protected function requestResource($method = 'get', $verb = '', $params = [])
-    {
-        $method = strtolower($method);
-
-        return $this->request->makeRequestCall(
-            $method, $this->getResourceUri($verb), $params
-        );
-    }
-
-    /**
      * @param string $verb
      * @param array $params
      * @return array
@@ -69,10 +49,40 @@ abstract class Endpoint
 
     /**
      * @param string $verb
+     * @param array $params
+     * @return mixed
+     */
+    protected function putResource($verb = '', array $params = [])
+    {
+        return $this->requestResource('put', $verb, $params);
+    }
+
+    /**
+     * @param string $verb
      */
     protected function deleteResource($verb = '')
     {
         $this->requestResource('delete', $verb);
+    }
+
+    protected function requestResource($method = 'get', $verb = '', $params = [])
+    {
+        $method = strtolower($method);
+
+        return $this->request->makeRequestCall(
+            $method, $this->getResourceUri($verb), $params
+        );
+    }
+
+    /**
+     * @param string $uri
+     * @return string
+     */
+    protected function getResourceUri($uri = '')
+    {
+        $resource = static::RESOURCE;
+
+        return empty($uri) ? $resource : $resource . sprintf('/%s', $uri);
     }
 
     /**

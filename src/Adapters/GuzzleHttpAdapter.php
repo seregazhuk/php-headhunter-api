@@ -42,7 +42,18 @@ class GuzzleHttpAdapter implements HttpInterface
      */
     public function post($uri, $params = [], $headers = null)
     {
-        return $this->executeRequest('POST', $uri, $headers, $params);
+        return $this->executeRequest('POST', $uri, $headers, ['query' => $params]);
+    }
+
+    /**
+     * @param string $uri
+     * @param array $params
+     * @param null $headers
+     * @return array|null
+     */
+    public function put($uri, $params = [], $headers = null)
+    {
+        return $this->executeRequest('PUT', $uri, $headers,  ['json' => $params]);
     }
 
     /**
@@ -68,16 +79,15 @@ class GuzzleHttpAdapter implements HttpInterface
      * @param string $method
      * @param string $uri
      * @param array $headers
-     * @param array $params
+     * @param array $options
      * @return array|null
      */
-    protected function executeRequest($method, $uri, array $headers, array $params = [])
+    protected function executeRequest($method, $uri, array $headers, array $options = [])
     {
         $request = new Request($method, $uri, $headers);
 
-        $response = $this->client->send($request, ['query' => $params]);
+        $response = $this->client->send($request, $options);
 
         return $this->parseResponse($response);
     }
-
 }

@@ -27,6 +27,13 @@ interface RequestInterface
     public function delete($uri);
 
     /**
+     * @param string $uri
+     * @param array $params
+     * @return array
+     */
+    public function put($uri, $params = []);
+
+    /**
      * @param string $requestMethod
      * @param string $uri
      * @param array $params

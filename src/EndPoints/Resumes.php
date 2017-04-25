@@ -54,6 +54,15 @@ class Resumes extends Endpoint
     }
 
     /**
+     * @param $id
+     * @param $params
+     */
+    public function edit($id, $params)
+    {
+        $this->putResource($id, $params);
+    }
+
+    /**
      * @param string $id
      * @return array
      */

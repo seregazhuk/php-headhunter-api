@@ -12,7 +12,6 @@ interface HttpInterface
      */
     public function get($uri, $params = [], $headers = null);
 
-
     /**
      * @param string $uri
      * @param array $params
@@ -27,4 +26,12 @@ interface HttpInterface
      * @return array|null
      */
     public function delete($uri, $headers = null);
+
+    /**
+     * @param string $uri
+     * @param array $params
+     * @param null $headers
+     * @return array|null
+     */
+    public function put($uri, $params = [], $headers = null);
 }

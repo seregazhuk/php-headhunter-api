@@ -49,6 +49,18 @@ class Request implements RequestInterface
         return $this->client->post($uri, $params, $headers);
     }
 
+    /**
+     * @param string $uri
+     * @param array $params
+     * @return array
+     */
+    public function put($uri, $params = [])
+    {
+        $headers = $this->createHeaders();
+
+        return $this->client->put($uri, $params, $headers);
+    }
+
     public function delete($uri)
     {
         $headers = $this->createHeaders();
@@ -82,8 +94,6 @@ class Request implements RequestInterface
         if(!method_exists($this->client, $requestMethod)) {
             throw new HeadHunterApiException("Request method $requestMethod not found");
         }
-
-        $params['headers'] = $this->createHeaders();
 
         return $this->client->$requestMethod($uri, $params,  $this->createHeaders());
     }
