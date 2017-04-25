@@ -14,46 +14,81 @@ class GuzzleHttpAdapter implements HttpInterface
      */
     protected $client;
 
+    /**
+     * @var
+     */
+    protected $headers;
+
     public function __construct($baseUrl)
     {
         $this->client = new Client(['base_uri' => $baseUrl]);
     }
 
     /**
-     * @param string $uri
-     * @param array $params
-     * @param null $headers
+     * @param mixed $headers
+     * @return GuzzleHttpAdapter
+     */
+    public function setHeaders($headers)
+    {
+        $this->headers = $headers;
+
+        return $this;
+    }
+
+    /**
      * @return array|null
      */
-    public function get($uri, $params = [], $headers = null)
+    protected function createHeaders()
+    {
+        $headers = null;
+
+        if(isset($this->token)) $headers['Authorization'] = 'Bearer ' . $this->token;
+
+        return $headers;
+    }
+
+    /**
+     * @param string $uri
+     * @param array $params
+     * @return array|null
+     */
+    public function get($uri, $params = [])
     {
         if(!empty($params)){
             $uri .= '?'. http_build_query($params);
         }
 
-        return $this->executeRequest('GET', $uri, $headers);
+        return $this->executeRequest('GET', $uri);
     }
 
     /**
      * @param string $uri
      * @param array $params
-     * @param null $headers
      * @return array|null
      */
-    public function post($uri, $params = [], $headers = null)
+    public function post($uri, $params = [])
     {
-        return $this->executeRequest('POST', $uri, $headers, ['query' => $params]);
+        return $this->executeRequest('POST', $uri, ['query' => $params]);
     }
 
     /**
      * @param string $uri
      * @param array $params
-     * @param null $headers
      * @return array|null
      */
-    public function put($uri, $params = [], $headers = null)
+    public function postJson($uri, $params = [])
     {
-        return $this->executeRequest('PUT', $uri, $headers,  ['json' => $params]);
+        return $this->executeRequest('POST', $uri, ['json' => $params]);
+    }
+
+    /**
+     * @param string $uri
+     * @param array $params
+     * @return array|null
+     */
+    public function put($uri, $params = [])
+    {
+        return $this->executeRequest('PUT', $uri, ['json' => $params]);
     }
 
     /**
@@ -63,7 +98,7 @@ class GuzzleHttpAdapter implements HttpInterface
      */
     public function delete($uri, $headers = null)
     {
-        return $this->executeRequest('DELETE', $uri, $headers);
+        return $this->executeRequest('DELETE', $uri);
     }
 
     /**
@@ -78,13 +113,12 @@ class GuzzleHttpAdapter implements HttpInterface
     /**
      * @param string $method
      * @param string $uri
-     * @param array $headers
      * @param array $options
      * @return array|null
      */
-    protected function executeRequest($method, $uri, array $headers, array $options = [])
+    protected function executeRequest($method, $uri, array $options = [])
     {
-        $request = new Request($method, $uri, $headers);
+        $request = new Request($method, $uri, $this->headers);
 
         $response = $this->client->send($request, $options);
 

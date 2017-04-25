@@ -14,15 +14,11 @@ class Request implements RequestInterface
      */
     protected $client;
 
-    /**
-     * @var null|string
-     */
-    protected $token;
-
     public function __construct(HttpInterface $http, $token = null)
     {
         $this->client = $http;
-        $this->token = $token;
+
+        if($token) $this->client->setHeaders(['Authorization' => 'Bearer ' . $token]);
     }
 
     /**
@@ -32,9 +28,7 @@ class Request implements RequestInterface
      */
     public function get($uri, $params = [])
     {
-        $headers = $this->createHeaders();
-
-        return $this->client->get($uri, $params, $headers);
+        return $this->client->get($uri, $params);
     }
 
     /**
@@ -44,9 +38,7 @@ class Request implements RequestInterface
      */
     public function post($uri, $params = [])
     {
-        $headers = $this->createHeaders();
-
-        return $this->client->post($uri, $params, $headers);
+        return $this->client->post($uri, $params);
     }
 
     /**
@@ -56,28 +48,12 @@ class Request implements RequestInterface
      */
     public function put($uri, $params = [])
     {
-        $headers = $this->createHeaders();
-
-        return $this->client->put($uri, $params, $headers);
+        return $this->client->put($uri, $params);
     }
 
     public function delete($uri)
     {
-        $headers = $this->createHeaders();
-
-        return $this->client->delete($uri, $headers);
-    }
-
-    /**
-     * @return array|null
-     */
-    protected function createHeaders()
-    {
-        $headers = null;
-
-        if(isset($this->token)) $headers['Authorization'] = 'Bearer ' . $this->token;
-
-        return $headers;
+        return $this->client->delete($uri);
     }
 
     /**
@@ -95,6 +71,6 @@ class Request implements RequestInterface
             throw new HeadHunterApiException("Request method $requestMethod not found");
         }
 
-        return $this->client->$requestMethod($uri, $params,  $this->createHeaders());
+        return $this->client->$requestMethod($uri, $params);
     }
 }

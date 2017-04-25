@@ -3,7 +3,6 @@
 namespace seregazhuk\HeadHunterApi\EndPoints;
 
 use seregazhuk\HeadHunterApi\Traits\HasView;
-use seregazhuk\HeadHunterApi\Traits\Searchable;
 
 class Resumes extends Endpoint
 {
@@ -55,11 +54,21 @@ class Resumes extends Endpoint
 
     /**
      * @param $id
-     * @param $params
+     * @param $attributes
+     * @return mixed
      */
-    public function edit($id, $params)
+    public function edit($id, $attributes)
     {
-        $this->putResource($id, $params);
+        return $this->putResource($id, $attributes);
+    }
+
+    /**
+     * @param $attributes
+     * @return mixed
+     */
+    public function create($attributes)
+    {
+        return $this->postResource('', $attributes);
     }
 
     /**
