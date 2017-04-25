@@ -36,18 +36,6 @@ class GuzzleHttpAdapter implements HttpInterface
     }
 
     /**
-     * @return array|null
-     */
-    protected function createHeaders()
-    {
-        $headers = null;
-
-        if(isset($this->token)) $headers['Authorization'] = 'Bearer ' . $this->token;
-
-        return $headers;
-    }
-
-    /**
      * @param string $uri
      * @param array $params
      * @return array|null
@@ -64,31 +52,27 @@ class GuzzleHttpAdapter implements HttpInterface
     /**
      * @param string $uri
      * @param array $params
+     * @param bool $useJson
      * @return array|null
      */
-    public function post($uri, $params = [])
+    public function post($uri, $params = [], $useJson = false)
     {
-        return $this->executeRequest('POST', $uri, ['query' => $params]);
+        return $this->executeRequest(
+            'POST', $uri, $this->makeOptions($params, $useJson)
+        );
     }
 
     /**
      * @param string $uri
      * @param array $params
+     * @param bool $useJson
      * @return array|null
      */
-    public function postJson($uri, $params = [])
+    public function put($uri, $params = [], $useJson = false)
     {
-        return $this->executeRequest('POST', $uri, ['json' => $params]);
-    }
-
-    /**
-     * @param string $uri
-     * @param array $params
-     * @return array|null
-     */
-    public function put($uri, $params = [])
-    {
-        return $this->executeRequest('PUT', $uri, ['json' => $params]);
+        return $this->executeRequest(
+            'PUT', $uri, $this->makeOptions($params, $useJson)
+        );
     }
 
     /**
@@ -123,5 +107,17 @@ class GuzzleHttpAdapter implements HttpInterface
         $response = $this->client->send($request, $options);
 
         return $this->parseResponse($response);
+    }
+
+    /**
+     * @param array $params
+     * @param $json
+     * @return array
+     */
+    protected function makeOptions(array $params = [], $json)
+    {
+        $optionsKey = $json ? 'json' : 'query';
+
+        return [$optionsKey => $params];
     }
 }

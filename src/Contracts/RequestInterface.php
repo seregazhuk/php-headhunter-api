@@ -37,8 +37,9 @@ interface RequestInterface
      * @param string $requestMethod
      * @param string $uri
      * @param array $params
+     * @param bool $useJson
      * @return mixed
      * @throws HeadHunterApiException
      */
-    public function makeRequestCall($requestMethod, $uri, $params = []);
+    public function makeRequestCall($requestMethod, $uri, $params = [], $useJson = false);
 }

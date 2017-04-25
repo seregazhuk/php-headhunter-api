@@ -40,21 +40,23 @@ abstract class Endpoint
     /**
      * @param string $verb
      * @param array $params
+     * @param $useJson
      * @return mixed
      */
-    protected function postResource($verb = '', array $params = [])
+    protected function postResource($verb = '', array $params = [], $useJson = false)
     {
-        return $this->requestResource('post', $verb, $params);
+        return $this->requestResource('post', $verb, $params, $useJson);
     }
 
     /**
      * @param string $verb
      * @param array $params
+     * @param bool $useJson
      * @return mixed
      */
-    protected function putResource($verb = '', array $params = [])
+    protected function putResource($verb = '', array $params = [], $useJson = false)
     {
-        return $this->requestResource('put', $verb, $params);
+        return $this->requestResource('put', $verb, $params, $useJson);
     }
 
     /**
@@ -65,12 +67,12 @@ abstract class Endpoint
         $this->requestResource('delete', $verb);
     }
 
-    protected function requestResource($method = 'get', $verb = '', $params = [])
+    protected function requestResource($method = 'get', $verb = '', $params = [], $useJson = false)
     {
         $method = strtolower($method);
 
         return $this->request->makeRequestCall(
-            $method, $this->getResourceUri($verb), $params
+            $method, $this->getResourceUri($verb), $params, $useJson
         );
     }
 

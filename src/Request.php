@@ -60,10 +60,11 @@ class Request implements RequestInterface
      * @param string $requestMethod
      * @param string $uri
      * @param array $params
+     * @param bool $useJson
      * @return mixed
      * @throws HeadHunterApiException
      */
-    public function makeRequestCall($requestMethod, $uri, $params = [])
+    public function makeRequestCall($requestMethod, $uri, $params = [], $useJson = false)
     {
         $requestMethod = strtolower($requestMethod);
 
@@ -71,6 +72,6 @@ class Request implements RequestInterface
             throw new HeadHunterApiException("Request method $requestMethod not found");
         }
 
-        return $this->client->$requestMethod($uri, $params);
+        return $this->client->$requestMethod($uri, $params, $useJson);
     }
 }
