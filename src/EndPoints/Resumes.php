@@ -3,12 +3,13 @@
 namespace seregazhuk\HeadHunterApi\EndPoints;
 
 use seregazhuk\HeadHunterApi\Traits\HasView;
+use seregazhuk\HeadHunterApi\Traits\HasSimilarVacancies;
 
 class Resumes extends Endpoint
 {
     const RESOURCE = 'resumes';
 
-    use HasView;
+    use HasView, HasSimilarVacancies;
 
     public function mine()
     {
@@ -80,9 +81,13 @@ class Resumes extends Endpoint
         return $this->getResource($id . '/status');
     }
 
+    /**
+     * @param string $id
+     * @return mixed
+     */
     public function jobs($id)
     {
-        return $this->getResource($id . '/similar_vacancies');
+        return $this->getSimilarVacanciesFor($id);
     }
 
     public function negotiations($id)

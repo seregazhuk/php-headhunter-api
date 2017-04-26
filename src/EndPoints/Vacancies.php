@@ -4,12 +4,13 @@ namespace seregazhuk\HeadHunterApi\EndPoints;
 
 use seregazhuk\HeadHunterApi\Traits\HasView;
 use seregazhuk\HeadHunterApi\Traits\Searchable;
+use seregazhuk\HeadHunterApi\Traits\HasSimilarVacancies;
 
 class Vacancies extends Endpoint
 {
     const RESOURCE = 'vacancies';
 
-    use HasView, Searchable;
+    use HasView, Searchable, HasSimilarVacancies;
 
     public function blacklisted()
     {
@@ -19,5 +20,14 @@ class Vacancies extends Endpoint
     public function favorited()
     {
         return $this->getResource('favorited');
+    }
+
+    /**
+     * @param string $id
+     * @return mixed
+     */
+    public function similar($id)
+    {
+        return $this->getSimilarVacanciesFor($id);
     }
 }
