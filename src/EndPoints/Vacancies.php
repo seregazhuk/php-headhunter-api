@@ -15,4 +15,9 @@ class Vacancies extends Endpoint
     {
         return $this->getResource('blacklisted');
     }
+
+    public function favorited()
+    {
+        return $this->getResource('favorited');
+    }
 }

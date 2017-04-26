@@ -67,6 +67,11 @@ View vacancy by id ([official docs](https://github.com/hhru/api/blob/master/docs
 $vacancy = $api->vacancies->view($id); 
 ```
 
+Get list of favorited vacancies ([official docs](https://github.com/hhru/api/blob/master/docs/vacancies.md#favorited)):
+```php
+$vacancies = $api->vacancies->favorited();
+```
+
 Search ([official docs](https://github.com/hhru/api/blob/master/docs/vacancies.md#search)):
 ```php 
 $vacancies = $api->vacancies->search($params); 
