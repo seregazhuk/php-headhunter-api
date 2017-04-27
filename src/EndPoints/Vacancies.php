@@ -30,4 +30,13 @@ class Vacancies extends Endpoint
     {
         return $this->getSimilarVacanciesFor($id);
     }
+
+    /**
+     * @param string $id
+     * @return mixed
+     */
+    public function statistics($id)
+    {
+        return $this->getResource($id . '/stats');
+    }
 }

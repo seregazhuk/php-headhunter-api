@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 ## v0.2.2 - ??
 ### Added
  - Resumes: edit, create
- - Vacancies: favorited, similar
+ - Vacancies: favorited, similar, statistics
 
 ## v0.2.1 - 2017-04-24
 ### Changed:

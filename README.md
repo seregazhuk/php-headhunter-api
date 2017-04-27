@@ -82,6 +82,11 @@ Search ([official docs](https://github.com/hhru/api/blob/master/docs/vacancies.m
 $vacancies = $api->vacancies->search($params); 
 ```
 
+Vacancy statistics ([officials docs](https://github.com/hhru/api/blob/master/docs/employer_vacancies.md#stats)):
+```php
+$stats = $api->vacancies->statistics($vacancyId);
+```
+
 ### Employers
 
 View employee by id ([official docs](https://github.com/hhru/api/blob/master/docs/employers.md#item)):
