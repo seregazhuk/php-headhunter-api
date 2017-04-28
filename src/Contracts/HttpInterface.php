@@ -16,10 +16,16 @@ interface HttpInterface
     /**
      * @param string $uri
      * @param array $params
-     * @param bool $useJson
      * @return array|null
      */
-    public function post($uri, $params = [], $useJson = false);
+    public function post($uri, $params = []);
+
+    /**
+     * @param string $uri
+     * @param array $params
+     * @return array|null
+     */
+    public function postJson($uri, $params = []);
 
     /**
      * @param string $uri
@@ -30,10 +36,16 @@ interface HttpInterface
     /**
      * @param string $uri
      * @param array $params
-     * @param bool $useJson
      * @return array|null
      */
-    public function put($uri, $params = [], $useJson = false);
+    public function put($uri, $params = []);
+
+    /**
+     * @param string $uri
+     * @param array $params
+     * @return array|null
+     */
+    public function putJson($uri, $params = []);
 
     /**
      * @param mixed $headers

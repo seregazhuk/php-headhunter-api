@@ -52,26 +52,48 @@ class GuzzleHttpAdapter implements HttpInterface
     /**
      * @param string $uri
      * @param array $params
-     * @param bool $useJson
      * @return array|null
      */
-    public function post($uri, $params = [], $useJson = false)
+    public function post($uri, $params = [])
     {
         return $this->executeRequest(
-            'POST', $uri, $this->makeOptions($params, $useJson)
+            'POST', $uri, ['query' => $params]
         );
     }
 
     /**
      * @param string $uri
      * @param array $params
-     * @param bool $useJson
      * @return array|null
      */
-    public function put($uri, $params = [], $useJson = false)
+    public function postJson($uri, $params = [])
     {
         return $this->executeRequest(
-            'PUT', $uri, $this->makeOptions($params, $useJson)
+            'POST', $uri, ['json' => $params]
+        );
+    }
+
+    /**
+     * @param string $uri
+     * @param array $params
+     * @return array|null
+     */
+    public function put($uri, $params = [])
+    {
+        return $this->executeRequest(
+            'PUT', $uri, ['query' => $params]
+        );
+    }
+
+    /**
+     * @param string $uri
+     * @param array $params
+     * @return array|null
+     */
+    public function putJson($uri, $params = [])
+    {
+        return $this->executeRequest(
+            'PUT', $uri, ['json' => $params]
         );
     }
 
@@ -107,17 +129,5 @@ class GuzzleHttpAdapter implements HttpInterface
         $response = $this->client->send($request, $options);
 
         return $this->parseResponse($response);
-    }
-
-    /**
-     * @param array $params
-     * @param $json
-     * @return array
-     */
-    protected function makeOptions(array $params = [], $json)
-    {
-        $optionsKey = $json ? 'json' : 'query';
-
-        return [$optionsKey => $params];
     }
 }

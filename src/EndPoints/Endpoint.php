@@ -40,23 +40,42 @@ abstract class Endpoint
     /**
      * @param string $verb
      * @param array $params
-     * @param $useJson
      * @return mixed
      */
-    protected function postResource($verb = '', array $params = [], $useJson = false)
+    protected function postResource($verb = '', array $params = [])
     {
-        return $this->requestResource('post', $verb, $params, $useJson);
+        return $this->requestResource('post', $verb, $params);
     }
 
     /**
      * @param string $verb
      * @param array $params
-     * @param bool $useJson
      * @return mixed
      */
-    protected function putResource($verb = '', array $params = [], $useJson = false)
+    protected function postResourceJson($verb = '', array $params = [])
     {
-        return $this->requestResource('put', $verb, $params, $useJson);
+        return $this->requestResourceJson('post', $verb, $params);
+    }
+
+
+    /**
+     * @param string $verb
+     * @param array $params
+     * @return mixed
+     */
+    protected function putResource($verb = '', array $params = [])
+    {
+        return $this->requestResource('put', $verb, $params);
+    }
+
+    /**
+     * @param string $verb
+     * @param array $params
+     * @return mixed
+     */
+    protected function putResourceJson($verb = '', array $params = [])
+    {
+        return $this->requestResourceJson('put', $verb, $params);
     }
 
     /**
@@ -67,12 +86,21 @@ abstract class Endpoint
         $this->requestResource('delete', $verb);
     }
 
-    protected function requestResource($method = 'get', $verb = '', $params = [], $useJson = false)
+    protected function requestResource($method = 'get', $verb = '', $params = [])
     {
         $method = strtolower($method);
 
-        return $this->request->makeRequestCall(
-            $method, $this->getResourceUri($verb), $params, $useJson
+        return $this->request->makeRequest(
+            $method, $this->getResourceUri($verb), $params
+        );
+    }
+
+    protected function requestResourceJson($method = 'get', $verb = '', $params = [])
+    {
+        $method = strtolower($method);
+
+        return $this->request->makeRequest(
+            $method, $this->getResourceUri($verb), $params
         );
     }
 

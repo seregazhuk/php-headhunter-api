@@ -60,7 +60,7 @@ class Resumes extends Endpoint
      */
     public function edit($id, $attributes)
     {
-        return $this->putResource($id, $attributes, true);
+        return $this->putResourceJson($id, $attributes);
     }
 
     /**
@@ -69,7 +69,7 @@ class Resumes extends Endpoint
      */
     public function create($attributes)
     {
-        return $this->postResource('', $attributes, true);
+        return $this->postResourceJson('', $attributes);
     }
 
     /**
