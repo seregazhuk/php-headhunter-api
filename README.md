@@ -106,19 +106,29 @@ Get your photos ([official docs](https://github.com/hhru/api/blob/master/docs/ar
 $photos = $api->artifacts->photos();
 ```
 
-Portfolio ([official docs](https://github.com/hhru/api/blob/master/docs/artifacts.md)):
+Get your portfolio ([official docs](https://github.com/hhru/api/blob/master/docs/artifacts.md)):
 ```php 
 $portfolio = $api->artifacts->portfolio(); 
 ```
 
 Delete photo by id ([official docs](https://github.com/hhru/api/blob/master/docs/artifacts.md)):
 ```php
-$api->deletePhoto($photoId);
+$api->artifacts->deletePhoto($photoId);
 ```
 
 Edit photo attributes ([official docs](https://github.com/hhru/api/blob/master/docs/artifacts.md)):
 ```php
-$api->editPhoto($photoId, $attributes);
+$api->artifacts->editPhoto($photoId, $attributes);
+```
+
+Upload photo ([official docs](https://github.com/hhru/api/blob/master/docs/artifacts.md)):
+```php
+$api->artifacts->uploadPhoto('photo.jpg', 'my picture description');
+```
+
+Upload portfolio ([official docs](https://github.com/hhru/api/blob/master/docs/artifacts.md)):
+```php
+$api->artifacts->uploadPortfolio('portfolio.jpg', 'my portfolio description');
 ```
 
 ### User:

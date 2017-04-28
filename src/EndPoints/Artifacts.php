@@ -26,14 +26,49 @@ class Artifacts extends Endpoint
         $this->deleteResource($id);
     }
 
-    public function upload($type, $description, $file)
+    /**
+     * @param string $file
+     * @param string $description
+     * @return array|null
+     */
+    public function uploadPhoto($file, $description = '')
+    {
+        return $this->upload('photo', $file, $description);
+    }
+
+    /**
+     * @param string $file
+     * @param string $description
+     * @return array|null
+     */
+    public function uploadPortfolio($file, $description = '')
+    {
+        return $this->upload('portfolio', $file, $description);
+    }
+
+    /**
+     * @param string $type
+     * @param string $description
+     * @param string $file
+     * @return array|null
+     */
+    public function upload($type, $file, $description = '')
     {
         $data = [
-            'type'        => $type,
-            'description' => $description,
-            'file'        => $file,
+            [
+                'name' => 'type',
+                'contents' => $type,
+            ],
+            [
+                'name' => 'description',
+                'contents' => $description,
+            ],
+            [
+                'name' => 'file',
+                'contents' => fopen($file, 'r'),
+            ],
         ];
 
-        $this->postResourceFile('', $data);
+        return $this->postResourceFile('', $data);
     }
 }

@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Added:
  - Resumes: edit, create
  - Vacancies: favorited, similar, statistics
- - Artifacts: removePhoto, editPhoto
+ - Artifacts: removePhoto, editPhoto, uploadPhoto, uploadPortfolio
 
 ### Changed:
  - Artifacts: photo renamed to photos
