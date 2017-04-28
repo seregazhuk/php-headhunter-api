@@ -68,6 +68,18 @@ class Request
      * @param array $params
      * @return array|null
      */
+    public function postFile($uri, $params = [])
+    {
+        return $this->executeRequest(
+            'POST', $uri, ['multipart' => $params]
+        );
+    }
+
+    /**
+     * @param string $uri
+     * @param array $params
+     * @return array|null
+     */
     public function put($uri, $params = [])
     {
         return $this->executeRequest(
