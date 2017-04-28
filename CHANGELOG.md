@@ -2,9 +2,13 @@
 All notable changes to this project will be documented in this file.
 
 ## v0.2.2 - ??
-### Added
+### Added:
  - Resumes: edit, create
  - Vacancies: favorited, similar, statistics
+ - Artifacts: removePhoto, editPhoto
+
+### Changed:
+- Artifacts: photo renamed to photos
 
 ## v0.2.1 - 2017-04-24
 ### Changed:

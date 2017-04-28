@@ -23,7 +23,8 @@ class Me extends Endpoint
      * @param string $lastName
      * @param string $firstName
      * @param string $middleName
-     */ 
+     * @return mixed
+     */
     public function editName($lastName, $firstName, $middleName)
     {
         $data = [
@@ -32,6 +33,6 @@ class Me extends Endpoint
             'middle_name' => $middleName
         ];
 
-        $this->postResource('', $data);
+        return $this->postResource('', $data);
     }
 }
