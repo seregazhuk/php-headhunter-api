@@ -6,6 +6,7 @@ use Mockery;
 use PHPUnit_Framework_TestCase;
 use seregazhuk\HeadHunterApi\Contracts\RequestInterface;
 use seregazhuk\HeadHunterApi\EndPoints\EndpointsContainer;
+use seregazhuk\HeadHunterApi\Request;
 
 class EndpointsContainerTest extends PHPUnit_Framework_TestCase
 {
@@ -15,7 +16,8 @@ class EndpointsContainerTest extends PHPUnit_Framework_TestCase
     private $container;
     public function setUp()
     {
-        $request = Mockery::mock(RequestInterface::class);
+        /** @var Request $request */
+        $request = Mockery::mock(Request::class);
         $this->container = new EndpointsContainer($request);
     }
 
