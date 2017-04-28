@@ -15,8 +15,8 @@ class Manager extends Endpoint
      */
     public function preferences($managerId = null)
     {
-        $employerId = $this->getCurrentEmployerId();
-        $managerId = $managerId ? : $this->getCurrentManagerId();
+        $employerId = $this->getCurrentUserDataId('employer');
+        $managerId = $managerId ?: $this->getCurrentUserDataId('manager');
 
         $uri = str_replace(
             ['{employer_id}', '{manager_id}'],
@@ -24,34 +24,23 @@ class Manager extends Endpoint
             '{employer_id}/managers/{manager_id}/settings'
         );
 
-
         return $this->getResource($uri);
     }
 
     /**
+     * @param $key
      * @return null
      * @throws HeadHunterApiException
      */
-    protected function getCurrentEmployerId()
+    protected function getCurrentUserDataId($key)
     {
         $currentUser = $this->getCurrentUserInfo();
 
-        if(!isset($currentUser['employer']['id'])) {
-            throw new HeadHunterApiException('Cannot resolve employer id');
+        if (!isset($currentUser[$key]['id'])) {
+            throw new HeadHunterApiException("Cannot resolve $key id");
         }
 
-        return $currentUser['employer']['id'];
-    }
-
-    protected function getCurrentManagerId()
-    {
-        $currentUser = $this->getCurrentUserInfo();
-
-        if(!isset($currentUser['manager']['id'])) {
-            throw new HeadHunterApiException('Cannot resolve manager id');
-        }
-
-        return $currentUser['manager']['id'];
+        return $currentUser[$key]['id'];
     }
 
     /**
@@ -59,6 +48,9 @@ class Manager extends Endpoint
      */
     protected function getCurrentUserInfo()
     {
-        return $this->container->getEndpoint('me')->info();
+        /** @var Me $meEndpoint */
+        $meEndpoint = $this->container->getEndpoint('me');
+
+        return $meEndpoint->info();
     }
 }

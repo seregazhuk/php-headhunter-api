@@ -2,27 +2,27 @@
 
 namespace seregazhuk\HeadHunterApi;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Request as GuzzleRequest;
 
-use seregazhuk\HeadHunterApi\Contracts\HttpInterface;
-use seregazhuk\HeadHunterApi\Contracts\RequestInterface;
-use seregazhuk\HeadHunterApi\Exceptions\HeadHunterApiException;
-
-class Request implements RequestInterface
+class Request
 {
     /**
-     * @var HttpInterface
+     * @var \GuzzleHttp\Client
      */
     protected $client;
 
     /**
-     * @var null|string
+     * @var array
      */
-    protected $token;
+    protected $headers = [];
 
-    public function __construct(HttpInterface $http, $token = null)
+    public function __construct($baseUrl, $token = null)
     {
-        $this->client = $http;
-        $this->token = $token;
+        $this->client = new Client(['base_uri' => $baseUrl]);
+
+        if($token) $this->setHeaders(['Authorization' => 'Bearer ' . $token]);
     }
 
     /**
@@ -32,59 +32,114 @@ class Request implements RequestInterface
      */
     public function get($uri, $params = [])
     {
-        $headers = $this->createHeaders();
+        if(!empty($params)){
+            $uri .= '?'. http_build_query($params);
+        }
 
-        return $this->client->get($uri, $params, $headers);
+        return $this->executeRequest('GET', $uri);
     }
 
     /**
      * @param string $uri
      * @param array $params
-     * @return array
+     * @return array|null
      */
     public function post($uri, $params = [])
     {
-        $headers = $this->createHeaders();
-
-        return $this->client->post($uri, $params, $headers);
-    }
-
-    public function delete($uri)
-    {
-        $headers = $this->createHeaders();
-
-        return $this->client->delete($uri, $headers);
+        return $this->executeRequest(
+            'POST', $uri, ['query' => $params]
+        );
     }
 
     /**
-     * @return array|null
-     */
-    protected function createHeaders()
-    {
-        $headers = null;
-
-        if(isset($this->token)) $headers['Authorization'] = 'Bearer ' . $this->token;
-
-        return $headers;
-    }
-
-    /**
-     * @param string $requestMethod
      * @param string $uri
      * @param array $params
-     * @return mixed
-     * @throws HeadHunterApiException
+     * @return array|null
      */
-    public function makeRequestCall($requestMethod, $uri, $params = [])
+    public function postJson($uri, $params = [])
     {
-        $requestMethod = strtolower($requestMethod);
+        return $this->executeRequest(
+            'POST', $uri, ['json' => $params]
+        );
+    }
 
-        if(!method_exists($this->client, $requestMethod)) {
-            throw new HeadHunterApiException("Request method $requestMethod not found");
-        }
+    /**
+     * @param string $uri
+     * @param array $params
+     * @return array|null
+     */
+    public function postFile($uri, $params = [])
+    {
+        return $this->executeRequest(
+            'POST', $uri, ['multipart' => $params]
+        );
+    }
 
-        $params['headers'] = $this->createHeaders();
+    /**
+     * @param string $uri
+     * @param array $params
+     * @return array|null
+     */
+    public function put($uri, $params = [])
+    {
+        return $this->executeRequest(
+            'PUT', $uri, ['query' => $params]
+        );
+    }
 
-        return $this->client->$requestMethod($uri, $params,  $this->createHeaders());
+    /**
+     * @param string $uri
+     * @param array $params
+     * @return array|null
+     */
+    public function putJson($uri, $params = [])
+    {
+        return $this->executeRequest(
+            'PUT', $uri, ['json' => $params]
+        );
+    }
+
+    /**
+     * @param string $uri
+     * @return array|null
+     */
+    public function delete($uri)
+    {
+        return $this->executeRequest('DELETE', $uri);
+    }
+
+    /**
+     * @param Response $response
+     * @return array|null
+     */
+    private function parseResponse(Response $response)
+    {
+        return json_decode($response->getBody(), true);
+    }
+
+    /**
+     * @param string $method
+     * @param string $uri
+     * @param array $options
+     * @return array|null
+     */
+    protected function executeRequest($method, $uri, array $options = [])
+    {
+        $request = new GuzzleRequest($method, $uri, $this->headers);
+
+        $response = $this->client->send($request, $options);
+
+        return $this->parseResponse($response);
+    }
+
+    /**
+     * @param mixed $headers
+     * @return $this
+     */
+    public function setHeaders($headers)
+    {
+        $this->headers = $headers;
+
+        return $this;
     }
 }

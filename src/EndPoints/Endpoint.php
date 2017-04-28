@@ -2,16 +2,11 @@
 
 namespace seregazhuk\HeadHunterApi\EndPoints;
 
-use seregazhuk\HeadHunterApi\Contracts\RequestInterface;
+use seregazhuk\HeadHunterApi\Request;
 
 abstract class Endpoint
 {
     const RESOURCE = '/resource';
-
-    /**
-     * @var RequestInterface
-     */
-    protected $request;
 
     /**
      * @var EndpointsContainer
@@ -19,12 +14,81 @@ abstract class Endpoint
     protected $container;
 
     /**
+     * @var Request
+     */
+    protected $request;
+
+    /**
      * @param EndpointsContainer $container
      */
     public function __construct(EndpointsContainer $container)
     {
         $this->container = $container;
-        $this->request = $container->getRequest();
+        $this->request = $this->container->getRequest();
+    }
+
+    /**
+     * @param string $verb
+     * @param array $params
+     * @return array
+     */
+    protected function getResource($verb = '', array $params = [])
+    {
+        return $this->request->get(
+            $this->getResourceUri($verb), $params
+        );
+    }
+
+    /**
+     * @param string $verb
+     * @param array $params
+     * @return mixed
+     */
+    protected function postResource($verb = '', array $params = [])
+    {
+        return $this->request->post(
+            $this->getResourceUri($verb), $params
+        );
+    }
+
+    /**
+     * @param string $verb
+     * @param array $params
+     * @return mixed
+     */
+    protected function postResourceJson($verb = '', array $params = [])
+    {
+        return $this->request->postJson(
+            $this->getResourceUri($verb), $params
+        );
+    }
+
+    protected function postResourceFile($verb, array $params = [])
+    {
+        return $this->request->postFile(
+            $this->getResourceUri($verb), $params
+        );
+    }
+
+
+    /**
+     * @param string $verb
+     * @param array $params
+     * @return mixed
+     */
+    protected function putResource($verb = '', array $params = [])
+    {
+        return $this->request->put(
+            $this->getResourceUri($verb), $params
+        );
+    }
+
+    /**
+     * @param string $verb
+     */
+    protected function deleteResource($verb = '')
+    {
+        $this->request->delete($this->getResourceUri($verb));
     }
 
     /**
@@ -36,50 +100,5 @@ abstract class Endpoint
         $resource = static::RESOURCE;
 
         return empty($uri) ? $resource : $resource . sprintf('/%s', $uri);
-    }
-
-    protected function requestResource($method = 'get', $verb = '', $params = [])
-    {
-        $method = strtolower($method);
-
-        return $this->request->makeRequestCall(
-            $method, $this->getResourceUri($verb), $params
-        );
-    }
-
-    /**
-     * @param string $verb
-     * @param array $params
-     * @return array
-     */
-    protected function getResource($verb = '', array $params = [])
-    {
-        return $this->requestResource('get', $verb, $params);
-    }
-
-    /**
-     * @param string $verb
-     * @param array $params
-     * @return mixed
-     */
-    protected function postResource($verb = '', array $params = [])
-    {
-        return $this->requestResource('post', $verb, $params);
-    }
-
-    /**
-     * @param string $verb
-     */
-    protected function deleteResource($verb = '')
-    {
-        $this->requestResource('delete', $verb);
-    }
-
-    /**
-     * @return RequestInterface
-     */
-    protected function getRequest()
-    {
-        return $this->request;
     }
 }

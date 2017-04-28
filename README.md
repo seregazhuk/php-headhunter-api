@@ -57,7 +57,7 @@ $userInfo = $api->me->info();
 ## API Resources
 
 ### Vacancies
-Get black listed vacancies ([official](https://github.com/hhru/api/blob/master/docs/blacklisted.md)):
+Get black listed vacancies ([official docs](https://github.com/hhru/api/blob/master/docs/blacklisted.md)):
 ```php 
 $api->vacancies->blacklisted(); 
 ```
@@ -67,9 +67,24 @@ View vacancy by id ([official docs](https://github.com/hhru/api/blob/master/docs
 $vacancy = $api->vacancies->view($id); 
 ```
 
+Get similar vacancies for the current one ([official docs](https://github.com/hhru/api/blob/master/docs/vacancies.md#similar)):
+```php
+$similarVacancies = $api->vacancies->similar($id);
+```
+
+Get list of favorited vacancies ([official docs](https://github.com/hhru/api/blob/master/docs/vacancies.md#favorited)):
+```php
+$vacancies = $api->vacancies->favorited();
+```
+
 Search ([official docs](https://github.com/hhru/api/blob/master/docs/vacancies.md#search)):
 ```php 
 $vacancies = $api->vacancies->search($params); 
+```
+
+Vacancy statistics ([officials docs](https://github.com/hhru/api/blob/master/docs/employer_vacancies.md#stats)):
+```php
+$stats = $api->vacancies->statistics($vacancyId);
 ```
 
 ### Employers
@@ -86,14 +101,34 @@ $employers = $api->employers->search($params);
 
 ### Artifacts:
 
-Photo ([official docs](https://github.com/hhru/api/blob/master/docs/artifacts.md)):
+Get your photos ([official docs](https://github.com/hhru/api/blob/master/docs/artifacts.md)):
 ```php 
-$photo = $api->artifacts->photo(); 
+$photos = $api->artifacts->photos();
 ```
 
-Portfolio ([official docs](https://github.com/hhru/api/blob/master/docs/artifacts.md)):
+Get your portfolio ([official docs](https://github.com/hhru/api/blob/master/docs/artifacts.md)):
 ```php 
 $portfolio = $api->artifacts->portfolio(); 
+```
+
+Delete photo by id ([official docs](https://github.com/hhru/api/blob/master/docs/artifacts.md)):
+```php
+$api->artifacts->deletePhoto($photoId);
+```
+
+Edit photo attributes ([official docs](https://github.com/hhru/api/blob/master/docs/artifacts.md)):
+```php
+$api->artifacts->editPhoto($photoId, $attributes);
+```
+
+Upload photo ([official docs](https://github.com/hhru/api/blob/master/docs/artifacts.md)):
+```php
+$api->artifacts->uploadPhoto('photo.jpg', 'my picture description');
+```
+
+Upload portfolio ([official docs](https://github.com/hhru/api/blob/master/docs/artifacts.md)):
+```php
+$api->artifacts->uploadPortfolio('portfolio.jpg', 'my portfolio description');
 ```
 
 ### User:
@@ -174,6 +209,17 @@ $resumes = $api->resumes->mine();
 View resume ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#item)):
 ```php 
 $views = $api->resumes->view($resumeId); 
+```
+
+Edit resume ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#create_edit)):
+```php
+$api->resumes->edit($resumeId, ['first_name' => 'New name']);
+```
+
+Create a new resume ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#create_edit)):
+```php
+$attributes = ['first_name' => 'New name'];
+$result = $api->resumes->create($attributes);
 ```
 
 Views history ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#views)):
