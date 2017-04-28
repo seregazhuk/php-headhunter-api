@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v0.2.2 - ??
+## v0.2.2 - 2017-04-29
 ### Added:
  - Resumes: edit, create
  - Vacancies: favorited, similar, statistics
