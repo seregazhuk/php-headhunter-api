@@ -3,13 +3,30 @@
 namespace seregazhuk\HeadHunterApi\EndPoints;
 
 use ReflectionClass;
-use seregazhuk\HeadHunterApi\Contracts\RequestInterface;
+use seregazhuk\HeadHunterApi\Request;
 use seregazhuk\HeadHunterApi\Exceptions\WrongEndPointException;
 
+/**
+ * Class EndpointsContainer
+ * @package seregazhuk\HeadHunterApi\EndPoints
+ *
+ * @property Vacancies $vacancies
+ * @property Employers $employers
+ * @property Regions $regions
+ * @property Specializations $specializations
+ * @property Industries $industries
+ * @property Me $me
+ * @property Resumes $resumes
+ * @property Artifacts $artifacts
+ * @property Negotiations $negotiations
+ * @property SavedSearches $savedSearches
+ * @property Comments $comments
+ * @property Manager $manager
+ */
 class EndpointsContainer
 {
     /**
-     * @var RequestInterface
+     * @var Request
      */
     protected $request;
 
@@ -19,9 +36,18 @@ class EndpointsContainer
      */
     protected $endpoints = [];
 
-    public function __construct(RequestInterface $request)
+    public function __construct(Request $request)
     {
         $this->request = $request;
+    }
+
+    /**
+     * @param string $endpoint
+     * @return Endpoint
+     */
+    public function __get($endpoint)
+    {
+        return $this->getEndpoint($endpoint);
     }
 
     /**
@@ -68,7 +94,7 @@ class EndpointsContainer
     }
 
     /**
-     * @return RequestInterface
+     * @return Request
      */
     public function getRequest()
     {

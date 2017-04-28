@@ -8,7 +8,8 @@ All notable changes to this project will be documented in this file.
  - Artifacts: removePhoto, editPhoto
 
 ### Changed:
-- Artifacts: photo renamed to photos
+ - Artifacts: photo renamed to photos
+ - Removed unnecessary complexity from the code
 
 ## v0.2.1 - 2017-04-24
 ### Changed:
