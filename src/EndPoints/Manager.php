@@ -29,7 +29,7 @@ class Manager extends Endpoint
 
     /**
      * @param $key
-     * @return null
+     * @return string
      * @throws HeadHunterApiException
      */
     protected function getCurrentUserDataId($key)

@@ -5,6 +5,7 @@ namespace seregazhuk\HeadHunterApi;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
+use Psr\Http\Message\ResponseInterface;
 
 class Request
 {
@@ -109,10 +110,10 @@ class Request
     }
 
     /**
-     * @param Response $response
+     * @param ResponseInterface $response
      * @return array|null
      */
-    private function parseResponse(Response $response)
+    private function parseResponse(ResponseInterface $response)
     {
         return json_decode($response->getBody(), true);
     }
@@ -133,7 +134,7 @@ class Request
     }
 
     /**
-     * @param mixed $headers
+     * @param array $headers
      * @return $this
      */
     public function setHeaders($headers)

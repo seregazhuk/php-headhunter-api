@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.2.3 - 2017-04-29
+### Fixed:
+ - Resume edit
+
 ## v0.2.2 - 2017-04-29
 ### Added:
  - Resumes: edit, create
