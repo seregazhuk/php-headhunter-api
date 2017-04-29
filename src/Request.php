@@ -19,6 +19,10 @@ class Request
      */
     protected $headers = [];
 
+    /**
+     * @param string $baseUrl
+     * @param string $token
+     */
     public function __construct($baseUrl, $token = null)
     {
         $this->client = new Client(['base_uri' => $baseUrl]);
