@@ -85,6 +85,18 @@ abstract class Endpoint
 
     /**
      * @param string $verb
+     * @param array $params
+     * @return mixed
+     */
+    protected function putResourceJson($verb = '', array $params = [])
+    {
+        return $this->request->putJson(
+            $this->getResourceUri($verb), $params
+        );
+    }
+
+    /**
+     * @param string $verb
      */
     protected function deleteResource($verb = '')
     {
