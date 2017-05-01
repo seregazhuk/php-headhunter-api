@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v0.2.4 - ??
+## v0.2.4 -  2017-05-01
 ### Added
  - Dictionaries endpoint
  - Comments: create, edit, delete
