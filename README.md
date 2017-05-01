@@ -25,6 +25,7 @@ Official api docs available [here](https://github.com/hhru/api).
  - [Resumes](#resumes)
  - [Saved searches](#saved-searches)
  - [Specializations](#specializations)
+ - [Dictionaries](#dictionaries)
 
 
 ## Dependencies
@@ -169,6 +170,37 @@ Get all comments about applicant ([official docs](https://github.com/hhru/api/bl
 $comments = $api->comments->view($applicantId); 
 ```
 
+Create a comment ([official docs](https://github.com/hhru/api/blob/master/docs/applicant_comments.md#add_comment)).
+You need an applicant id, to create a comment. Applicant id can be received from resume:
+
+```php
+$resumeInfo = $api->resume->view($resumeId);
+$applicantCommentsUrl = $resumeInfo['owner']['comments']['url']; // https://api.hh.ru/applicant_comments/2743747
+// You need to parse id from this url
+
+// Create a comment, that is visible for coworkers
+$result = $api->comments($applicantId, 'my comment');
+
+// Create a comment, that is visible only for you
+$result = $api->createPrivate($applicantId, 'my comment');
+```
+
+Edit comment ([official docs](https://github.com/hhru/api/blob/master/docs/applicant_comments.md#edit_comment)):
+
+```php
+// Edit a comment, that is visible for coworkers
+$api->comments->edit($applicantId, $commentId, 'new comment text')
+
+// Edit a comment, that is visible only for you
+$result = $api->editPrivate($applicantId, $commentId, 'new comment text');
+```
+
+Delete a comment ([official docs](https://github.com/hhru/api/blob/master/docs/applicant_comments.md#delete_comment)):
+
+```php
+$api->comments->delete($applicantId, $commentId);
+```
+
 ### Industries
 Get all industries ([official docs](https://github.com/hhru/api/blob/master/docs/industries.md)):
 ```php 
@@ -274,4 +306,11 @@ $searches = $api->savedSearches->view($searchId);
 Get all specializations ([official docs](https://github.com/hhru/api/blob/master/docs/specializations.md)):
 ```php 
 $specializations = $api->specializations->all(); 
+```
+
+### Dictionaries
+
+Get list of entities that are used in API ([official docs](https://github.com/hhru/api/blob/master/docs/specializations.md)):
+```php
+$dictionaries = $api->dictionaries->all();
 ```

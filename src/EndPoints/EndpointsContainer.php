@@ -22,6 +22,7 @@ use seregazhuk\HeadHunterApi\Exceptions\WrongEndPointException;
  * @property SavedSearches $savedSearches
  * @property Comments $comments
  * @property Manager $manager
+ * @property Dictionaries $dictionaries
  */
 class EndpointsContainer
 {
