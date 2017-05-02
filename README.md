@@ -345,3 +345,28 @@ Companies ([official docs](https://github.com/hhru/api/blob/master/docs/suggests
 ```php
 $suggests = $api->suggests->companies($text);
 ```
+
+Specialization ([official docs](https://github.com/hhru/api/blob/master/docs/suggests.md#specialization-suggestions)):
+```php
+$suggests = $api->suggests->fieldsOfStudy($text);
+```
+
+Key skills ([official docs](https://github.com/hhru/api/blob/master/docs/suggests.md#key-skills-suggestions)):
+```php
+$suggests = $api->suggests->skillSet($text);
+```
+
+Position ([official docs](https://github.com/hhru/api/blob/master/docs/suggests.md#position-suggestions)):
+```php
+$suggests = $api->suggests->positions($text);
+```
+
+Region ([official docs](https://github.com/hhru/api/blob/master/docs/suggests.md#region-tips)):
+```php
+$suggests = $api->suggests->areas($text);
+```
+
+Tips for vacancy search key words ([official docs](https://github.com/hhru/api/blob/master/docs/suggests.md#tips-for-vacancy-search-key-words)):
+```php
+$suggests = $api->suggests->vacancySearchKeyword($text);
+```
