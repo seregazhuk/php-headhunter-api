@@ -26,6 +26,7 @@ Official API docs available [here](https://github.com/hhru/api).
  - [Saved searches](#saved-searches)
  - [Specializations](#specializations)
  - [Dictionaries](#dictionaries)
+ - [Suggests](#suggests)
 
 
 ## Dependencies
@@ -331,4 +332,11 @@ $specializations = $api->specializations->all();
 Get list of entities that are used in API ([official docs](https://github.com/hhru/api/blob/master/docs/specializations.md)):
 ```php
 $dictionaries = $api->dictionaries->all();
+```
+
+### Suggests
+
+Educational institutions ([official docs](https://github.com/hhru/api/blob/master/docs/suggests.md#Подсказки-по-названиям-университетов)):
+```php
+$suggests = $api->suggests->educational_institutions($text);
 ```
