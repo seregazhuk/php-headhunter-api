@@ -33,4 +33,9 @@ class Negotiations extends Endpoint
     {
         return $this->getResource('', ['vacancy_id' => $vacancyId]);
     }
+
+    public function view($negotiationId)
+    {
+        return $this->getResource($negotiationId);
+    }
 }

@@ -229,6 +229,11 @@ Git list of responses/invitation for ([official docs](https://github.com/hhru/ap
 $responses = $api->negotiations->invited($vacancyId);
 ```
 
+View the response/invitation by id. NegotiationId can be taken from key url in the `invited` call response.
+([official docs](https://github.com/hhru/api/blob/master/doc/employer_negotiations.md)):
+```php
+$response = $api->negotiations->view($negotiationId);
+
 ### Regions
 
 Get all regions ([official docs](https://github.com/hhru/api/blob/master/docs/areas.md#areas)):
