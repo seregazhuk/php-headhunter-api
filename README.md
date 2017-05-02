@@ -219,11 +219,18 @@ Get only active negotiations ([official docs](https://github.com/hhru/api/blob/m
 $negotiations = $api->negotiations->active(); 
 ```
 
-For employee: Get messages of negotiation ([official docs for employee](https://github.com/hhru/api/blob/master/docs/negotiations.md#get_messages)):
-For employer: View the list of messages in the response/invitation ([official docs for employee](https://github.com/hhru/api/blob/master/docs/employer_negotiations.md#view-the-list-of-messages-in-the-responseinvitation)):
+View the list of messages.
+
+- For employee: get messages of negotiation ([official docs](https://github.com/hhru/api/blob/master/docs/negotiations.md#get_messages)):
+- For employer: view the list of messages in the response/invitation ([official docs](https://github.com/hhru/api/blob/master/docs/employer_negotiations.md#view-the-list-of-messages-in-the-responseinvitation)):
 ```php 
-$messages = $api->negotiations->messages($negotiationId); 
+$api->negotiations->message($negotiationId, $messageText);
 ```
+
+Sending new message.
+
+- For employee: create a new message ([official docs](https://github.com/hhru/api/blob/master/docs/negotiations.md#send_message)):
+- For employer: sending a message in the response/invitation ([official docs](https://github.com/hhru/api/blob/master/docs/employer_negotiations.md#sending-a-message-in-the-responseinvitation)):
 
 Git list of responses/invitation for ([official docs](https://github.com/hhru/api/blob/master/docs/employer_negotiations.md)):
 ```php

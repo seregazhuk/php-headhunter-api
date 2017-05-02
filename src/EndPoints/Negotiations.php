@@ -38,4 +38,14 @@ class Negotiations extends Endpoint
     {
         return $this->getResource($negotiationId);
     }
+
+    /**
+     * @param int $id
+     * @param string $message
+     * @return mixed
+     */
+    public function message($id, $message)
+    {
+        return $this->postResource($id, ['message' => $message]);
+    }
 }
