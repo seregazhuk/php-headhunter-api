@@ -340,3 +340,8 @@ Educational institutions ([official docs](https://github.com/hhru/api/blob/maste
 ```php
 $suggests = $api->suggests->educational_institutions($text);
 ```
+
+Companies ([official docs](https://github.com/hhru/api/blob/master/docs/suggests.md#companies)):
+```php
+$suggests = $api->suggests->companies($text);
+```

@@ -8,6 +8,22 @@ class Suggests extends Endpoint
 
     public function educationalInstitutions($text, $locale = 'RU')
     {
-        return $this->getResource('educational_institutions', ['text' => $text, 'locale' => $locale]);
+        return $this->getSuggestsFor('educational_institutions', $text, $locale);
+    }
+
+    public function companies($text, $locale = 'RU')
+    {
+        return $this->getSuggestsFor('companies', $text, $locale);
+    }
+
+    /**
+     * @param string $verb
+     * @param string $text
+     * @param string $locale
+     * @return array
+     */
+    protected function getSuggestsFor($verb, $text, $locale)
+    {
+        return $this->getResource($verb, ['text' => $text, 'locale' => $locale]);
     }
 }
