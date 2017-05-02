@@ -18,7 +18,15 @@ class Request
      */
     protected $headers = [];
 
+    /**
+     * @var string
+     */
     protected $locale = 'RU';
+
+    /**
+     * @var string
+     */
+    protected $host = 'hh.ru';
 
     public function __construct($baseUrl, $token = null)
     {
@@ -165,5 +173,16 @@ class Request
         $params['locale'] = $this->locale;
 
         return http_build_query($params);
+    }
+
+    /**
+     * @param string $host
+     * @return Request
+     */
+    public function setHost($host)
+    {
+        $this->host = $host;
+
+        return $this;
     }
 }

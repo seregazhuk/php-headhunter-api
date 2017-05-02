@@ -371,7 +371,9 @@ Tips for vacancy search key words ([official docs](https://github.com/hhru/api/b
 $suggests = $api->suggests->vacancySearchKeyword($text);
 ```
 
-## Locales
+## Customize requests
+
+### Locale
 You can set a locale for your requests, the results will be returned in the selected locale. `RU` is set by
 default ([official docs](https://github.com/hhru/api/blob/master/docs_eng/locales.md)):
 ```php
@@ -379,6 +381,18 @@ $api->setLocale('EN');
 
 // chain methods
 $api->setLocale('EN')
+    ->me
+    ->info();
+```
+
+### Host
+Get data from different websites of the HeadHunter group.
+([official docs](https://github.com/hhru/api/blob/master/docs_eng/hosts.md)):
+```php
+$api->setHost('hh.kz');
+
+// chain methods
+$api->setHost('hh.kz')
     ->me
     ->info();
 ```

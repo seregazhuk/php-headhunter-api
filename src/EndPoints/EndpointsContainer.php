@@ -3,6 +3,7 @@
 namespace seregazhuk\HeadHunterApi\EndPoints;
 
 use ReflectionClass;
+use seregazhuk\HeadHunterApi\Exceptions\HeadHunterApiException;
 use seregazhuk\HeadHunterApi\Request;
 use seregazhuk\HeadHunterApi\Exceptions\WrongEndPointException;
 
@@ -24,6 +25,9 @@ use seregazhuk\HeadHunterApi\Exceptions\WrongEndPointException;
  * @property Manager $manager
  * @property Dictionaries $dictionaries
  * @property Suggests $suggests
+ *
+ * @method $this setLocale(string $locale)
+ * @method $this setHost(string $host)
  */
 class EndpointsContainer
 {
@@ -50,6 +54,21 @@ class EndpointsContainer
     public function __get($endpoint)
     {
         return $this->getEndpoint($endpoint);
+    }
+
+    /**
+     * @param string $method
+     * @param array $arguments
+     * @return EndpointsContainer
+     * @throws HeadHunterApiException
+     */
+    public function __call($method, $arguments)
+    {
+        if(strpos($method, 'set') === 0) {
+            return $this->callRequestSetter($method, $arguments);
+        }
+
+        throw new HeadHunterApiException("Method $method not found");
     }
 
     /**
@@ -103,13 +122,9 @@ class EndpointsContainer
         return $this->request;
     }
 
-    /**
-     * @param string $locale
-     * @return $this
-     */
-    public function setLocale($locale)
+    protected function callRequestSetter($method, $arguments)
     {
-        $this->request->setLocale($locale);
+        $this->request->$method(... $arguments);
 
         return $this;
     }

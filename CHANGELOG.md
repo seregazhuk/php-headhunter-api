@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Added:
  - Negotiations: invited, view, comments for employer, send a message
  - Suggests
- - Set locale
+ - Request locale, host
 
 ## v0.2.4 -  2017-05-01
 ### Added:
