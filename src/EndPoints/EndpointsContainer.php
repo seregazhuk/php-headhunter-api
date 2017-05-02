@@ -102,4 +102,15 @@ class EndpointsContainer
     {
         return $this->request;
     }
+
+    /**
+     * @param string $locale
+     * @return $this
+     */
+    public function setLocale($locale)
+    {
+        $this->request->setLocale($locale);
+
+        return $this;
+    }
 }

@@ -3,9 +3,8 @@
 namespace seregazhuk\HeadHunterApi;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Psr7\Request as GuzzleRequest;
 use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Psr7\Request as GuzzleRequest;
 
 class Request
 {
@@ -19,11 +18,13 @@ class Request
      */
     protected $headers = [];
 
+    protected $locale = 'RU';
+
     public function __construct($baseUrl, $token = null)
     {
         $this->client = new Client(['base_uri' => $baseUrl]);
 
-        if($token) $this->setHeaders(['Authorization' => 'Bearer ' . $token]);
+        if ($token) $this->setHeaders(['Authorization' => 'Bearer ' . $token]);
     }
 
     /**
@@ -33,8 +34,8 @@ class Request
      */
     public function get($uri, $params = [])
     {
-        if(!empty($params)){
-            $uri .= '?'. http_build_query($params);
+        if (!empty($params)) {
+            $uri .= '?' . $this->makeQueryString($params);
         }
 
         return $this->executeRequest('GET', $uri);
@@ -142,5 +143,27 @@ class Request
         $this->headers = $headers;
 
         return $this;
+    }
+
+    /**
+     * @param string $locale
+     * @return Request
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+
+        return $this;
+    }
+
+    /**
+     * @param $params
+     * @return string
+     */
+    protected function makeQueryString($params = [])
+    {
+        $params['locale'] = $this->locale;
+
+        return http_build_query($params);
     }
 }
