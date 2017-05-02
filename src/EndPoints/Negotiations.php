@@ -24,4 +24,13 @@ class Negotiations extends Endpoint
     {
         return $this->getResource($id . '/messages');
     }
+
+    /**
+     * @param int $vacancyId
+     * @return mixed
+     */
+    public function invited($vacancyId)
+    {
+        return $this->getResource('', ['vacancy_id' => $vacancyId]);
+    }
 }

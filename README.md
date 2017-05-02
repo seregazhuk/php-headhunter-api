@@ -1,4 +1,4 @@
-# HeadHunter.ru api library (in process)
+# HeadHunter.ru API library (in process)
 
 [![Code Climate](https://codeclimate.com/github/seregazhuk/php-headhunter-api/badges/gpa.svg)](https://codeclimate.com/github/seregazhuk/php-headhunter-api)
 [![Test Coverage](https://codeclimate.com/github/seregazhuk/php-headhunter-api/badges/coverage.svg)](https://codeclimate.com/github/seregazhuk/php-headhunter-api/coverage)
@@ -8,9 +8,9 @@
 [![Latest Stable Version](https://poser.pugx.org/seregazhuk/headhunter-api/v/stable)](https://packagist.org/packages/seregazhuk/headhunter-api)
 [![Total Downloads](https://poser.pugx.org/seregazhuk/headhunter-api/downloads)](https://packagist.org/packages/seregazhuk/headhunter-api)
 
-Provides a friendly api interface for HeadHunter (hh.ru) service.
+Provides a friendly API interface for HeadHunter (hh.ru) service.
 
-Official api docs available [here](https://github.com/hhru/api).
+Official API docs available [here](https://github.com/hhru/api).
 
  - [Installation](#installation)
  - [Quick Start](#quick-start)
@@ -222,6 +222,11 @@ $negotiations = $api->negotiations->active();
 Get messages of negotiation ([official docs](https://github.com/hhru/api/blob/master/docs/negotiations.md#get_messages)):
 ```php 
 $messages = $api->negotiations->messages($negotiationId); 
+```
+
+Git list of responses/invitation for ([official docs](https://github.com/hhru/api/blob/master/docs/employer_negotiations.md)):
+```php
+$responses = $api->negotiations->invited($vacancyId);
 ```
 
 ### Regions
