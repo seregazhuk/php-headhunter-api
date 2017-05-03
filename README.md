@@ -27,7 +27,7 @@ Official API docs available [here](https://github.com/hhru/api).
  - [Specializations](#specializations)
  - [Dictionaries](#dictionaries)
  - [Suggests](#suggests)
- - [Locales](#locales)
+ - [Custom requests](#custom-requests)
 
 ## Dependencies
 
@@ -371,7 +371,7 @@ Tips for vacancy search key words ([official docs](https://github.com/hhru/api/b
 $suggests = $api->suggests->vacancySearchKeyword($text);
 ```
 
-## Customize requests
+## Custom requests
 
 ### Locale
 You can set a locale for your requests, the results will be returned in the selected locale. `RU` is set by

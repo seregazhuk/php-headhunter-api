@@ -171,8 +171,8 @@ class Request
     protected function makeQueryString($params = [])
     {
         $customOptions = [
-            'locale' => $this->locale,
             'host'   => $this->host,
+            'locale' => $this->locale,
         ];
 
         $params = array_merge(
