@@ -1,16 +1,15 @@
-# HeadHunter.ru api library (in process)
+# HeadHunter.ru API library (in process)
 
 [![Code Climate](https://codeclimate.com/github/seregazhuk/php-headhunter-api/badges/gpa.svg)](https://codeclimate.com/github/seregazhuk/php-headhunter-api)
 [![Test Coverage](https://codeclimate.com/github/seregazhuk/php-headhunter-api/badges/coverage.svg)](https://codeclimate.com/github/seregazhuk/php-headhunter-api/coverage)
 [![Build Status](https://travis-ci.org/seregazhuk/php-headhunter-api.svg)](https://travis-ci.org/seregazhuk/php-headhunter-api)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/seregazhuk/php-headhunter-api/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/seregazhuk/php-headhunter-api/?branch=master)
-[![Circle CI](https://circleci.com/gh/seregazhuk/php-headhunter-api.svg?style=shield)](https://circleci.com/gh/seregazhuk/php-headhunter-api)
 [![Latest Stable Version](https://poser.pugx.org/seregazhuk/headhunter-api/v/stable)](https://packagist.org/packages/seregazhuk/headhunter-api)
 [![Total Downloads](https://poser.pugx.org/seregazhuk/headhunter-api/downloads)](https://packagist.org/packages/seregazhuk/headhunter-api)
 
-Provides a friendly api interface for HeadHunter (hh.ru) service.
+Provides a friendly API interface for HeadHunter (hh.ru) service.
 
-Official api docs available [here](https://github.com/hhru/api).
+Official API docs available [here](https://github.com/hhru/api).
 
  - [Installation](#installation)
  - [Quick Start](#quick-start)
@@ -26,7 +25,8 @@ Official api docs available [here](https://github.com/hhru/api).
  - [Saved searches](#saved-searches)
  - [Specializations](#specializations)
  - [Dictionaries](#dictionaries)
-
+ - [Suggests](#suggests)
+ - [Custom requests](#custom-requests)
 
 ## Dependencies
 
@@ -219,10 +219,28 @@ Get only active negotiations ([official docs](https://github.com/hhru/api/blob/m
 $negotiations = $api->negotiations->active(); 
 ```
 
-Get messages of negotiation ([official docs](https://github.com/hhru/api/blob/master/docs/negotiations.md#get_messages)):
+View the list of messages.
+
+- For employee: get messages of negotiation ([official docs](https://github.com/hhru/api/blob/master/docs/negotiations.md#get_messages)):
+- For employer: view the list of messages in the response/invitation ([official docs](https://github.com/hhru/api/blob/master/docs/employer_negotiations.md#view-the-list-of-messages-in-the-responseinvitation)):
 ```php 
-$messages = $api->negotiations->messages($negotiationId); 
+$api->negotiations->message($negotiationId, $messageText);
 ```
+
+Sending new message.
+
+- For employee: create a new message ([official docs](https://github.com/hhru/api/blob/master/docs/negotiations.md#send_message)):
+- For employer: sending a message in the response/invitation ([official docs](https://github.com/hhru/api/blob/master/docs/employer_negotiations.md#sending-a-message-in-the-responseinvitation)):
+
+Git list of responses/invitation for ([official docs](https://github.com/hhru/api/blob/master/docs/employer_negotiations.md)):
+```php
+$responses = $api->negotiations->invited($vacancyId);
+```
+
+View the response/invitation by id. NegotiationId can be taken from key url in the `invited` call response.
+([official docs](https://github.com/hhru/api/blob/master/doc/employer_negotiations.md)):
+```php
+$response = $api->negotiations->view($negotiationId);
 
 ### Regions
 
@@ -313,4 +331,67 @@ $specializations = $api->specializations->all();
 Get list of entities that are used in API ([official docs](https://github.com/hhru/api/blob/master/docs/specializations.md)):
 ```php
 $dictionaries = $api->dictionaries->all();
+```
+
+### Suggests
+
+Educational institutions ([official docs](https://github.com/hhru/api/blob/master/docs/suggests.md#Подсказки-по-названиям-университетов)):
+```php
+$suggests = $api->suggests->educational_institutions($text);
+```
+
+Companies ([official docs](https://github.com/hhru/api/blob/master/docs/suggests.md#companies)):
+```php
+$suggests = $api->suggests->companies($text);
+```
+
+Specialization ([official docs](https://github.com/hhru/api/blob/master/docs/suggests.md#specialization-suggestions)):
+```php
+$suggests = $api->suggests->fieldsOfStudy($text);
+```
+
+Key skills ([official docs](https://github.com/hhru/api/blob/master/docs/suggests.md#key-skills-suggestions)):
+```php
+$suggests = $api->suggests->skillSet($text);
+```
+
+Position ([official docs](https://github.com/hhru/api/blob/master/docs/suggests.md#position-suggestions)):
+```php
+$suggests = $api->suggests->positions($text);
+```
+
+Region ([official docs](https://github.com/hhru/api/blob/master/docs/suggests.md#region-tips)):
+```php
+$suggests = $api->suggests->areas($text);
+```
+
+Tips for vacancy search key words ([official docs](https://github.com/hhru/api/blob/master/docs/suggests.md#tips-for-vacancy-search-key-words)):
+```php
+$suggests = $api->suggests->vacancySearchKeyword($text);
+```
+
+## Custom requests
+
+### Locale
+You can set a locale for your requests, the results will be returned in the selected locale. `RU` is set by
+default ([official docs](https://github.com/hhru/api/blob/master/docs_eng/locales.md)):
+```php
+$api->setLocale('EN');
+
+// chain methods
+$api->setLocale('EN')
+    ->me
+    ->info();
+```
+
+### Host
+Get data from different websites of the HeadHunter group.
+([official docs](https://github.com/hhru/api/blob/master/docs_eng/hosts.md)):
+```php
+$api->setHost('hh.kz');
+
+// chain methods
+$api->setHost('hh.kz')
+    ->me
+    ->info();
 ```

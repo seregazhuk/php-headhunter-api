@@ -4,6 +4,7 @@ namespace seregazhuk\HeadHunterApi\EndPoints;
 
 use ReflectionClass;
 use seregazhuk\HeadHunterApi\Request;
+use seregazhuk\HeadHunterApi\Exceptions\HeadHunterApiException;
 use seregazhuk\HeadHunterApi\Exceptions\WrongEndPointException;
 
 /**
@@ -23,6 +24,10 @@ use seregazhuk\HeadHunterApi\Exceptions\WrongEndPointException;
  * @property Comments $comments
  * @property Manager $manager
  * @property Dictionaries $dictionaries
+ * @property Suggests $suggests
+ *
+ * @method $this setLocale(string $locale)
+ * @method $this setHost(string $host)
  */
 class EndpointsContainer
 {
@@ -52,6 +57,21 @@ class EndpointsContainer
     }
 
     /**
+     * @param string $method
+     * @param array $arguments
+     * @return EndpointsContainer
+     * @throws HeadHunterApiException
+     */
+    public function __call($method, $arguments)
+    {
+        if($this->isRequestSetter($method)) {
+            return $this->callRequestSetter($method, $arguments);
+        }
+
+        throw new HeadHunterApiException("Method $method not found");
+    }
+
+    /**
      * @param string $endpoint
      * @return Endpoint
      * @throws WrongEndPointException
@@ -72,6 +92,7 @@ class EndpointsContainer
     protected function addEndpoint($endpoint)
     {
         $class = __NAMESPACE__ . '\\' . ucfirst($endpoint);
+
         if (!class_exists($class)) {
             throw new WrongEndPointException;
         }
@@ -87,6 +108,7 @@ class EndpointsContainer
     protected function createEndpoint($class)
     {
         $reflector = new ReflectionClass($class);
+
         if(!$reflector->isInstantiable()) {
             throw new WrongEndPointException("Endpoint $class is not instantiable.");
         }
@@ -100,5 +122,26 @@ class EndpointsContainer
     public function getRequest()
     {
         return $this->request;
+    }
+
+    /**
+     * @param string $method
+     * @param array $arguments
+     * @return $this
+     */
+    protected function callRequestSetter($method, $arguments)
+    {
+        $this->request->$method(... $arguments);
+
+        return $this;
+    }
+
+    /**
+     * @param $method
+     * @return bool
+     */
+    protected function isRequestSetter($method)
+    {
+        return strpos($method, 'set') === 0 && method_exists($this->request, $method);
     }
 }

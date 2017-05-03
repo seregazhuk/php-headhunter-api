@@ -6,6 +6,9 @@ class Me extends Endpoint
 {
     const RESOURCE = 'me';
 
+    /**
+     * @return array
+     */
     public function info()
     {
         return $this->getResource();
