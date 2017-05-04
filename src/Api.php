@@ -6,15 +6,13 @@ use seregazhuk\HeadHunterApi\EndPoints\EndpointsContainer;
 
 class Api
 {
-    const BASE_URL = 'https://api.hh.ru/';
-
     /**
      * @param string|null $token
      * @return EndpointsContainer
      */
     public static function create($token = null)
     {
-        $request = new Request(self::BASE_URL, $token);
+        $request = new Request($token);
 
         return new EndpointsContainer($request);
     }

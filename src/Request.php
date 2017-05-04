@@ -8,6 +8,8 @@ use GuzzleHttp\Psr7\Request as GuzzleRequest;
 
 class Request
 {
+    const BASE_URL = 'https://api.hh.ru/';
+
     /**
      * @var \GuzzleHttp\Client
      */
@@ -29,12 +31,11 @@ class Request
     protected $host = 'hh.ru';
 
     /**
-     * @param string $baseUrl
      * @param string $token
      */
-    public function __construct($baseUrl, $token = null)
+    public function __construct($token = null)
     {
-        $this->client = new Client(['base_uri' => $baseUrl]);
+        $this->client = new Client(['base_uri' => self::BASE_URL]);
 
         if ($token) $this->setHeaders(['Authorization' => 'Bearer ' . $token]);
     }
