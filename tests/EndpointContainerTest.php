@@ -5,8 +5,9 @@ namespace seregazhuk\tests;
 use Mockery;
 use Mockery\MockInterface;
 use PHPUnit_Framework_TestCase;
-use seregazhuk\HeadHunterApi\EndPoints\Vacancies;
+use seregazhuk\HeadHunterApi\Exceptions\HeadHunterApiException;
 use seregazhuk\HeadHunterApi\Request;
+use seregazhuk\HeadHunterApi\EndPoints\Vacancies;
 use seregazhuk\HeadHunterApi\EndPoints\EndpointsContainer;
 use seregazhuk\HeadHunterApi\Exceptions\WrongEndPointException;
 
@@ -58,6 +59,13 @@ class EndpointsContainerTest extends PHPUnit_Framework_TestCase
             ->with($host);
 
         $this->container->setHost($host);
+    }
+
+    /** @test */
+    public function it_throws_exception_when_accessing_request_setter_that_doesnt_exist()
+    {
+        $this->expectException(HeadHunterApiException::class);
+        $this->container->setProperty('value');
     }
 }
 

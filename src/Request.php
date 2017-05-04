@@ -37,7 +37,7 @@ class Request
     {
         $this->client = new Client(['base_uri' => self::BASE_URL]);
 
-        if ($token) $this->setHeaders(['Authorization' => 'Bearer ' . $token]);
+        if ($token) $this->addAuthHeader($token);
     }
 
     /**
@@ -148,17 +148,6 @@ class Request
     }
 
     /**
-     * @param array $headers
-     * @return $this
-     */
-    public function setHeaders($headers)
-    {
-        $this->headers = $headers;
-
-        return $this;
-    }
-
-    /**
      * @param string $locale
      * @return Request
      */
@@ -196,5 +185,13 @@ class Request
         $this->host = $host;
 
         return $this;
+    }
+
+    /**
+     * @param string $token
+     */
+    protected function addAuthHeader($token)
+    {
+        $this->headers = ['Authorization' => 'Bearer ' . $token];
     }
 }
