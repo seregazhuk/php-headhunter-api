@@ -5,6 +5,7 @@ namespace seregazhuk\tests;
 use Mockery;
 use Mockery\MockInterface;
 use PHPUnit_Framework_TestCase;
+use seregazhuk\HeadHunterApi\EndPoints\Vacancies;
 use seregazhuk\HeadHunterApi\Request;
 use seregazhuk\HeadHunterApi\EndPoints\EndpointsContainer;
 use seregazhuk\HeadHunterApi\Exceptions\WrongEndPointException;
@@ -33,16 +34,16 @@ class EndpointsContainerTest extends PHPUnit_Framework_TestCase
     }
 
     /** @test */
-    public function getValidProvider()
+    public function it_returns_a_provider_instance()
     {
         $provider = $this->container->vacancies;
-        $this->assertNotEmpty($provider);
+        $this->assertInstanceOf(Vacancies::class, $provider);
     }
 
     /**
      * @test
      */
-    public function getWrongProvider()
+    public function it_throws_exception_when_trying_to_access_wrong_provider()
     {
         $this->expectException(WrongEndPointException::class);
         $this->container->getEndpoint('unknown');
