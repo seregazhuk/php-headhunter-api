@@ -16,11 +16,12 @@
     </testsuites>
     <filter>
         <whitelist>
-            <directory suffix=".php">./src/</directory>
-            <exclude>
-                <directory suffix=".php">./src/Adapters</directory>
-            </exclude>
+            <file suffix=".php">./src/EndPoints/EndpointsContainer.php</file>
+            <file suffix=".php">./src/EndPoints/Endpoint.php</file>
         </whitelist>
+        <blacklist>
+            <directory suffix=".php">./src/EndPoints/</directory>
+        </blacklist>
     </filter>
     <logging>
         <log type="coverage-clover" target="./build/logs/clover.xml"/>

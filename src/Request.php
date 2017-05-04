@@ -8,6 +8,8 @@ use GuzzleHttp\Psr7\Request as GuzzleRequest;
 
 class Request
 {
+    const BASE_URL = 'https://api.hh.ru/';
+
     /**
      * @var \GuzzleHttp\Client
      */
@@ -29,14 +31,13 @@ class Request
     protected $host = 'hh.ru';
 
     /**
-     * @param string $baseUrl
      * @param string $token
      */
-    public function __construct($baseUrl, $token = null)
+    public function __construct($token = null)
     {
-        $this->client = new Client(['base_uri' => $baseUrl]);
+        $this->client = new Client(['base_uri' => self::BASE_URL]);
 
-        if ($token) $this->setHeaders(['Authorization' => 'Bearer ' . $token]);
+        if ($token) $this->addAuthHeader($token);
     }
 
     /**
@@ -126,7 +127,7 @@ class Request
      * @param ResponseInterface $response
      * @return array|null
      */
-    private function parseResponse(ResponseInterface $response)
+    protected function parseResponse(ResponseInterface $response)
     {
         return json_decode($response->getBody(), true);
     }
@@ -144,17 +145,6 @@ class Request
         $response = $this->client->send($request, $options);
 
         return $this->parseResponse($response);
-    }
-
-    /**
-     * @param array $headers
-     * @return $this
-     */
-    public function setHeaders($headers)
-    {
-        $this->headers = $headers;
-
-        return $this;
     }
 
     /**
@@ -195,5 +185,13 @@ class Request
         $this->host = $host;
 
         return $this;
+    }
+
+    /**
+     * @param string $token
+     */
+    protected function addAuthHeader($token)
+    {
+        $this->headers = ['Authorization' => 'Bearer ' . $token];
     }
 }
