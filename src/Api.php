@@ -17,16 +17,10 @@ class Api
         return new EndpointsContainer($request);
     }
 
-    /**
-     * @codeCoverageIgnore
-     */
     private function __clone()
     {
     }
 
-    /**
-     * @codeCoverageIgnore
-     */
     private function __construct()
     {
     }
