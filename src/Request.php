@@ -127,7 +127,7 @@ class Request
      * @param ResponseInterface $response
      * @return array|null
      */
-    private function parseResponse(ResponseInterface $response)
+    protected function parseResponse(ResponseInterface $response)
     {
         return json_decode($response->getBody(), true);
     }
