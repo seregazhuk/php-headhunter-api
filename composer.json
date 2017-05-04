@@ -11,13 +11,13 @@
     "minimum-stability": "dev",
     "license": "Mit",
     "require": {
-        "php": ">=5.5.0",
+        "php": ">=5.5.9",
         "guzzlehttp/guzzle": "^6.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "*",
-        "codeclimate/php-test-reporter": "dev-master",
-        "mockery/mockery": "*"
+        "phpunit/phpunit": "^6.1",
+        "mockery/mockery": "^0.9.9",
+        "codeclimate/php-test-reporter": "^0.4.4"
     },
     "authors": [
         {
