@@ -2,7 +2,6 @@
 
 namespace seregazhuk\HeadHunterApi\EndPoints;
 
-use ReflectionClass;
 use seregazhuk\HeadHunterApi\Request;
 use seregazhuk\HeadHunterApi\Exceptions\HeadHunterApiException;
 use seregazhuk\HeadHunterApi\Exceptions\WrongEndPointException;
@@ -123,7 +122,7 @@ class EndpointsContainer
     }
 
     /**
-     * @param $method
+     * @param string $method
      * @return bool
      */
     protected function isRequestSetter($method)
