@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.2.7 - ??
+### Fixed:
+ - Resolving endpoints from the container
+
 ## v0.2.6 - 2017-05-05
 ### Changed:
  - Tests and refactoring

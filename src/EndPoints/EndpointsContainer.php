@@ -93,27 +93,13 @@ class EndpointsContainer
     {
         $class = __NAMESPACE__ . '\\' . ucfirst($endpoint);
 
-        if (!class_exists($class)) {
-            throw new WrongEndPointException;
+        $isEndpoint = is_subclass_of($class, Endpoint::class);
+
+        if (!class_exists($class) && !$isEndpoint) {
+            throw new WrongEndPointException("$endpoint is not a valid endpoint");
         }
 
-        $this->endpoints[$endpoint] = $this->createEndpoint($class);
-    }
-
-    /**
-     * @param string $class
-     * @return Endpoint|object
-     * @throws WrongEndPointException
-     */
-    protected function createEndpoint($class)
-    {
-        $reflector = new ReflectionClass($class);
-
-        if(!$reflector->isInstantiable()) {
-            throw new WrongEndPointException("Endpoint $class is not instantiable.");
-        }
-
-        return $reflector->newInstanceArgs([$this]);
+        $this->endpoints[$endpoint] = new $class($this);
     }
 
     /**
