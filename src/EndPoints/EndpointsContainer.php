@@ -93,9 +93,7 @@ class EndpointsContainer
     {
         $class = __NAMESPACE__ . '\\' . ucfirst($endpoint);
 
-        $isEndpoint = is_subclass_of($class, Endpoint::class);
-
-        if (!class_exists($class) && !$isEndpoint) {
+        if (!$this->checkIsEndpoint($class)) {
             throw new WrongEndPointException("$endpoint is not a valid endpoint");
         }
 
@@ -129,5 +127,16 @@ class EndpointsContainer
     protected function isRequestSetter($method)
     {
         return strpos($method, 'set') === 0 && method_exists($this->request, $method);
+    }
+
+    /**
+     * @param string $class
+     * @return bool
+     */
+    protected function checkIsEndpoint($class)
+    {
+        if(!class_exists($class)) return false;
+
+        return in_array(Endpoint::class, class_parents($class));
     }
 }
