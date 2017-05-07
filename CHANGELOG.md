@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.2.6 - ?
+### Fixed:
+ - Doesn't throw exception on http errors (4xx and 5xx statuses)
+
 ## v0.2.6 - 2017-05-05
 ### Changed:
  - Tests and refactoring
