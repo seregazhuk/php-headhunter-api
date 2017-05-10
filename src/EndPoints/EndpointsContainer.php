@@ -27,6 +27,7 @@ use seregazhuk\HeadHunterApi\Exceptions\WrongEndPointException;
  * @property Suggests $suggests
  * @property Metro $metro
  * @property Auth $auth
+ * @property Languages $languages
  *
  * @method $this setLocale(string $locale)
  * @method $this setHost(string $host)
