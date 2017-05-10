@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.2.8 - 2017-05-10
+### Fixed:
+ - Doesn't throw exception on http errors (4xx and 5xx statuses)
+
+### Added:
+ - Metro, Auth, Languages, Faculties
+
 ## v0.2.7 - 2017-05-06
 ### Fixed:
  - Resolving endpoints from the container

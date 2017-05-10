@@ -35,7 +35,10 @@ class Request
      */
     public function __construct($token = null)
     {
-        $this->client = new Client(['base_uri' => self::BASE_URL]);
+        $this->client = new Client([
+            'base_uri'    => self::BASE_URL,
+            'http_errors' => false,
+        ]);
 
         if ($token) $this->addAuthHeader($token);
     }
