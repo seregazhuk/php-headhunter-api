@@ -26,6 +26,7 @@ Official API docs available [here](https://github.com/hhru/api).
  - [Specializations](#specializations)
  - [Dictionaries](#dictionaries)
  - [Suggests](#suggests)
+ - [Metro](#metro)
  - [Custom requests](#custom-requests)
 
 ## Dependencies
@@ -370,7 +371,18 @@ Tips for vacancy search key words ([official docs](https://github.com/hhru/api/b
 $suggests = $api->suggests->vacancySearchKeyword($text);
 ```
 
-## Custom requests
+## Metro
+Obtaining all metro stations of all cities ([official docs](https://github.com/hhru/api/blob/master/docs_eng/metro.md)):
+```php
+$stations = $api->metro->all();
+```
+
+List of metro stations and lines in a specific city ([official docs](https://github.com/hhru/api/blob/master/docs_eng/metro.md)):
+
+## Custom requests ([official docs](https://github.com/hhru/api/blob/master/docs/metro.md#list-of-metro-stations-and-lines-in-a-specific-city)):
+```php
+$stations = $api->metro->forCity($cityId);
+```
 
 ### Locale
 You can set a locale for your requests, the results will be returned in the selected locale. `RU` is set by
