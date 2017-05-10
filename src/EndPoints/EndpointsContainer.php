@@ -2,7 +2,6 @@
 
 namespace seregazhuk\HeadHunterApi\EndPoints;
 
-use ReflectionClass;
 use seregazhuk\HeadHunterApi\Request;
 use seregazhuk\HeadHunterApi\Exceptions\HeadHunterApiException;
 use seregazhuk\HeadHunterApi\Exceptions\WrongEndPointException;
@@ -97,27 +96,11 @@ class EndpointsContainer
     {
         $class = __NAMESPACE__ . '\\' . ucfirst($endpoint);
 
-        if (!class_exists($class)) {
-            throw new WrongEndPointException;
+        if (!$this->checkIsEndpoint($class)) {
+            throw new WrongEndPointException("$endpoint is not a valid endpoint");
         }
 
-        $this->endpoints[$endpoint] = $this->createEndpoint($class);
-    }
-
-    /**
-     * @param string $class
-     * @return Endpoint|object
-     * @throws WrongEndPointException
-     */
-    protected function createEndpoint($class)
-    {
-        $reflector = new ReflectionClass($class);
-
-        if(!$reflector->isInstantiable()) {
-            throw new WrongEndPointException("Endpoint $class is not instantiable.");
-        }
-
-        return $reflector->newInstanceArgs([$this]);
+        $this->endpoints[$endpoint] = new $class($this);
     }
 
     /**
@@ -141,11 +124,22 @@ class EndpointsContainer
     }
 
     /**
-     * @param $method
+     * @param string $method
      * @return bool
      */
     protected function isRequestSetter($method)
     {
         return strpos($method, 'set') === 0 && method_exists($this->request, $method);
+    }
+
+    /**
+     * @param string $class
+     * @return bool
+     */
+    protected function checkIsEndpoint($class)
+    {
+        if(!class_exists($class)) return false;
+
+        return in_array(Endpoint::class, class_parents($class));
     }
 }
