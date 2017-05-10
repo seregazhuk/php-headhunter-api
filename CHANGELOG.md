@@ -1,12 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v0.2.6 - ?
+## v0.2.6 - 2017-05-10
 ### Fixed:
  - Doesn't throw exception on http errors (4xx and 5xx statuses)
 
 ### Added:
- - Metro, Auth, Languages
+ - Metro, Auth, Languages, Faculties
 
 ## v0.2.6 - 2017-05-05
 ### Changed:

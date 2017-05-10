@@ -389,6 +389,13 @@ Obtaining available languages ([official docs](https://github.com/hhru/api/blob/
 $languages = $api->languages->all();
 ```
 
+## Faculties
+Get list of faculties of the educational institutions ([official docs](https://github.com/hhru/api/blob/master/docs/faculties.md)).
+Uses institutionId that can be obtained from the suggestions for educational institutions.
+```php
+$faculties = $api->faculties->forInstitution($institutionId);
+```
+
 ## Custom requests ([official docs](https://github.com/hhru/api/blob/master/docs/metro.md#list-of-metro-stations-and-lines-in-a-specific-city)):
 
 ### Locale
