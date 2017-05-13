@@ -57,6 +57,12 @@ $api = Api::create('YOUR_TOKEN');
 $userInfo = $api->me->info();
 ```
 
+You can create an instance without token, and later change it.
+```
+$api = Api::create();
+$api->setToken('YOUR_TOKEN');
+```
+
 ## API Resources
 
 ### Vacancies

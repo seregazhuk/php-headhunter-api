@@ -40,7 +40,7 @@ class Request
             'http_errors' => false,
         ]);
 
-        if ($token) $this->addAuthHeader($token);
+        if ($token) $this->setToken($token);
     }
 
     /**
@@ -186,6 +186,17 @@ class Request
     public function setHost($host)
     {
         $this->host = $host;
+
+        return $this;
+    }
+
+    /**
+     * @param string $token
+     * @return $this
+     */
+    public function setToken($token)
+    {
+        $this->addAuthHeader($token);
 
         return $this;
     }

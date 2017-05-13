@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.2.9 - ?
+### Added:
+ - Ability to change token, without creating new instance.
+
 ## v0.2.8 - 2017-05-10
 ### Fixed:
  - Doesn't throw exception on http errors (4xx and 5xx statuses)
