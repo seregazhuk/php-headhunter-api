@@ -315,6 +315,19 @@ Get jobs recommendations for resume ([official docs](https://github.com/hhru/api
 $jobs = $api->resumes->jobs($resumeId)
 ```
 
+#### Resume visibility
+
+Get resume white list ([official docs](https://github.com/hhru/api/blob/master/doc_eng/resume_visibility.md)):
+```php
+$whiteList = $api->resumes->getWhiteList($resumeId);
+```
+
+Get resume black list ([official docs](https://github.com/hhru/api/blob/master/doc_eng/resume_visibility.md)):
+```php
+$blackList = $api->resumes->getBlackList($resumeId);
+```
+
+
 ### Saved searches:
 
 List searches ([official docs](https://github.com/hhru/api/blob/master/docs/saved_search.md#vacancies-saved-search-list)):

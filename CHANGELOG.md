@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## v0.2.9 - ?
 ### Added:
  - Ability to change token, without creating new instance.
+ - Resume black/white list
 
 ## v0.2.8 - 2017-05-10
 ### Fixed:

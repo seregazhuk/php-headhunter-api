@@ -94,4 +94,14 @@ class Resumes extends Endpoint
     {
         return $this->getResource($id . '/negotiations_history');
     }
+
+    public function getWhiteList($id)
+    {
+        return $this->getResource($id .'/whitelist');
+    }
+
+    public function getBlackList($id)
+    {
+        return $this->getResource($id .'/blacklist');
+    }
 }
