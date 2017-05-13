@@ -3,14 +3,18 @@
 namespace seregazhuk\HeadHunterApi\EndPoints;
 
 use seregazhuk\HeadHunterApi\Traits\HasView;
+use seregazhuk\HeadHunterApi\Traits\HasVisibilityList;
 use seregazhuk\HeadHunterApi\Traits\HasSimilarVacancies;
 
 class Resumes extends Endpoint
 {
     const RESOURCE = 'resumes';
 
-    use HasView, HasSimilarVacancies;
+    use HasView, HasSimilarVacancies, HasVisibilityList;
 
+    /**
+     * @return array
+     */
     public function mine()
     {
         return $this->getResource('mine');
@@ -54,8 +58,8 @@ class Resumes extends Endpoint
     }
 
     /**
-     * @param $id
-     * @param $attributes
+     * @param string $id
+     * @param array $attributes
      * @return mixed
      */
     public function edit($id, $attributes)
@@ -64,7 +68,7 @@ class Resumes extends Endpoint
     }
 
     /**
-     * @param $attributes
+     * @param array $attributes
      * @return mixed
      */
     public function create($attributes)
@@ -90,6 +94,10 @@ class Resumes extends Endpoint
         return $this->getSimilarVacanciesFor($id);
     }
 
+    /**
+     * @param string $id
+     * @return array
+     */
     public function negotiations($id)
     {
         return $this->getResource($id . '/negotiations_history');

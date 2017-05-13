@@ -40,7 +40,7 @@ class Request
             'http_errors' => false,
         ]);
 
-        if ($token) $this->addAuthHeader($token);
+        if ($token) $this->setToken($token);
     }
 
     /**
@@ -119,10 +119,15 @@ class Request
 
     /**
      * @param string $uri
+     * @param array $params
      * @return array|null
      */
-    public function delete($uri)
+    public function delete($uri, $params = [])
     {
+        if (!empty($params)) {
+            $uri .= '?' . $this->makeQueryString($params);
+        }
+
         return $this->executeRequest('DELETE', $uri);
     }
 
@@ -186,6 +191,17 @@ class Request
     public function setHost($host)
     {
         $this->host = $host;
+
+        return $this;
+    }
+
+    /**
+     * @param string $token
+     * @return $this
+     */
+    public function setToken($token)
+    {
+        $this->addAuthHeader($token);
 
         return $this;
     }

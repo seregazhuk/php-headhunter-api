@@ -97,10 +97,12 @@ abstract class Endpoint
 
     /**
      * @param string $verb
+     * @param array $params
+     * @return array|null
      */
-    protected function deleteResource($verb = '')
+    protected function deleteResource($verb = '', $params = [])
     {
-        $this->request->delete($this->getResourceUri($verb));
+        return $this->request->delete($this->getResourceUri($verb), $params);
     }
 
     /**

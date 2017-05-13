@@ -31,6 +31,7 @@ use seregazhuk\HeadHunterApi\Exceptions\WrongEndPointException;
  *
  * @method $this setLocale(string $locale)
  * @method $this setHost(string $host)
+ * @method $this setToken(string $host)
  */
 class EndpointsContainer
 {
