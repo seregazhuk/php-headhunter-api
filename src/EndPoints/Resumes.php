@@ -104,4 +104,85 @@ class Resumes extends Endpoint
     {
         return $this->getResource($id .'/blacklist');
     }
+
+    /**
+     * @param string $resumeId
+     * @param string|array $companyId
+     * @return mixed
+     */
+    public function addToWhiteList($resumeId, $companyId)
+    {
+        return $this->addVisibilityItem($resumeId, $companyId, 'whitelist');
+    }
+
+    /**
+     * @param string $resumeId
+     * @param string|array $companyId
+     * @return mixed
+     */
+    public function addToBlackList($resumeId, $companyId)
+    {
+        return $this->addVisibilityItem($resumeId, $companyId, 'blacklist');
+    }
+
+    /**
+     * @param string $resumeId
+     * @param string|array $companyId
+     * @param string $list
+     * @return array
+     */
+    protected function addVisibilityItem($resumeId, $companyId, $list)
+    {
+        $companyId = is_array($companyId) ? $companyId : [$companyId];
+
+        $companies = array_map(
+            function ($company) {
+                return ['id' => (string)$company];
+            }, $companyId
+        );
+
+        return $this->postResourceJson($resumeId. "/" . $list, ['items' => $companies]);
+    }
+
+    /**
+     * @param string $resumeId
+     * @param null $companyId
+     * @return array|null
+     */
+    public function removeFromWhiteList($resumeId, $companyId = null)
+    {
+        $params = $companyId ? ['id' => $companyId] : [];
+
+        return $this->deleteResource($resumeId . '/whitelist/employer', $params);
+    }
+
+    /**
+     * @param string $resumeId
+     * @return array|null
+     */
+    public function clearWhiteList($resumeId)
+    {
+        return $this->removeFromWhiteList($resumeId);
+    }
+
+    /**
+     * @param string $resumeId
+     * @param null $companyId
+     * @return array|null
+     */
+    public function removeFromBlackList($resumeId, $companyId = null)
+    {
+        $params = $companyId ? ['id' => $companyId] : [];
+
+        return $this->deleteResource($resumeId . '/blacklist/employer', $params);
+    }
+
+    /**
+     * @param string $resumeId
+     * @return array|null
+     */
+    public function clearBlackList($resumeId)
+    {
+        return $this->removeFromBlackList($resumeId);
+    }
 }

@@ -119,10 +119,15 @@ class Request
 
     /**
      * @param string $uri
+     * @param array $params
      * @return array|null
      */
-    public function delete($uri)
+    public function delete($uri, $params = [])
     {
+        if (!empty($params)) {
+            $uri .= '?' . $this->makeQueryString($params);
+        }
+
         return $this->executeRequest('DELETE', $uri);
     }
 

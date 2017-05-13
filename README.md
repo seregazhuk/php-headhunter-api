@@ -316,17 +316,47 @@ $jobs = $api->resumes->jobs($resumeId)
 ```
 
 #### Resume visibility
+[official docs](https://github.com/hhru/api/blob/master/doc_eng/resume_visibility.md)
 
-Get resume white list ([official docs](https://github.com/hhru/api/blob/master/doc_eng/resume_visibility.md)):
+Get resume white list :
 ```php
 $whiteList = $api->resumes->getWhiteList($resumeId);
 ```
 
-Get resume black list ([official docs](https://github.com/hhru/api/blob/master/doc_eng/resume_visibility.md)):
+Get resume black list:
 ```php
 $blackList = $api->resumes->getBlackList($resumeId);
 ```
 
+Add a company to white list:
+```php
+$api->resumes->addToWhiteList($resumeId, $companyId);
+```
+
+Add a company to black list:
+```php
+$api->resumes->addToBlackList($resumeId, $companyId);
+```
+
+Remove a company from white list:
+```php
+$api->resumes->removeFromWhiteList($resumeId, $companyId);
+```
+
+Remove a company from black list:
+```php
+$api->resumes->removeFromBlackList($resumeId, $companyId);
+```
+
+Clear white list:
+```php
+$api->resumes->clearWhiteList($resumeId);
+```
+
+Clear black list:
+```php
+$api->resumes->clearBlackList($resumeId);
+```
 
 ### Saved searches:
 

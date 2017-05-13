@@ -34,9 +34,6 @@ abstract class Endpoint
      */
     protected function getResource($verb = '', array $params = [])
     {
-        if(strpos($verb, '0202ab55ff03c137890039ed1f425a57484b38') !== false) {
-            print_r($this->getResourceUri($verb)); die();
-        }
         return $this->request->get(
             $this->getResourceUri($verb), $params
         );
@@ -100,10 +97,12 @@ abstract class Endpoint
 
     /**
      * @param string $verb
+     * @param array $params
+     * @return array|null
      */
-    protected function deleteResource($verb = '')
+    protected function deleteResource($verb = '', $params = [])
     {
-        $this->request->delete($this->getResourceUri($verb));
+        return $this->request->delete($this->getResourceUri($verb), $params);
     }
 
     /**
