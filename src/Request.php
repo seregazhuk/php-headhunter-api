@@ -50,9 +50,7 @@ class Request
      */
     public function get($uri, $params = [])
     {
-        if (!empty($params)) {
-            $uri .= '?' . $this->makeQueryString($params);
-        }
+        $uri = $this->makeUri($uri, $params);
 
         return $this->executeRequest('GET', $uri);
     }
@@ -124,9 +122,7 @@ class Request
      */
     public function delete($uri, $params = [])
     {
-        if (!empty($params)) {
-            $uri .= '?' . $this->makeQueryString($params);
-        }
+        $uri = $this->makeUri($uri, $params);
 
         return $this->executeRequest('DELETE', $uri);
     }
@@ -212,5 +208,19 @@ class Request
     protected function addAuthHeader($token)
     {
         $this->headers = ['Authorization' => 'Bearer ' . $token];
+    }
+
+    /**
+     * @param $uri
+     * @param $params
+     * @return string
+     */
+    protected function makeUri($uri, $params)
+    {
+        if (!empty($params)) {
+            $uri .= '?' . $this->makeQueryString($params);
+        }
+
+        return $uri;
     }
 }
