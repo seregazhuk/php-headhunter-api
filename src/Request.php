@@ -50,7 +50,7 @@ class Request
      */
     public function get($uri, $params = [])
     {
-        $uri = $this->makeUri($uri, $params);
+        $uri = $this->makeUriWithQuery($uri, $params);
 
         return $this->executeRequest('GET', $uri);
     }
@@ -122,7 +122,7 @@ class Request
      */
     public function delete($uri, $params = [])
     {
-        $uri = $this->makeUri($uri, $params);
+        $uri = $this->makeUriWithQuery($uri, $params);
 
         return $this->executeRequest('DELETE', $uri);
     }
@@ -215,7 +215,7 @@ class Request
      * @param $params
      * @return string
      */
-    protected function makeUri($uri, $params)
+    protected function makeUriWithQuery($uri, $params)
     {
         if (!empty($params)) {
             $uri .= '?' . $this->makeQueryString($params);

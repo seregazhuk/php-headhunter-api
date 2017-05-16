@@ -318,45 +318,42 @@ $jobs = $api->resumes->jobs($resumeId)
 #### Resume visibility
 [official docs](https://github.com/hhru/api/blob/master/doc_eng/resume_visibility.md)
 
-Get resume white list :
+Get resume black/white list:
 ```php
+$blackList = $api->resumes->getBlackList($resumeId);
+// ...
 $whiteList = $api->resumes->getWhiteList($resumeId);
 ```
 
-Get resume black list:
+Add a company to black/white list:
 ```php
-$blackList = $api->resumes->getBlackList($resumeId);
-```
-
-Add a company to white list:
-```php
+$api->resumes->addToBlackList($resumeId, $companyId);
+// ...
 $api->resumes->addToWhiteList($resumeId, $companyId);
 ```
 
-Add a company to black list:
+Remove a company from black/white list:
 ```php
-$api->resumes->addToBlackList($resumeId, $companyId);
-```
-
-Remove a company from white list:
-```php
+$api->resumes->removeFromBlackList($resumeId, $companyId);
+// ...
 $api->resumes->removeFromWhiteList($resumeId, $companyId);
 ```
 
-Remove a company from black list:
+Clear black/white list:
 ```php
-$api->resumes->removeFromBlackList($resumeId, $companyId);
-```
-
-Clear white list:
-```php
+$api->resumes->clearBlackList($resumeId);
+// ...
 $api->resumes->clearWhiteList($resumeId);
 ```
 
-Clear black list:
+Search in black/white list:
 ```php
-$api->resumes->clearBlackList($resumeId);
+$companies = $api->resumes->searchInBlackList($resumeId, 'some-key-word');
+//...
+$companies = $api->resumes->searchInWhiteList($resumeId, 'some-key-word');
 ```
+
+Search in black/white list:
 
 ### Saved searches:
 
