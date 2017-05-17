@@ -91,21 +91,30 @@ Search ([official docs](https://github.com/hhru/api/blob/master/docs/vacancies.m
 $vacancies = $api->vacancies->search($params); 
 ```
 
-Vacancy statistics ([officials docs](https://github.com/hhru/api/blob/master/docs/employer_vacancies.md#stats)):
+Vacancy statistics ([official docs](https://github.com/hhru/api/blob/master/docs/employer_vacancies.md#stats)):
 ```php
 $stats = $api->vacancies->statistics($vacancyId);
 ```
 
-Employer's active vacancies ([officials docs](https://github.com/hhru/api/blob/master/docs/employer_vacancies.md#stats)):
-
-### Employers
-
-View employee by id ([official docs](https://github.com/hhru/api/blob/master/docs/employer_vacancies.md#Список-опубликованных-вакансий)):
-```php 
+Employer's active vacancies ([official docs](https://github.com/hhru/api/blob/master/docs/employer_vacancies.md#Список-опубликованных-вакансий)):
+```php
 $vacancies = $api->vacancies->active();
 
 // you can specify a manager, by default uses current manager
 $vacancies = $api->vacancies->active($managerId);
+```
+
+Employer's archived vacancies ([official docs](https://github.com/hhru/api/blob/master/docs/employer_vacancies.md#Архивация-вакансий)):
+
+```php
+$archived = $api->vacancies->archived();
+```
+
+### Employers
+
+View employee by id ([official docs](https://github.com/hhru/api/blob/master/docs/employers.md#item)):
+```php 
+$employee = $api->employers->view($id);
 ```
 
 Search ([official docs](https://github.com/hhru/api/blob/master/docs/employers.md#search)):

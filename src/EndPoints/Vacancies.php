@@ -55,4 +55,11 @@ class Vacancies extends Endpoint
             ['manager' => $managerId]
         );
     }
+
+    public function archived()
+    {
+        $employerId = $this->getCurrentEmployerId();
+
+        return $this->request->get("/employers/$employerId/vacancies/archived");
+    }
 }
