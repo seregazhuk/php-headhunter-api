@@ -96,11 +96,16 @@ Vacancy statistics ([officials docs](https://github.com/hhru/api/blob/master/doc
 $stats = $api->vacancies->statistics($vacancyId);
 ```
 
+Employer's active vacancies ([officials docs](https://github.com/hhru/api/blob/master/docs/employer_vacancies.md#stats)):
+
 ### Employers
 
-View employee by id ([official docs](https://github.com/hhru/api/blob/master/docs/employers.md#item)):
+View employee by id ([official docs](https://github.com/hhru/api/blob/master/docs/employer_vacancies.md#Список-опубликованных-вакансий)):
 ```php 
-$employee = $api->employers->view($id); 
+$vacancies = $api->vacancies->active();
+
+// you can specify a manager, by default uses current manager
+$vacancies = $api->vacancies->active($managerId);
 ```
 
 Search ([official docs](https://github.com/hhru/api/blob/master/docs/employers.md#search)):
