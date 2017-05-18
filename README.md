@@ -113,7 +113,13 @@ $archived = $api->vacancies->archived();
 Employer's hidden vacancies ([official docs](https://github.com/hhru/api/blob/master/docs/employer_vacancies.md#hidden)):
 
 ```php
-$archived = $api->vacancies->hidden();
+$hidden = $api->vacancies->hidden();
+```
+
+Restore a vacancy ([official docs](https://github.com/hhru/api/blob/master/docs/employer_vacancies.md#restore)):
+
+```php
+$api->vacancies->restore($vacancyId);
 ```
 
 ### Employers

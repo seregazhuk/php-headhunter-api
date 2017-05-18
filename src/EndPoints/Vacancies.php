@@ -73,4 +73,15 @@ class Vacancies extends Endpoint
 
         return $this->request->get("/employers/$employerId/vacancies/$endpoint", $params);
     }
+
+    /**
+     * @param string $id
+     * @return array|null
+     */
+    public function restore($id)
+    {
+        $employerId = $this->getCurrentEmployerId();
+
+        return $this->request->delete("/employers/$employerId/vacancies/hidden/$id");
+    }
 }

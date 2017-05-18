@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Added:
  - Search in resume black/white lists
  - Active/archived/hidden vacancies
+ - Restore vacancy
 
 
 ## v0.2.9 - 2017-05-13
