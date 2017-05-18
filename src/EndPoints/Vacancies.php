@@ -47,19 +47,30 @@ class Vacancies extends Endpoint
      */
     public function active($managerId = null)
     {
-        $employerId = $this->getCurrentEmployerId();
         $managerId = $managerId ?: $this->getCurrentManagerId();
 
-        return $this->request->get(
-            "/employers/$employerId/vacancies/active",
-            ['manager' => $managerId]
-        );
+        return $this->callEmployersVacanciesEndpoint("active", ['manager' => $managerId]);
     }
 
     public function archived()
     {
+        return $this->callEmployersVacanciesEndpoint("archived");
+    }
+
+    public function hidden()
+    {
+        return $this->callEmployersVacanciesEndpoint("hidden");
+    }
+
+    /**
+     * @param string $endpoint
+     * @param array $params
+     * @return array|null
+     */
+    protected function callEmployersVacanciesEndpoint($endpoint, $params = [])
+    {
         $employerId = $this->getCurrentEmployerId();
 
-        return $this->request->get("/employers/$employerId/vacancies/archived");
+        return $this->request->get("/employers/$employerId/vacancies/$endpoint", $params);
     }
 }

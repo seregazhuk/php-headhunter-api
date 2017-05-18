@@ -110,6 +110,12 @@ Employer's archived vacancies ([official docs](https://github.com/hhru/api/blob/
 $archived = $api->vacancies->archived();
 ```
 
+Employer's hidden vacancies ([official docs](https://github.com/hhru/api/blob/master/docs/employer_vacancies.md#hidden)):
+
+```php
+$archived = $api->vacancies->hidden();
+```
+
 ### Employers
 
 View employee by id ([official docs](https://github.com/hhru/api/blob/master/docs/employers.md#item)):
