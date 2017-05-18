@@ -116,6 +116,12 @@ Employer's hidden vacancies ([official docs](https://github.com/hhru/api/blob/ma
 $hidden = $api->vacancies->hidden();
 ```
 
+Hide a vacancy ([official docs](https://github.com/hhru/api/blob/master/docs/employer_vacancies.md#hide)):
+
+```php
+$api->vacancies->hide($vacancyId);
+```
+
 Restore a vacancy ([official docs](https://github.com/hhru/api/blob/master/docs/employer_vacancies.md#restore)):
 
 ```php
