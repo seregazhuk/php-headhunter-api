@@ -2,10 +2,12 @@
 
 namespace seregazhuk\HeadHunterApi\EndPoints;
 
-use seregazhuk\HeadHunterApi\Exceptions\HeadHunterApiException;
+use seregazhuk\HeadHunterApi\Traits\ResolvesCurrentUser;
 
 class Manager extends Endpoint
 {
+    use ResolvesCurrentUser;
+
     const RESOURCE = '/employers';
 
     /**
@@ -15,8 +17,8 @@ class Manager extends Endpoint
      */
     public function preferences($managerId = null)
     {
-        $employerId = $this->getCurrentUserDataId('employer');
-        $managerId = $managerId ?: $this->getCurrentUserDataId('manager');
+        $employerId = $this->getCurrentEmployerId();
+        $managerId = $managerId ?: $this->getCurrentManagerId();
 
         $uri = str_replace(
             ['{employer_id}', '{manager_id}'],
@@ -25,32 +27,5 @@ class Manager extends Endpoint
         );
 
         return $this->getResource($uri);
-    }
-
-    /**
-     * @param $key
-     * @return string
-     * @throws HeadHunterApiException
-     */
-    protected function getCurrentUserDataId($key)
-    {
-        $currentUser = $this->getCurrentUserInfo();
-
-        if (!isset($currentUser[$key]['id'])) {
-            throw new HeadHunterApiException("Cannot resolve $key id");
-        }
-
-        return $currentUser[$key]['id'];
-    }
-
-    /**
-     * @return array
-     */
-    protected function getCurrentUserInfo()
-    {
-        /** @var Me $meEndpoint */
-        $meEndpoint = $this->container->getEndpoint('me');
-
-        return $meEndpoint->info();
     }
 }
