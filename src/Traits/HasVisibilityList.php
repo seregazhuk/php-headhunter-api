@@ -147,8 +147,9 @@ trait HasVisibilityList
     }
 
     /**
-     * @param $resumeId
-     * @param $text
+     * @param string $resumeId
+     * @param string $text
+     * @param string $type
      * @return mixed
      */
     protected function searchInList($resumeId, $type, $text)
