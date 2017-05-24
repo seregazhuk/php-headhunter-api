@@ -125,4 +125,35 @@ trait HasVisibilityList
     {
         return $this->delete($resumeId . '/blacklist/');
     }
+
+    /**
+     * @param string $resumeId
+     * @param string $text
+     * @return mixed
+     */
+    public function searchInBlackList($resumeId, $text)
+    {
+        return $this->searchInList($resumeId, 'blacklist', $text);
+    }
+
+    /**
+     * @param string $resumeId
+     * @param string $text
+     * @return mixed
+     */
+    public function searchInWhiteList($resumeId, $text)
+    {
+        return $this->searchInList($resumeId, 'whitelist', $text);
+    }
+
+    /**
+     * @param string $resumeId
+     * @param string $text
+     * @param string $type
+     * @return mixed
+     */
+    protected function searchInList($resumeId, $type, $text)
+    {
+        return $this->getResource($resumeId . "/$type/search", ['text' => $text]);
+    }
 }
