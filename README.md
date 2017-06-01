@@ -67,10 +67,6 @@ $api->setToken('YOUR_TOKEN');
 ## API Resources
 
 ### Vacancies
-Get black listed vacancies ([official docs](https://github.com/hhru/api/blob/master/docs/blacklisted.md)):
-```php 
-$api->vacancies->blacklisted(); 
-```
 
 View vacancy by id ([official docs](https://github.com/hhru/api/blob/master/docs/vacancies.md)):
 ```php 
@@ -80,6 +76,11 @@ $vacancy = $api->vacancies->view($id);
 Get similar vacancies for the current one ([official docs](https://github.com/hhru/api/blob/master/docs/vacancies.md#similar)):
 ```php
 $similarVacancies = $api->vacancies->similar($id);
+```
+
+Get black listed vacancies ([official docs](https://github.com/hhru/api/blob/master/docs/blacklisted.md)):
+```php
+$blacklisted = $api->vacancies->blacklisted();
 ```
 
 Get list of favorited vacancies ([official docs](https://github.com/hhru/api/blob/master/docs/vacancies.md#favorited)):
