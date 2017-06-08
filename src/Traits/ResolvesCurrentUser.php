@@ -53,6 +53,6 @@ trait ResolvesCurrentUser
      */
     protected function getCurrentManagerId()
     {
-        return $this->getCurrentUserDataId('employer');
+        return $this->getCurrentUserDataId('manager');
     }
 }

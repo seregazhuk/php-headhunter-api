@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.2.11 - 2017-06-07
+### Fixed:
+ - Resolving manager in vacancies
+
+
 ## v0.2.10 - 2017-05-19
 ### Added:
  - Search in resume black/white lists
