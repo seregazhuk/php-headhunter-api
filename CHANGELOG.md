@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.2.12 - 2017-06-07
+### Fixed:
+ - Get active vacancies for manager
+
 ## v0.2.11 - 2017-06-07
 ### Fixed:
  - Resolving manager in vacancies

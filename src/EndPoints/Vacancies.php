@@ -49,7 +49,7 @@ class Vacancies extends Endpoint
     {
         $managerId = $managerId ?: $this->getCurrentManagerId();
 
-        return $this->callEmployersVacanciesEndpoint("active", ['manager' => $managerId]);
+        return $this->callEmployersVacanciesEndpoint("active", ['manager_id' => $managerId]);
     }
 
     public function archived()
