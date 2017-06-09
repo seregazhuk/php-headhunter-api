@@ -277,6 +277,52 @@ Git list of responses/invitation for ([official docs](https://github.com/hhru/ap
 $responses = $api->negotiations->invited($vacancyId);
 ```
 
+#### There are several types of invitations:
+Response
+```php
+$responses = $api->negotiations->invitedResponses($vacancyId);
+```
+
+Consider
+```php
+$toConsider = $api->negotiations->invitedConsider($vacancyId);
+```
+
+Phone interview
+```php
+$phoneInterviews = $api->negotiations->invitedPhoneInterviews($vacancyId);
+```
+
+Assessments
+```php
+$assessments = $api->negotiations->invitedAssessments($vacancyId);
+```
+
+Interviews
+```php
+$interviews = $api->negotiations->invitedInterviews($vacancyId);
+```
+
+Offers
+```php
+$offers = $api->negotiations->invitedOffers($vacancyId);
+```
+
+Hired
+```php
+$hired = $api->negotiations->invitedHired($vacancyId);
+```
+
+Discard by employer
+```php
+$discard = $api->negotiations->invitedDiscardByEmployer($vacancyId);
+```
+
+
+
+
+
+
 View the response/invitation by id. NegotiationId can be taken from key url in the `invited` call response.
 ([official docs](https://github.com/hhru/api/blob/master/doc/employer_negotiations.md)):
 ```php
