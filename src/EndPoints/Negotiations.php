@@ -4,12 +4,13 @@ namespace seregazhuk\HeadHunterApi\EndPoints;
 
 use seregazhuk\HeadHunterApi\Traits\HasAll;
 use seregazhuk\HeadHunterApi\Traits\HasView;
+use seregazhuk\HeadHunterApi\Traits\InvitedNegotiations;
 
 class Negotiations extends Endpoint
 {
     const RESOURCE = 'negotiations';
 
-    use HasView, HasAll;
+    use HasView, HasAll, InvitedNegotiations;
 
     public function active()
     {
@@ -25,14 +26,6 @@ class Negotiations extends Endpoint
         return $this->getResource($id . '/messages');
     }
 
-    /**
-     * @param int $vacancyId
-     * @return mixed
-     */
-    public function invited($vacancyId)
-    {
-        return $this->getResource('', ['vacancy_id' => $vacancyId]);
-    }
 
     public function view($negotiationId)
     {
