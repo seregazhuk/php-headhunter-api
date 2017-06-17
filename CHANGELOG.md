@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.3.0 - 2017-06-17
+### Added:
+ - Pagination
+
 ## v0.2.13 - 2017-06-08
 ### Added:
  - Different types of invited negotiations.

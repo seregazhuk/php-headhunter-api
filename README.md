@@ -86,11 +86,14 @@ $blacklisted = $api->vacancies->blacklisted();
 Get list of favorited vacancies ([official docs](https://github.com/hhru/api/blob/master/docs/vacancies.md#favorited)):
 ```php
 $vacancies = $api->vacancies->favorited();
+
+// with pagination
+$vacancies = $api->vacancies->favorited(['page' => 2]);
 ```
 
 Search ([official docs](https://github.com/hhru/api/blob/master/docs/vacancies.md#search)):
 ```php 
-$vacancies = $api->vacancies->search($params); 
+$vacancies = $api->vacancies->search($params);
 ```
 
 Vacancy statistics ([official docs](https://github.com/hhru/api/blob/master/docs/employer_vacancies.md#stats)):
@@ -104,18 +107,24 @@ $vacancies = $api->vacancies->active();
 
 // you can specify a manager, by default uses current manager
 $vacancies = $api->vacancies->active($managerId);
+// with pagination
+$vacancies = $api->vacancies->active($managerId, ['page'=>2]);
 ```
 
 Employer's archived vacancies ([official docs](https://github.com/hhru/api/blob/master/docs/employer_vacancies.md#Архивация-вакансий)):
 
 ```php
 $archived = $api->vacancies->archived();
+// with pagination
+$archived = $api->vacancies->archived(['page'=>2]);
 ```
 
 Employer's hidden vacancies ([official docs](https://github.com/hhru/api/blob/master/docs/employer_vacancies.md#hidden)):
 
 ```php
 $hidden = $api->vacancies->hidden();
+// with pagination
+$hidden = $api->vacancies->hidden(['page'=>2]);
 ```
 
 Hide a vacancy ([official docs](https://github.com/hhru/api/blob/master/docs/employer_vacancies.md#hide)):
@@ -265,8 +274,10 @@ View the list of messages.
 
 - For employee: get messages of negotiation ([official docs](https://github.com/hhru/api/blob/master/docs/negotiations.md#get_messages)):
 - For employer: view the list of messages in the response/invitation ([official docs](https://github.com/hhru/api/blob/master/docs/employer_negotiations.md#view-the-list-of-messages-in-the-responseinvitation)):
-```php 
-$api->negotiations->message($negotiationId, $messageText);
+```php
+$api->negotiations->messages($negotiationId);
+// with pagination
+$api->negotiations->messages($negotiationId, ['page'=>2]);
 ```
 
 Sending new message.
@@ -274,15 +285,21 @@ Sending new message.
 - For employee: create a new message ([official docs](https://github.com/hhru/api/blob/master/docs/negotiations.md#send_message)):
 - For employer: sending a message in the response/invitation ([official docs](https://github.com/hhru/api/blob/master/docs/employer_negotiations.md#sending-a-message-in-the-responseinvitation)):
 
+```php
+$api->negotiations->message($negotiationId, $messageText);
+```
+
 Git list of responses/invitation for ([official docs](https://github.com/hhru/api/blob/master/docs/employer_negotiations.md)):
 ```php
 $responses = $api->negotiations->invited($vacancyId);
 ```
 
-#### There are several types of invitations:
+#### There are several types of invitations. For each of them you can pass a pagination array as a second argument:
 Response
 ```php
 $responses = $api->negotiations->invitedResponses($vacancyId);
+// with pagination
+$responses = $api->negotiations->invitedResponses($vacancyId, ['page'=>2]);
 ```
 
 Consider
@@ -363,11 +380,17 @@ $result = $api->resumes->create($attributes);
 Views history ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#views)):
 ```php 
 $views = $api->resumes->views($resumeId);
+
+// with pagination
+
+$views = $api->resumes->views($resumeId, ['page'=>2]);
 ```
 
 Negotiations history ([official docs](https://github.com/hhru/api/blob/master/docs/resume_negotiations_history.md)):
 ```php
 $negotiations = $api->resumes->negotiations($resumeId);
+// with pagination
+$negotiations = $api->resumes->negotiations($resumeId, ['page' => 2]);
 ```
 
 Update resume publish date ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#publish)):
@@ -393,6 +416,9 @@ $status = $api->resumes->status($resumeId);
 Get jobs recommendations for resume ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#similar)):
 ```php
 $jobs = $api->resumes->jobs($resumeId)
+
+// with pagination
+$jobs = $api->resumes->jobs($resumeId, ['page' => 2])
 ```
 
 #### Resume visibility

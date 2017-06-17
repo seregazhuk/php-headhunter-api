@@ -13,23 +13,28 @@ class Vacancies extends Endpoint
 
     use HasView, Searchable, HasSimilarVacancies, ResolvesCurrentUser;
 
-    public function blacklisted()
+    public function blacklisted(array $pagination = [])
     {
-        return $this->getResource('blacklisted');
+        return $this->getResource('blacklisted', $pagination);
     }
 
-    public function favorited()
+    /**
+     * @param array $pagination
+     * @return mixed
+     */
+    public function favorited(array $pagination = [])
     {
-        return $this->getResource('favorited');
+        return $this->getResource('favorited', $pagination);
     }
 
     /**
      * @param string $id
+     * @param array $pagination
      * @return mixed
      */
-    public function similar($id)
+    public function similar($id, array $pagination = [])
     {
-        return $this->getSimilarVacanciesFor($id);
+        return $this->getSimilarVacanciesFor($id, $pagination);
     }
 
     /**
@@ -43,35 +48,49 @@ class Vacancies extends Endpoint
 
     /**
      * @param string|null $managerId
+     * @param array $pagination
      * @return array|null
      */
-    public function active($managerId = null)
+    public function active($managerId = null, array $pagination = [])
     {
         $managerId = $managerId ?: $this->getCurrentManagerId();
 
-        return $this->callEmployersVacanciesEndpoint("active", ['manager_id' => $managerId]);
+        $params = array_merge(
+            $pagination,
+            ['manager_id' => $managerId]
+        );
+
+        return $this->callEmployersVacanciesEndpoint("active", $params);
     }
 
-    public function archived()
+    /**
+     * @param array $pagination
+     * @return array|null
+     */
+    public function archived(array $pagination = [])
     {
-        return $this->callEmployersVacanciesEndpoint("archived");
+        return $this->callEmployersVacanciesEndpoint("archived", $pagination);
     }
 
-    public function hidden()
+    /**
+     * @param array $pagination
+     * @return array|null
+     */
+    public function hidden(array $pagination = [])
     {
-        return $this->callEmployersVacanciesEndpoint("hidden");
+        return $this->callEmployersVacanciesEndpoint("hidden", $pagination);
     }
 
     /**
      * @param string $endpoint
-     * @param array $params
+     * @param array $pagination
      * @return array|null
      */
-    protected function callEmployersVacanciesEndpoint($endpoint, $params = [])
+    protected function callEmployersVacanciesEndpoint($endpoint, $pagination = [])
     {
         $employerId = $this->getCurrentEmployerId();
 
-        return $this->request->get("/employers/$employerId/vacancies/$endpoint", $params);
+        return $this->request->get("/employers/$employerId/vacancies/$endpoint", $pagination);
     }
 
     /**

@@ -173,8 +173,10 @@ class Request
             'locale' => $this->locale,
         ];
 
+        // Merge specified params with defaults
         $params = array_merge(
-            $params, $customOptions
+            $customOptions,
+            $params
         );
 
         return http_build_query($params);

@@ -12,18 +12,19 @@ class Negotiations extends Endpoint
 
     use HasView, HasAll, InvitedNegotiations;
 
-    public function active()
+    public function active(array $pagination = [])
     {
-        return $this->getResource('active');
+        return $this->getResource('active', $pagination);
     }
 
     /**
      * @param string $id
+     * @param array $pagination
      * @return array
      */
-    public function messages($id)
+    public function messages($id, array $pagination = [])
     {
-        return $this->getResource($id . '/messages');
+        return $this->getResource($id . '/messages', $pagination);
     }
 
 
