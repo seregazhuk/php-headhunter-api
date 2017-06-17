@@ -84,11 +84,14 @@ $similarVacancies = $api->vacancies->similar($id);
 Get list of favorited vacancies ([official docs](https://github.com/hhru/api/blob/master/docs/vacancies.md#favorited)):
 ```php
 $vacancies = $api->vacancies->favorited();
+
+// with pagination
+$vacancies = $api->vacancies->favorited(['page' => 2]);
 ```
 
 Search ([official docs](https://github.com/hhru/api/blob/master/docs/vacancies.md#search)):
 ```php 
-$vacancies = $api->vacancies->search($params); 
+$vacancies = $api->vacancies->search($params);
 ```
 
 Vacancy statistics ([official docs](https://github.com/hhru/api/blob/master/docs/employer_vacancies.md#stats)):
@@ -102,18 +105,24 @@ $vacancies = $api->vacancies->active();
 
 // you can specify a manager, by default uses current manager
 $vacancies = $api->vacancies->active($managerId);
+// with pagination
+$vacancies = $api->vacancies->active($managerId, ['page'=>2]);
 ```
 
 Employer's archived vacancies ([official docs](https://github.com/hhru/api/blob/master/docs/employer_vacancies.md#Архивация-вакансий)):
 
 ```php
 $archived = $api->vacancies->archived();
+// with pagination
+$archived = $api->vacancies->archived(['page'=>2]);
 ```
 
 Employer's hidden vacancies ([official docs](https://github.com/hhru/api/blob/master/docs/employer_vacancies.md#hidden)):
 
 ```php
 $hidden = $api->vacancies->hidden();
+// with pagination
+$hidden = $api->vacancies->hidden(['page'=>2]);
 ```
 
 Hide a vacancy ([official docs](https://github.com/hhru/api/blob/master/docs/employer_vacancies.md#hide)):
