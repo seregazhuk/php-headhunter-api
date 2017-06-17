@@ -12,10 +12,11 @@ class Faculties extends Endpoint
 
     /**
      * @param int $institutionId
+     * @param array $pagination
      * @return mixed
      */
-    public function forInstitution($institutionId)
+    public function forInstitution($institutionId, array $pagination = [])
     {
-        return $this->getResource($institutionId . '/faculties');
+        return $this->getResource($institutionId . '/faculties', $pagination);
     }
 }

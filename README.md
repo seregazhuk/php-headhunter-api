@@ -263,8 +263,10 @@ View the list of messages.
 
 - For employee: get messages of negotiation ([official docs](https://github.com/hhru/api/blob/master/docs/negotiations.md#get_messages)):
 - For employer: view the list of messages in the response/invitation ([official docs](https://github.com/hhru/api/blob/master/docs/employer_negotiations.md#view-the-list-of-messages-in-the-responseinvitation)):
-```php 
-$api->negotiations->message($negotiationId, $messageText);
+```php
+$api->negotiations->messages($negotiationId);
+// with pagination
+$api->negotiations->messages($negotiationId, ['page'=>2]);
 ```
 
 Sending new message.
@@ -272,15 +274,21 @@ Sending new message.
 - For employee: create a new message ([official docs](https://github.com/hhru/api/blob/master/docs/negotiations.md#send_message)):
 - For employer: sending a message in the response/invitation ([official docs](https://github.com/hhru/api/blob/master/docs/employer_negotiations.md#sending-a-message-in-the-responseinvitation)):
 
+```php
+$api->negotiations->message($negotiationId, $messageText);
+```
+
 Git list of responses/invitation for ([official docs](https://github.com/hhru/api/blob/master/docs/employer_negotiations.md)):
 ```php
 $responses = $api->negotiations->invited($vacancyId);
 ```
 
-#### There are several types of invitations:
+#### There are several types of invitations. For each of them you can pass a pagination array as a second argument:
 Response
 ```php
 $responses = $api->negotiations->invitedResponses($vacancyId);
+// with pagination
+$responses = $api->negotiations->invitedResponses($vacancyId, ['page'=>2]);
 ```
 
 Consider
