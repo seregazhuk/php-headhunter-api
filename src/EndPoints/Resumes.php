@@ -22,11 +22,12 @@ class Resumes extends Endpoint
 
     /**
      * @param string $id
+     * @param array $pagination
      * @return array
      */
-    public function views($id)
+    public function views($id, array $pagination = [])
     {
-        return $this->getResource($id . '/views');
+        return $this->getResource($id . '/views', $pagination);
     }
 
     /**
@@ -87,11 +88,12 @@ class Resumes extends Endpoint
 
     /**
      * @param string $id
+     * @param array $pagination
      * @return mixed
      */
-    public function jobs($id)
+    public function jobs($id, array $pagination = [])
     {
-        return $this->getSimilarVacanciesFor($id);
+        return $this->getSimilarVacanciesFor($id, $pagination);
     }
 
     /**

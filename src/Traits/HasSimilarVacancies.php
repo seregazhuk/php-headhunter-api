@@ -13,10 +13,11 @@ trait HasSimilarVacancies
 
     /**
      * @param string $id
+     * @param array $pagination
      * @return mixed
      */
-    protected function getSimilarVacanciesFor($id)
+    protected function getSimilarVacanciesFor($id, array $pagination = [])
     {
-        return $this->getResource($id . '/similar_vacancies');
+        return $this->getResource($id . '/similar_vacancies', $pagination);
     }
 }

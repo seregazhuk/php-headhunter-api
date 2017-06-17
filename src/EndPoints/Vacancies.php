@@ -52,14 +52,22 @@ class Vacancies extends Endpoint
         return $this->callEmployersVacanciesEndpoint("active", ['manager_id' => $managerId]);
     }
 
-    public function archived()
+    /**
+     * @param array $params
+     * @return array|null
+     */
+    public function archived(array $params = [])
     {
-        return $this->callEmployersVacanciesEndpoint("archived");
+        return $this->callEmployersVacanciesEndpoint("archived", $params);
     }
 
-    public function hidden()
+    /**
+     * @param array $params
+     * @return array|null
+     */
+    public function hidden(array $params = [])
     {
-        return $this->callEmployersVacanciesEndpoint("hidden");
+        return $this->callEmployersVacanciesEndpoint("hidden", $params);
     }
 
     /**

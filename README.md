@@ -361,6 +361,10 @@ $result = $api->resumes->create($attributes);
 Views history ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#views)):
 ```php 
 $views = $api->resumes->views($resumeId);
+
+// with pagination
+
+$views = $api->resumes->views($resumeId, ['page'=>2]);
 ```
 
 Negotiations history ([official docs](https://github.com/hhru/api/blob/master/docs/resume_negotiations_history.md)):
@@ -391,6 +395,9 @@ $status = $api->resumes->status($resumeId);
 Get jobs recommendations for resume ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#similar)):
 ```php
 $jobs = $api->resumes->jobs($resumeId)
+
+// with pagination
+$jobs = $api->resumes->jobs($resumeId, ['page' => 2])
 ```
 
 #### Resume visibility
