@@ -98,10 +98,11 @@ class Resumes extends Endpoint
 
     /**
      * @param string $id
+     * @param array $pagination
      * @return array
      */
-    public function negotiations($id)
+    public function negotiations($id, array $pagination = [])
     {
-        return $this->getResource($id . '/negotiations_history');
+        return $this->getResource($id . '/negotiations_history', $pagination);
     }
 }

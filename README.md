@@ -378,6 +378,8 @@ $views = $api->resumes->views($resumeId, ['page'=>2]);
 Negotiations history ([official docs](https://github.com/hhru/api/blob/master/docs/resume_negotiations_history.md)):
 ```php
 $negotiations = $api->resumes->negotiations($resumeId);
+// with pagination
+$negotiations = $api->resumes->negotiations($resumeId, ['page' => 2]);
 ```
 
 Update resume publish date ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#publish)):
