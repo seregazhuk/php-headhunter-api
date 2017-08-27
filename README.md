@@ -37,7 +37,8 @@ Requires PHP 5.6 or above.
 
 ## Installation
 
-Install via [Composer](http://getcomposer.org):
+The recommended way to install this library is via [Composer](http://getcomposer.org). 
+[New to Composer?](http://getcomposer.org/doc/00-intro.md)
 
 ```
 composer require seregazhuk/headhunter-api
