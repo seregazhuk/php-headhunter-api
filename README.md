@@ -15,6 +15,7 @@ Official API docs available [here](https://github.com/hhru/api).
  - [Quick Start](#quick-start)
  - [Vacancies](#vacancies)
  - [Employers](#employers)
+ - [Employer Managers](#employer-managers)
  - [Artifacts](#artifacts)
  - [User](#user)
  - [Comments](#comments)
@@ -37,7 +38,7 @@ Requires PHP 5.6 or above.
 
 ## Installation
 
-The recommended way to install this library is via [Composer](http://getcomposer.org). 
+The recommended way to install this library is via [Composer](http://getcomposer.org).
 [New to Composer?](http://getcomposer.org/doc/00-intro.md)
 
 ```
@@ -46,13 +47,13 @@ composer require seregazhuk/headhunter-api
 
 ## Quick Start
 
-```php 
+```php
 // You may need to amend this path to locate composer's autoloader
-require('vendor/autoload.php'); 
+require('vendor/autoload.php');
 use seregazhuk\HeadHunterApi\Api;
 
 /**
-* Token is optional . Your need token only 
+* Token is optional . Your need token only
 * for resources that require authentication
 */
 $api = Api::create('YOUR_TOKEN');
@@ -70,8 +71,8 @@ $api->setToken('YOUR_TOKEN');
 ### Vacancies
 
 View vacancy by id ([official docs](https://github.com/hhru/api/blob/master/docs/vacancies.md)):
-```php 
-$vacancy = $api->vacancies->view($id); 
+```php
+$vacancy = $api->vacancies->view($id);
 ```
 
 Get similar vacancies for the current one ([official docs](https://github.com/hhru/api/blob/master/docs/vacancies.md#similar)):
@@ -93,7 +94,7 @@ $vacancies = $api->vacancies->favorited(['page' => 2]);
 ```
 
 Search ([official docs](https://github.com/hhru/api/blob/master/docs/vacancies.md#search)):
-```php 
+```php
 $vacancies = $api->vacancies->search($params);
 ```
 
@@ -143,25 +144,54 @@ $api->vacancies->restore($vacancyId);
 ### Employers
 
 View employee by id ([official docs](https://github.com/hhru/api/blob/master/docs/employers.md#item)):
-```php 
+```php
 $employee = $api->employers->view($id);
 ```
 
 Search ([official docs](https://github.com/hhru/api/blob/master/docs/employers.md#search)):
-```php 
-$employers = $api->employers->search($params); 
+```php
+$employers = $api->employers->search($params);
 ```
+### Employer Managers
+
+Reference types and the rights of the manager ([official docs](https://github.com/hhru/api/blob/master/docs/employer_managers.md#dict)):
+```php
+$reference_type = $api->employers->getManagerTypes();
+$reference_type = $api->employers->getManagerTypes($employer_id);
+```
+When used without parameters your employer id will be automatically resolved from your profile
+
+Get employer managers ([official docs](https://github.com/hhru/api/blob/master/docs/employer_managers.md#%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BE%D1%87%D0%BD%D0%B8%D0%BA-%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%B2-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BE%D0%B4%D0%B0%D1%82%D0%B5%D0%BB%D1%8F)):
+```php
+$managers = $api->employers->getManagers();
+$managers = $api->employers->getManagers($employer_id);
+$managerWhoHasVacancies = $api->employers->getManagersWhoHasVacancies();
+$managerWhoHasVacancies = $api->employers->getManagersWhoHasVacancies($employer_id);
+```
+When used without parameters your employer id will be automatically resolved from your profile
+
+Get manager information ([official docs](https://github.com/hhru/api/blob/master/docs/employer_managers.md#%D0%9F%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%B8-%D0%BE-%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%B5)):
+```php
+$managers = $api->employers->getManager($managerId);
+$managers = $api->employers->getManager($managerId, $employer_id);
+```
+When used without parameters your employer id will be automatically resolved from your profile
+
+#### TODO:
+- Add Manager ([official docs](https://github.com/hhru/api/blob/master/docs/employer_managers.md#%D0%94%D0%BE%D0%B1%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%B0)):
+- Edit Manager ([official docs](https://github.com/hhru/api/blob/master/docs/employer_managers.md#%D0%A0%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%B0)):
+- Delete Manager ([official docs](https://github.com/hhru/api/blob/master/docs/employer_managers.md#%D0%A3%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%B0)):
 
 ### Artifacts:
 
 Get your photos ([official docs](https://github.com/hhru/api/blob/master/docs/artifacts.md)):
-```php 
+```php
 $photos = $api->artifacts->photos();
 ```
 
 Get your portfolio ([official docs](https://github.com/hhru/api/blob/master/docs/artifacts.md)):
-```php 
-$portfolio = $api->artifacts->portfolio(); 
+```php
+$portfolio = $api->artifacts->portfolio();
 ```
 
 Delete photo by id ([official docs](https://github.com/hhru/api/blob/master/docs/artifacts.md)):
@@ -218,8 +248,8 @@ $preferences = $api->manager->preferences($managerId);
 ### Applicant comments
 
 Get all comments about applicant ([official docs](https://github.com/hhru/api/blob/master/docs/applicant_comments.md#list)):
-```php 
-$comments = $api->comments->view($applicantId); 
+```php
+$comments = $api->comments->view($applicantId);
 ```
 
 Create a comment ([official docs](https://github.com/hhru/api/blob/master/docs/applicant_comments.md#add_comment)).
@@ -255,20 +285,20 @@ $api->comments->delete($applicantId, $commentId);
 
 ### Industries
 Get all industries ([official docs](https://github.com/hhru/api/blob/master/docs/industries.md)):
-```php 
-$industries = $api->industries->all(); 
+```php
+$industries = $api->industries->all();
 ```
 
 ### Employee Negotiations
 
 Get all negotiations ([official docs](https://github.com/hhru/api/blob/master/docs/negotiations.md#get_negotiations)):
-```php 
-$negotiations = $api->negotiations->all(); 
+```php
+$negotiations = $api->negotiations->all();
 ```
 
 Get only active negotiations ([official docs](https://github.com/hhru/api/blob/master/docs/negotiations.md#get_negotiations_active)):
-```php 
-$negotiations = $api->negotiations->active(); 
+```php
+$negotiations = $api->negotiations->active();
 ```
 
 View the list of messages.
@@ -351,20 +381,20 @@ $response = $api->negotiations->view($negotiationId);
 ### Regions
 
 Get all regions ([official docs](https://github.com/hhru/api/blob/master/docs/areas.md#areas)):
-```php 
-$regions = $api->regions->all(); 
+```php
+$regions = $api->regions->all();
 ```
 
 ### Resumes
 
 Get my resumes ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#mine)):
-```php 
-$resumes = $api->resumes->mine(); 
+```php
+$resumes = $api->resumes->mine();
 ```
 
 View resume ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#item)):
-```php 
-$views = $api->resumes->view($resumeId); 
+```php
+$views = $api->resumes->view($resumeId);
 ```
 
 Edit resume ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#create_edit)):
@@ -379,7 +409,7 @@ $result = $api->resumes->create($attributes);
 ```
 
 Views history ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#views)):
-```php 
+```php
 $views = $api->resumes->views($resumeId);
 
 // with pagination
@@ -395,13 +425,13 @@ $negotiations = $api->resumes->negotiations($resumeId, ['page' => 2]);
 ```
 
 Update resume publish date ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#publish)):
-```php 
-$api->resumes->publish($resumeId); 
+```php
+$api->resumes->publish($resumeId);
 ```
 
 Get resume conditions ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#conditions)):
-```php 
-$conditions = $api->resumes->conditions($resumeId); 
+```php
+$conditions = $api->resumes->conditions($resumeId);
 ```
 
 Remove resume ([official docs](https://github.com/hhru/api/blob/master/docs/resumes.md#delete)):
@@ -465,20 +495,20 @@ Search in black/white list:
 ### Saved searches:
 
 List searches ([official docs](https://github.com/hhru/api/blob/master/docs/saved_search.md#vacancies-saved-search-list)):
-```php 
-$searches = $api->savedSearches->all(); 
+```php
+$searches = $api->savedSearches->all();
 ```
 
 Get one search ([official docs](https://github.com/hhru/api/blob/master/docs/saved_search.md#vacancies-saved-search-item)):
-```php 
-$searches = $api->savedSearches->view($searchId); 
+```php
+$searches = $api->savedSearches->view($searchId);
 ```
 
 ### Specializations
 
 Get all specializations ([official docs](https://github.com/hhru/api/blob/master/docs/specializations.md)):
-```php 
-$specializations = $api->specializations->all(); 
+```php
+$specializations = $api->specializations->all();
 ```
 
 ### Dictionaries
