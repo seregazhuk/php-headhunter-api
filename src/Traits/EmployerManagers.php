@@ -8,7 +8,7 @@ trait EmployerManagers
 
     /**
      * Reference types and the rights of the Manager
-     * @param  mixed $employerId
+     * @param string|bool $employerId
      * @return array
      */
     public function getManagerTypes($employerId = false)
@@ -20,28 +20,26 @@ trait EmployerManagers
         return $this->getResource($verb, []);
     }
 
-
     /**
      * Get employer managers
      *
-     * @param  mixed $employerId default resolved from profile
+     * @param string|bool $employerId default resolved from profile
      * @return array
      */
     public function getManagers($employerId = false)
     {
         $employerId = $this->resolveEmployerId($employerId);
 
-        $verb = sprintf("%s/managers", $employerId );
+        $verb = sprintf("%s/managers", $employerId);
 
         return $this->getResource($verb, []);
     }
-
 
     /**
      * Get manager information
      *
      * @param string $managerId
-     * @param mixed $employerId default resolved from profile
+     * @param string|bool $employerId default resolved from profile
      * @return array
      */
     public function getManager($managerId, $employerId = false)
@@ -54,25 +52,33 @@ trait EmployerManagers
     }
 
     /**
-     * @param  mixed $employerId default resolved from profile
+     * @param string|bool $employerId default resolved from profile
      * @return array
      */
     public function getManagersWhoHasVacancies($employerId = false)
     {
         $managers = $this->getManagers($employerId);
 
-        if( !isset($managers['items']) ) {
+        if(!isset($managers['items']) ) {
             throw new \UnexpectedValueException("Failed to get employer managers");
         }
 
-        return array_filter($managers['items'], array($this, 'hasVacancies'));
+        return array_filter($managers['items'], [$this, 'hasVacancies']);
     }
 
-    protected function hasVacancies($manager)
+	/**
+	 * @param array $manager
+	 * @return bool
+	 */
+    protected function hasVacancies(array $manager)
     {
-        return $manager['vacancies_count'] > 0;
+        return isset($manager) && $manager['vacancies_count'] > 0;
     }
 
+	/**
+	 * @param string|bool $employerId
+	 * @return string
+	 */
     protected function resolveEmployerId($employerId)
     {
         return (false === $employerId)

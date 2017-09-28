@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.3.1 - 2017-09-28
+### Added:
+ - Employer Managers
+
 ## v0.3.0 - 2017-06-17
 ### Added:
  - Pagination
