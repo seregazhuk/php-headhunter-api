@@ -3,7 +3,6 @@
 namespace seregazhuk\HeadHunterApi;
 
 use GuzzleHttp\Client;
-use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
 
 class Request
@@ -11,7 +10,7 @@ class Request
     const BASE_URL = 'https://api.hh.ru/';
 
     /**
-     * @var \GuzzleHttp\Client
+     * @var Client
      */
     protected $client;
 
@@ -128,15 +127,6 @@ class Request
     }
 
     /**
-     * @param ResponseInterface $response
-     * @return array|null
-     */
-    protected function parseResponse(ResponseInterface $response)
-    {
-        return json_decode($response->getBody(), true);
-    }
-
-    /**
      * @param string $method
      * @param string $uri
      * @param array $options
@@ -148,12 +138,12 @@ class Request
 
         $response = $this->client->send($request, $options);
 
-        return $this->parseResponse($response);
+	    return json_decode($response->getBody(), true);
     }
 
     /**
      * @param string $locale
-     * @return Request
+     * @return $this
      */
     public function setLocale($locale)
     {
@@ -184,7 +174,7 @@ class Request
 
     /**
      * @param string $host
-     * @return Request
+     * @return $this
      */
     public function setHost($host)
     {
@@ -199,25 +189,17 @@ class Request
      */
     public function setToken($token)
     {
-        $this->addAuthHeader($token);
+	    $this->headers = ['Authorization' => 'Bearer ' . $token];
 
         return $this;
     }
 
     /**
-     * @param string $token
-     */
-    protected function addAuthHeader($token)
-    {
-        $this->headers = ['Authorization' => 'Bearer ' . $token];
-    }
-
-    /**
-     * @param $uri
-     * @param $params
+     * @param string $uri
+     * @param array $params
      * @return string
      */
-    protected function makeUriWithQuery($uri, $params)
+    protected function makeUriWithQuery($uri, array $params = [])
     {
         if (!empty($params)) {
             $uri .= '?' . $this->makeQueryString($params);
