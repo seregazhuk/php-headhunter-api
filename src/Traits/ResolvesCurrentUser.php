@@ -5,6 +5,7 @@ namespace seregazhuk\HeadHunterApi\Traits;
 use seregazhuk\HeadHunterApi\EndPoints\Me;
 use seregazhuk\HeadHunterApi\EndPoints\EndpointsContainer;
 use seregazhuk\HeadHunterApi\Exceptions\HeadHunterApiException;
+use seregazhuk\HeadHunterApi\Exceptions\WrongEndPointException;
 
 /**
  * Trait ResolvesCurrentUser
@@ -15,6 +16,7 @@ trait ResolvesCurrentUser
 {
     /**
      * @return array
+     * @throws WrongEndPointException
      */
     protected function getCurrentUserInfo()
     {
@@ -25,7 +27,7 @@ trait ResolvesCurrentUser
     }
 
     /**
-     * @param $key
+     * @param string $key
      * @return string
      * @throws HeadHunterApiException
      */
@@ -42,6 +44,7 @@ trait ResolvesCurrentUser
 
     /**
      * @return string
+     * @throws HeadHunterApiException
      */
     protected function getCurrentEmployerId()
     {
@@ -50,6 +53,7 @@ trait ResolvesCurrentUser
 
     /**
      * @return string
+     * @throws HeadHunterApiException
      */
     protected function getCurrentManagerId()
     {

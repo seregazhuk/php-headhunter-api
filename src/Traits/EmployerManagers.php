@@ -2,6 +2,8 @@
 
 namespace seregazhuk\HeadHunterApi\Traits;
 
+use UnexpectedValueException;
+
 trait EmployerManagers
 {
     use ResolvesCurrentUser;
@@ -15,9 +17,7 @@ trait EmployerManagers
     {
         $employerId = $this->resolveEmployerId($employerId);
 
-        $verb = sprintf("%s/manager_types", $employerId );
-
-        return $this->getResource($verb, []);
+        return $this->getResource("$employerId/manager_types", []);
     }
 
     /**
@@ -30,9 +30,7 @@ trait EmployerManagers
     {
         $employerId = $this->resolveEmployerId($employerId);
 
-        $verb = sprintf("%s/managers", $employerId);
-
-        return $this->getResource($verb, []);
+        return $this->getResource("$employerId/managers", []);
     }
 
     /**
@@ -46,9 +44,7 @@ trait EmployerManagers
     {
         $employerId = $this->resolveEmployerId($employerId);
 
-        $verb = sprintf("%s/managers/%s", $employerId, $managerId );
-
-        return $this->getResource($verb, []);
+        return $this->getResource("$employerId/managers/$managerId", []);
     }
 
     /**
@@ -60,7 +56,7 @@ trait EmployerManagers
         $managers = $this->getManagers($employerId);
 
         if(!isset($managers['items']) ) {
-            throw new \UnexpectedValueException("Failed to get employer managers");
+            throw new UnexpectedValueException('Failed to get employer managers');
         }
 
         return array_filter($managers['items'], [$this, 'hasVacancies']);
@@ -72,7 +68,7 @@ trait EmployerManagers
 	 */
     protected function hasVacancies(array $manager)
     {
-        return isset($manager) && $manager['vacancies_count'] > 0;
+        return $manager['vacancies_count'] > 0;
     }
 
 	/**
