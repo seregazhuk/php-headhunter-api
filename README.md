@@ -157,30 +157,25 @@ $employers = $api->employers->search($params);
 Reference types and the rights of the manager ([official docs](https://github.com/hhru/api/blob/master/docs/employer_managers.md#dict)):
 ```php
 $reference_type = $api->employers->getManagerTypes();
-$reference_type = $api->employers->getManagerTypes($employer_id);
+$reference_type = $api->employers->getManagerTypes($employerId);
 ```
 When used without parameters your employer id will be automatically resolved from your profile
 
 Get employer managers ([official docs](https://github.com/hhru/api/blob/master/docs/employer_managers.md#%D0%A1%D0%BF%D1%80%D0%B0%D0%B2%D0%BE%D1%87%D0%BD%D0%B8%D0%BA-%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%B2-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BE%D0%B4%D0%B0%D1%82%D0%B5%D0%BB%D1%8F)):
 ```php
 $managers = $api->employers->getManagers();
-$managers = $api->employers->getManagers($employer_id);
+$managers = $api->employers->getManagers($employerId);
 $managerWhoHasVacancies = $api->employers->getManagersWhoHasVacancies();
-$managerWhoHasVacancies = $api->employers->getManagersWhoHasVacancies($employer_id);
+$managerWhoHasVacancies = $api->employers->getManagersWhoHasVacancies($employerId);
 ```
 When used without parameters your employer id will be automatically resolved from your profile
 
 Get manager information ([official docs](https://github.com/hhru/api/blob/master/docs/employer_managers.md#%D0%9F%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%B8-%D0%BE-%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%B5)):
 ```php
 $managers = $api->employers->getManager($managerId);
-$managers = $api->employers->getManager($managerId, $employer_id);
+$managers = $api->employers->getManager($managerId, $employerId);
 ```
 When used without parameters your employer id will be automatically resolved from your profile
-
-#### TODO:
-- Add Manager ([official docs](https://github.com/hhru/api/blob/master/docs/employer_managers.md#%D0%94%D0%BE%D0%B1%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%B0)):
-- Edit Manager ([official docs](https://github.com/hhru/api/blob/master/docs/employer_managers.md#%D0%A0%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%B0)):
-- Delete Manager ([official docs](https://github.com/hhru/api/blob/master/docs/employer_managers.md#%D0%A3%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%B0)):
 
 ### Artifacts:
 
