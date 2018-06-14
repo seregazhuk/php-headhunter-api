@@ -53,9 +53,9 @@ require('vendor/autoload.php');
 use seregazhuk\HeadHunterApi\Api;
 
 /**
-* Token is optional . Your need token only
-* for resources that require authentication
-*/
+ * Token is optional. Your need token only
+ * for resources that require authentication
+ */
 $api = Api::create('YOUR_TOKEN');
 $userInfo = $api->me->info();
 ```
