@@ -71,7 +71,7 @@ trait HasVisibilityList
      */
     protected function addVisibilityItem($resumeId, $companyId, $list)
     {
-        $companyId = is_array($companyId) ? $companyId : [$companyId];
+        $companyId = (array)$companyId;
 
         $companies = array_map(
             function ($company) {
