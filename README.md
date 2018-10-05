@@ -372,6 +372,7 @@ View the response/invitation by id. NegotiationId can be taken from key url in t
 ([official docs](https://github.com/hhru/api/blob/master/doc/employer_negotiations.md)):
 ```php
 $response = $api->negotiations->view($negotiationId);
+```
 
 ### Regions
 
